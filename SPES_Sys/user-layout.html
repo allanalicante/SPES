@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Form</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="asset/css/bootstrap.css">
+
+    <link rel="stylesheet" href="asset/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="asset/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="asset/css/app.css">
+    <link rel="shortcut icon" href="asset/images/favicon.svg" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app">
+    
+        
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-center">
+                        <div class="logo">
+                            <a href="index.html"><img src="asset/images/speslogo.png" alt="Logo" srcset=""></a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Menu</li>
+
+                        <li class="sidebar-item  ">
+                            <a href="index.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>Records</span>
+                            </a>
+                            <ul class="submenu">
+                                <li class="submenu-item">
+                                    <a href="admission-layout.html">Admission</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="student-datatable.html">Students</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="teacher-datatable.html">Teachers</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="#">Grade Level</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="#">Sections</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item active ">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>User Information</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="about-layout.html" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>About SPES</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="login.html" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>Log-out</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading"> <!-- HEADING -->
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-1 order-last">
+                            <h3>USER FORM</h3>
+                           
+                        </div>
+                        <div class="col-12 col-md-6 order-md-2 order-first">
+                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Form Layout</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Basic Horizontal form layout section start -->
+                <section id="basic-horizontal-layouts">
+                    <div class="row match-height">
+                        <div class="col-md-12 col-12">
+                            <div class="card">  <!------------------------- STUDENT INFORMATION CARAD ---------------->
+                                <div class="card-header">
+                                    <h4 class="card-title">USER INFORMATION</h4>
+                                </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <form class="form form-horizontal">
+                                                <div class="form-body">
+                                                    <div class="row">
+                                                        <div class="col-md-2 col-12">
+                                                            <div class="form-group">
+                                                                <label for="ID-number-vertical">ID No.</label>
+                                                                <input type="text" id="ID-number-vertical"
+                                                                    class="form-control" name="ID-number-info"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="form-group">
+                                                                <label for="Last-name-vertical">Last Name</label>
+                                                                <input type="text" id="Last-name-vertical"
+                                                                    class="form-control" name="Last-name-info"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-12">
+                                                            <div class="form-group">
+                                                                <label for="First-name-vertical">First Name</label>
+                                                                <input type="text" id="First-name-vertical"
+                                                                    class="form-control" name="First-name-info"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-12">
+                                                            <div class="form-group">
+                                                                <label for="Middle-name-vertical">Middle Name</label>
+                                                                <input type="text" id="Middle-name-vertical"
+                                                                    class="form-control" name="Middle-name-info"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 col-12">
+                                                            <div class="form-group">
+                                                                <label for="Name-extension-vertical">Name Ext. (e.g.Jr.,II)</label>
+                                                                <input type="text" id="Name-extension-vertical"
+                                                                    class="form-control" name="Name-extension-info"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 col-12">
+                                                            <div class="form-group">
+                                                                <label for="Sex-info-vertical">Sex</label>
+                                                                <select class="form-control" name="sex" id="sex">
+                                                                    <option value="" disabled selected></option>
+                                                                    <option value="1st">Male</option>
+                                                                    <option value="2nd">Female</option>                                           
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-12">
+                                                            <div class="form-group">
+                                                                <label for="Religion-info-vertical">Religion</label>
+                                                                <input type="text" id="Religion-info-vertical"
+                                                                    class="form-control" name="Religion-info-info"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 col-12">
+                                                            <div class="form-group">
+                                                                <label for="Birthday-info-vertical">Birth Date</label>
+                                                                <input type="date" id="Birthday-info-vertical"
+                                                                    class="form-control" name="Birthday-info-info"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-12">
+                                                            <div class="form-group">
+                                                                <label for="LRN-info-vertical">Learner's Reference No.</label>
+                                                                <input type="text" id="LRN-info-vertical"
+                                                                    class="form-control" name="LRN-info-info"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>                                         
+                                                    </div>
+                                                    <br>                                                  
+                                                    <div class="row">
+                                                        <h4 class="card-title">CONTACT INFORMATION</h4>                                                      
+                                                        <br>
+                                                        <br>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-group">
+                                                                <label for="Email-address-vertical">Email Address</label>
+                                                                <input type="text" id="Email-address-vertical"
+                                                                    class="form-control" name="Email-address-info"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-group">
+                                                                <label for="Contact-info-vertical">Contact No.</label>
+                                                                <input type="text" id="Contact-info-vertical"
+                                                                    class="form-control" name="Contact-no.-info"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <h4 class="card-title">ADDRESS</h4>                                                      
+                                                        <br>  
+                                                        <br>                                                                                                     
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-group">
+                                                                <label for="House-info-vertical">House No. and Street</label>
+                                                                <input type="text" id="House-info-vertical"
+                                                                    class="form-control" name="House-info-info"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-group">
+                                                                <label for="Barangay-info-vertical">Barangay</label>
+                                                                <input type="text" id="Barangay-info-vertical"
+                                                                    class="form-control" name="Barangay-info-vertical"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="form-group">
+                                                                <label for="City-info-vertical">City/Municipality</label>
+                                                                <input type="text" id="City-info-vertical"
+                                                                    class="form-control" name="City-info-vertical"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="form-group">
+                                                                <label for="Province-info-vertical">Province</label>
+                                                                <input type="text" id="Province-info-vertical"
+                                                                    class="form-control" name="Province-info-vertical"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="form-group">
+                                                                <label for="Region-info-vertical">Region</label>
+                                                                <input type="text" id="Region-info-vertical"
+                                                                    class="form-control" name="Region-info-vertical"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    </div>
+                                                   
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        
+                  
+                </section>
+                <!-- // Basic Horizontal form layout section end -->
+ 
+                <div class="col-12 d-flex justify-content-end reset-btn">
+                    <button type="reset"
+                        class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                    <button type="submit"
+                        class="btn btn-primary me-1 mb-1" id="myBtn">Submit</button>                        
+                </div>          
+            
+                <footer>
+                    <div class="footer clearfix mb-0 text-muted">
+                        <div class="float-start">
+                            <p>2021 &copy; Mazer</p>
+                        </div>
+                        <div class="float-end"><p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
+                            href="http://ahmadsaugi.com">A. Alicante</a></p></div>
+                            
+                        </div>            
+                </footer>
+        </div>
+    </div>              
+   
+   
+    <script src="asset/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="asset/js/bootstrap.bundle.min.js"></script>
+
+    <script src="asset/vendors/simple-datatables/simple-datatables.js"></script>
+    <script>
+        // Simple Datatable
+        let table1 = document.querySelector('#table1');
+        let dataTable = new simpleDatatables.DataTable(table1);
+    </script>
+
+    <script src="asset/js/main.js"></script>
+</body>
+
+</html>
