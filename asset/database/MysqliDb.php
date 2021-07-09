@@ -1834,7 +1834,8 @@ class MysqliDb
         $dataColumns = array_keys($tableData);
         if ($isInsert) {
             if (isset ($dataColumns[0]))
-                $this->_query .= ' (`' . implode($dataColumns, '`, `') . '`) ';
+                $param =  '`, `';
+                $this->_query .= ' (`' . implode($dataColumns, $param) . '`) ';
             $this->_query .= ' VALUES (';
         } else {
             $this->_query .= " SET ";
