@@ -17,6 +17,12 @@
                         $data='admission-list';
                         $title = "Admission List";
                         break;
+                    
+                    case 'admission-new':
+                        $data='admission-new';
+                        $title = "Student Admission Form";
+                        break;    
+
                     default:
                         $data='admission-list';
                 }
@@ -55,6 +61,13 @@
         <?php include_once('admission_list.php'); ?>
         <!-- /Admission List -->
 <?php   
+             }
+             elseif(isset($data) && $data=='admission-new'){
+?>
+        <!-- Admission New -->
+        <?php include_once('admission_form.php'); ?>
+        <!-- /Admission New -->
+<?php
              }
         break; 
         

@@ -20,7 +20,7 @@
                         
                         <div class="card-header">
                             <div class="col-12 d-flex justify-content-end reset-btn">                      
-                                <a href="admission-layout.html"><button type="submit"
+                                <a href="?page=records&data=admission-new"><button type="submit"
                                     class="btn btn-primary me-1 mb-1" id="myBtn">Add New</button>  </a>                      
                             </div>                        
                         </div>

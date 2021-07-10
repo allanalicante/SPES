@@ -30,11 +30,11 @@
                             </a>
 
                             <ul class="submenu <?php echo (isset($page) && $page=='records')?'active':'' ?>">
-                                <li class="submenu-item <?php echo (isset($data) && $data=='admission-list')?'active':'' ?>">
+                                <li class="submenu-item <?php echo (isset($data) && ($data=='admission-list' || $data=='admission-new'))?'active':'' ?>">
                                     <a href="?page=records&data=admission-list">Admission</a>
                                 </li>
-                                <li class="submenu-item ">
-                                    <a href="student-list-datatable.html">Students</a>
+                                <li class="submenu-item <?php echo (isset($data) && $data=='student-list')?'active':'' ?>">
+                                <a href="?page=records&data=student-list">Students</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="teacher-datatable.html">Teachers</a>
