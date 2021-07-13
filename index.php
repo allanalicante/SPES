@@ -21,7 +21,22 @@
                     case 'admission-new':
                         $data='admission-new';
                         $title = "Student Admission Form";
-                        break;    
+                        break;   
+                        
+                    case 'student-list':
+                        $data='student-list';
+                        $title = "student List";
+                        break;
+
+                    case 'teacher-list':
+                        $data='teacher-list';
+                        $title = "teacher list";
+                        break;
+
+                        case 'section-list':
+                            $data='section-list';
+                            $title = "section list";
+                            break;
 
                     default:
                         $data='admission-list';
@@ -69,6 +84,27 @@
         <!-- /Admission New -->
 <?php
              }
+             elseif(isset($data) && $data=='student-list'){
+                ?>
+                        <!-- Admission New -->
+                        <?php include_once('student_list.php'); ?>
+                        <!-- /Admission New -->
+                <?php
+              }
+             elseif(isset($data) && $data=='teacher-list'){
+                ?>
+                        <!-- Admission New -->
+                        <?php include_once('teacher_list.php'); ?>
+                        <!-- /Admission New -->
+                <?php
+                             }
+            elseif(isset($data) && $data=='section-list'){
+                ?>
+                        <!-- Admission New -->
+                        <?php include_once('section_list.php'); ?>
+                        <!-- /Admission New -->
+                <?php
+                                }
         break; 
         
         default: ?>

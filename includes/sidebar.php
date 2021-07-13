@@ -36,14 +36,14 @@
                                 <li class="submenu-item <?php echo (isset($data) && $data=='student-list')?'active':'' ?>">
                                 <a href="?page=records&data=student-list">Students</a>
                                 </li>
-                                <li class="submenu-item ">
-                                    <a href="teacher-datatable.html">Teachers</a>
+                                <li class="submenu-item <?php echo (isset($data) && $data=='teacher-list')?'active':'' ?>">
+                                    <a href="?page=records&data=teacher-list">Teachers</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="#">Grade Level</a>
                                 </li>
-                                <li class="submenu-item">
-                                    <a href="section-datatable.html">Sections</a>
+                                <li class="submenu-item <?php echo (isset($data) && $data=='section-list')?'active':'' ?>"">
+                                    <a href="?page=records&data=section-list">Sections</a>
                                 </li>
                             </ul>
                         </li>
