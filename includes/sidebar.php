@@ -51,7 +51,7 @@
                         <li class="sidebar-item  ">
                             <a href="user-layout.html" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                                <span>User Information</span>
+                                <span>User Profile</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
