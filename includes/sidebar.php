@@ -61,7 +61,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="login.html" class='sidebar-link'>
+                            <a href="login.php" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Log-out</span>
                             </a>
