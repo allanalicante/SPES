@@ -63,15 +63,16 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group ">
-                                        <label for="basicInput">Birdthday</label>
-                                        <input type="date" id="date-birth" class="form-control" name="birthday" placeholder="">
+                                        <label for="basicInput">Birthday</label>
+                                        <input type="date"  id="birth-date" class="form-control" name="birthday" placeholder="">
                                     </div>
                                 </div>
+                       
 
                                 <div class="col-md-1">
                                     <div class="form-group ">
                                         <label for="basicInput">Age</label>
-                                        <input type="text" id="date-birth" class="form-control" name="birthday" placeholder="0" readonly >
+                                        <input type="text" id="age-count" class="form-control" name="age" placeholder="0">
                                     </div>
                                 </div>
 
@@ -104,27 +105,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-12 d-flex justify-content-end reset-btn">
+                    <button type="reset"
+                        class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                    <button type="submit" onclick="myAdd()"
+                        class="btn btn-primary me-1 mb-1" style="background-color: #009933; border-color: #009933;" id="myBtn">Add</button>                        
+                </div>  
 
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="disabledInput">Disabled Input</label>
-                                        <input type="text" class="form-control" id="disabledInput"
-                                            placeholder="Disabled Text" disabled>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="disabledInput">Readonly Input</label>
-                                        <input type="text" class="form-control" id="readonlyInput" readonly="readonly"
-                                            value="You can't update me :P">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="disabledInput">Static Text</label>
-                                        <p class="form-control-static" id="staticInput">email@mazer.com</p>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </section>

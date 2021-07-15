@@ -37,7 +37,6 @@
                             $data='section-list';
                             $title = "section list";
                             break;
-
                     default:
                         $data='admission-list';
                 }
