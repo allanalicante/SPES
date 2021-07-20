@@ -1,7 +1,4 @@
-<?php
-include('header.php');
-include('sidebar.php');
-?>
+
 
 
 <div class="page-heading"> <!-- HEADING -->
