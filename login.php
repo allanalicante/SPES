@@ -44,8 +44,7 @@
                             <div class="register" style="text-align: center">
                             <br>
                              <p>Not yet enrolled?<a href=""> Enroll now</a></p> 
-                            </div>
-                            
+                            </div>   
                             </form>
                         </div>
                     </div>
