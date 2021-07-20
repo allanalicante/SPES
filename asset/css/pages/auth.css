@@ -1,7 +1,11 @@
 html,body{
-    background-color:#fff;
+    background-color:#f2f7ff;
     margin: 0;
     padding: 0;
+}
+.row{
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
 }
 #auth{
     height:100vh;
@@ -13,7 +17,10 @@ html,body{
 } */
 #auth #auth-left{
     padding:1.4rem 5rem;
+    margin-bottom: 0;
 }
+
+
 #auth #auth-left .form-control{
     font-size: 1rem;
 }
@@ -40,8 +47,8 @@ html,body{
 }
 #auth #auth-right .school-bg img{
    /*  padding-top: 5.5rem; */
-    width: 99%;
-    height: 99%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
 }
 
@@ -51,6 +58,14 @@ html,body{
 
 #auth #auth-left .text-center .mt-5 .text-lg .fs-4 {
     padding-top: 0%;
+}
+
+.error {
+    background: #f2dede;
+    color: #a9422a;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
 }
 
 @media screen and (max-width:767px){

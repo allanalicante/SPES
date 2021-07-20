@@ -50,34 +50,4 @@ if(typeof PerfectScrollbar == 'function') {
 // Scroll into active sidebar
 document.querySelector('.sidebar-item.active').scrollIntoView(false)
 
-//edit
-function myAdd(){
-    if (confirm("Are you sure you want to Add this record?")) {     
-        alert("Data has been Add from the server.")  
-      } else {      
-          alert("Action has been cancelled")
-      }
-}
-function myEdit(){
-    if (confirm("Are you sure you want to edit this record?")) {     
-        alert("Data has been edit from the server.")  
-      } else {      
-          alert("Action has been cancelled")
-      }
-}
 
-function ageCount(){
-    var now =new Date();                            //getting current date
-    var currentY= now.getFullYear();                //extracting year from the date
-    var currentM= now.getMonth();                   //extracting month from the date
-      
-    var dobget =document.getElementById("birth-date").value; //getting user input
-    var dob= new Date(dobget);                             //formatting input as date
-    var prevY= dob.getFullYear();                          //extracting year from input date
-    var prevM= dob.getMonth();                             //extracting month from input date
-      
-    var ageY =currentY - prevY;
-    var ageM =Math.abs(currentM- prevM);          //converting any negative value to positive
-      
-    document.getElementById("age").innerHTML = ageY;
-    }

@@ -1,9 +1,11 @@
-   
-                <div class="page-heading"> <!-- HEADING -->
+
+
+
+<div class="page-heading"> <!-- HEADING -->
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-8 order-md-1 order-last">
-                            <h3>BASIC EDUCATION ENROLLMENT FORM</h3>
+                            <h3>USER PROFILE</h3>
                         </div>
                         <div class="col-12 col-md-4 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -17,19 +19,10 @@
                     </div>
                 </div>
 
-<div class="accordion" id="accordionExample">
-  <div style="margin-top: 2rem;" class="accordion-item">
-    <h2 style=" background-color: #fff; border-radius: 10px;"class="accordion-header" id="headingOne">
-      <a href="" class="accordion-button"  data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        STUDENT DETAILS
-        </a>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-      <section class="section">
+                <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">STUDENT DETAILS</h4>
+                            <h4 class="card-title">USER INFORMATION</h4>
                             <HR></HR>
                         </div>
 
@@ -135,23 +128,18 @@
                                         <input type="text" class="form-control" id="religion">
                                     </div>
                                 </div>
-                            </div>                          
+                            </div>
+                            
+
+
+                            
                         </div>
                     </div>
+
                 </section>
-      </div>
-    </div>
-  </div>
-  <div style="margin-top: 2rem;" class="accordion-item">
-    <h2 style=" background-color: #fff; border-radius: 10px;" class="accordion-header" id="headingTwo">
-      <a href="" class="accordion-button btn-header-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        ADDRESS AND GUARDIAN DETAILS
-        </a>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-                <!-- Basic Vertical form layout section start -->
-                <section id="basic-vertical-layouts">
+
+                 <!-- Basic Vertical form layout section start -->
+                 <section id="basic-vertical-layouts">
                     <div class="row match-height">
                         <div class="col-md-5 col-12">
                             <div class="card"><!----------------- ADDRESS CARD --------------------------->
@@ -201,7 +189,9 @@
                                                                 class="form-control" name="zipcode"
                                                                 placeholder="">
                                                         </div>
-                                                    </div>  
+                                                    </div>
+                                                   
+                                                   
                                                 </div>
                                             </div>
                                         </form>
@@ -254,7 +244,8 @@
                                                                     <br>
                                                             </div>
                                                         </div>
-                                                    </div>                            
+                                                    </div>  
+                                                   
                                                     <h4 class="card-title">GUARDIAN (if not parent)</h4>
                                                     <HR></HR>        
                                                     <div class="row">                                           
@@ -285,19 +276,10 @@
                     </div>
                 </section>
                 <!-- // Basic Vertical form layout section end -->
-      </div>
-    </div>
-  </div>
-  <div style="margin-top: 2rem;" class="accordion-item">
-    <h2 style=" background-color: #fff; border-radius: 10px;" class="accordion-header" id="headingThree">
-      <a href="" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        FOR TRANSFEREE
-        </a>
-    </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-            <!-- // Basic multiple Column Form section start -->
-            <section id="multiple-column-form">
+
+
+                <!-- // Basic multiple Column Form section start -->
+                <section id="multiple-column-form">
                     <div class="row match-height">
                         <div class="col-12">
                             <div class="card"><!------------------------------- FOR RETURNING LEARNERS --------------------------------->
@@ -338,7 +320,9 @@
                                                 <label for="country-floating" style="text-align: center; font-size: 14px;">I hereby certify that the above information on given are 
                                                     true and correct to the best of my knowledge and I allow the Department of Education to use my
                                                     child's details to create and/or update his/her learner profile in the Learner Information System.
-                                                The information herein shall be treated as confidential incompliance with Data Privacy Act of 2012.</label>   
+                                                The information herein shall be treated as confidential incompliance with Data Privacy Act of 2012.</label>
+                                                
+                                                
                                             </div>
                                         </form>
                                     </div>
@@ -347,10 +331,6 @@
                         </div>
                     </div>
                 </section>
-      </div>
-    </div>
-  </div>
-</div>
                 <div class="col-12 d-flex justify-content-end reset-btn">
                     <button type="reset"
                         class="btn btn-light-secondary me-1 mb-1">Reset</button>

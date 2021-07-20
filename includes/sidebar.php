@@ -23,6 +23,8 @@
                             </a>
                         </li>
 
+                        
+
                         <li class="sidebar-item <?php echo (isset($page) && $page=='records' && isset($data) && $data !='')?'active':'' ?> has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
@@ -34,32 +36,24 @@
                                     <a href="?page=records&data=admission-list">Admission</a>
                                 </li>
                                 <li class="submenu-item <?php echo (isset($data) && $data=='student-list')?'active':'' ?>">
-                                <a href="?page=records&data=student-list">Students</a>
+                                <a href="?page=records&data=student-list">Student List</a>
                                 </li>
                                 <li class="submenu-item <?php echo (isset($data) && $data=='teacher-list')?'active':'' ?>">
                                     <a href="?page=records&data=teacher-list">Teachers</a>
                                 </li>
-                                <li class="submenu-item ">
-                                    <a href="#">Grade Level</a>
-                                </li>
-                                <li class="submenu-item <?php echo (isset($data) && $data=='section-list')?'active':'' ?>"">
-                                    <a href="?page=records&data=section-list">Sections</a>
+                                <li class="submenu-item <?php echo (isset($data) && $data=='section-list')?'active':'' ?>">
+                                    <a href="?page=records&data=section-list">Level & Section</a>
                                 </li>
                             </ul>
                         </li>
 
-                        <li class="sidebar-item  ">
-                            <a href="user-layout.html" class='sidebar-link'>
-                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                        <li class="sidebar-item <?php echo (isset($page) && $page=='userprofile')?'active':'' ?>">
+                            <a href="user_profile.php" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
                                 <span>User Profile</span>
                             </a>
                         </li>
-                        <li class="sidebar-item  ">
-                            <a href="about-layout.html" class='sidebar-link'>
-                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                                <span>About SPES</span>
-                            </a>
-                        </li>
+
                         <li class="sidebar-item  ">
                             <a href="login.php" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>

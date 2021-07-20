@@ -1,3 +1,4 @@
+
 .alert{border:none}
 .alert p{margin-bottom:0}
 .alert button.close{padding:.75rem; line-height:.75}
@@ -214,7 +215,9 @@
 		.modal .modal-header{
 			display:flex;
 			justify-content:space-between;
-			align-items:center
+			align-items:center;
+		
+			
 			}
 		.modal .modal-header .modal-title{
 			font-size:1.1rem
@@ -485,6 +488,7 @@
 		.page-item:last-child{
 			margin-left:.4rem
 		}
+		
 		.dataTable-table td,.dataTable-table thead th,.table td,.table thead th{
 			vertical-align:middle
 		}
@@ -499,6 +503,10 @@
 		}
 		.dataTable-container{
 			overflow-x:auto
+		}
+		.table-bordered{
+			border-top-right-radius: 15px;
+    		border-top-left-radius: 15px;
 		}
 		.progress.progress-primary{
 			overflow:visible
@@ -624,6 +632,18 @@
 			margin-left:300px;
 			padding:2rem
 		}
+		
+/* Accordion css */
+
+		#main .accordion .accordion-item .accordion-header .btn-header-link .collapse{
+		color: #fff;
+		display: block;
+		text-align: left;
+		background: #FFE472;
+		color: #222;
+		padding: 20px;
+		}
+
 		@media screen and (max-width:1199px){
 			#main{
 				margin-left:0
@@ -752,3 +772,4 @@
 			vertical-align:middle
 		}
 		
+

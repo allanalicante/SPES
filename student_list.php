@@ -23,8 +23,8 @@
                         </div>
                         <div class="card-body">
                            
-                            <table class="table table-striped" id="table1">   
-                                <thead>
+                            <table class="table table-bordered table-striped" id="table1">   
+                                <thead style="background-color: #435ebe; color: white;">
                                     <tr>
                                         <th>#</th>
                                         <th>LRN</th>
@@ -33,8 +33,6 @@
                                         <th>Adviser</th>
                                         <th>Student Type</th>
                                      
-
-
                                     </tr>
                                 </thead>
                                 <tbody>
