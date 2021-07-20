@@ -33,8 +33,6 @@
                                         <th>Adviser</th>
                                         <th>Student Type</th>
                                      
-
-
                                     </tr>
                                 </thead>
                                 <tbody>
