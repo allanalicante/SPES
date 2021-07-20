@@ -23,5 +23,4 @@ if(isset($_POST['insertdata']))
         echo "Data not Saved" . $query . mysqli_error($connection);
     }
 }
-
 ?>
