@@ -1,4 +1,5 @@
-        <div class="page-heading">
+
+ <div class="page-heading">
             <h3>Profile Statistics</h3>
         </div>
         <div class="page-content">
@@ -13,7 +14,7 @@
                                             <div class="stats-icon purple">
                                                 <lord-icon
                                                 src="https://cdn.lordicon.com//eszyyflr.json"
-                                                trigger="loop"
+                                                trigger="hover"
                                                 colors="primary:#ffffff,secondary:#ffffff"
                                                 style="width:250px;height:250px">
                                             </lord-icon>
@@ -35,7 +36,7 @@
                                             <div class="stats-icon blue">
                                                 <lord-icon
                                                  src="https://cdn.lordicon.com//bwnhdkha.json"
-                                                trigger="loop"
+                                                trigger="hover"
                                                 colors="primary:#ffffff,secondary:#ffffff"
                                                   style="width:250px;height:250px">
                                                 </lord-icon>
@@ -57,7 +58,7 @@
                                             <div class="stats-icon green">
                                                 <lord-icon
                                                 src="https://cdn.lordicon.com//jvucoldz.json"
-                                                trigger="loop"
+                                                trigger="hover"
                                                 colors="primary:#ffffff,secondary:#ffffff"
                                                 style="width:250px;height:250px">
                                             </lord-icon>
@@ -98,8 +99,8 @@
                                     <img src="asset/images/faces/1.jpg" alt="Face 1">
                                 </div>
                                 <div class="ms-3 name">
-                                    <h5 class="font-bold">John Duck</h5>
-                                    <h6 class="text-muted mb-0">@johnducky</h6>
+                                    <h5 class="font-bold"></h5>
+                                    <h6 class="text-muted mb-0"></h6>
                                 </div>
                             </div>
                         </div>
@@ -145,3 +146,4 @@
                 </div>
             </section>
         </div>
+

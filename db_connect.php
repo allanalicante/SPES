@@ -1,3 +1,12 @@
 <?php 
 
-$conn= new mysqli('localhost','root','','enrollment_db')or die("Could not connect to mysql".mysqli_error($con));
+$sname= "localhost";
+$uname= "root";
+$password= "";
+$db_name = "enrollment_db";
+
+$conn = mysqli_connect($sname, $uname, $password, $db_name);
+
+if (!$conn){
+    echo "Connection Failed!";
+}

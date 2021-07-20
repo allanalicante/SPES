@@ -13,6 +13,8 @@
 </div> <!-- /app-->
 
     <script src="asset/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="asset/js/extensions/sweetalert2.js"></script>
+    <script src="asset/vendors/sweetalert2/sweetalert2.all.min.js"></script>
     <script src="asset/js/bootstrap.bundle.min.js"></script>
 
 <?php
@@ -20,9 +22,22 @@
 ?>
     <script src="asset/vendors/apexcharts/apexcharts.js"></script>
     <script src="asset/js/pages/dashboard.js"></script>
+    <script src="asset/js/extensions/sweetalert2.js"></script>
+    <script src="asset/vendors/sweetalert2/sweetalert2.all.min.js"></script>
     <script src="asset/js/main.js"></script>
     <script src="https://cdn.lordicon.com//libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+  
 <?php }
+elseif (isset($data) && ($data=='student-list')){
+    ?>
+         <script src="asset/vendors/simple-datatables/simple-datatables.js"></script>
+    <script>
+        // Simple Datatable
+        let table1 = document.querySelector('#table1');
+        let dataTable = new simpleDatatables.DataTable(table1);
+    </script>
+      
+ <?php }
     elseif(isset($data) && ($data =='admission-list')){ ?>
     <script src="asset/vendors/simple-datatables/simple-datatables.js"></script>
     <script>
@@ -32,7 +47,27 @@
     </script>
 <?php
     }
+    elseif(isset($data) && ($data =='section-list')){?>
+ <script src="asset/vendors/simple-datatables/simple-datatables.js"></script>
+    <script>
+        // Simple Datatable
+        let table1 = document.querySelector('#table1');
+        let dataTable = new simpleDatatables.DataTable(table1);
+    </script>
+<?php
+    }
+    elseif(isset($data) && ($data =='teacher-list')){ ?>
+    <script src="asset/vendors/simple-datatables/simple-datatables.js"></script>
+    <script>
+        // Simple Datatable
+        let table1 = document.querySelector('#table1');
+        let dataTable = new simpleDatatables.DataTable(table1);
+    </script>
+<?php
+    }
 ?>
+ <script src="asset/js/extensions/sweetalert2.js"></script>
+    <script src="asset/vendors/sweetalert2/sweetalert2.all.min.js"></script>
     <script src="asset/js/main.js"></script>
 </body>
 </html>
