@@ -47,7 +47,6 @@
             }
         }
     }
-
 ?>
 <?php include_once('includes/head_html.php'); ?>
 
