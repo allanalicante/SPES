@@ -16,11 +16,12 @@
                         </div>
                     </div>
                 </div>
-
+<!-- ------------------------------------------------Accordion for Student Details-------------------------------------- -->
 <div class="accordion" id="accordionExample">
   <div style="margin-top: 2rem;" class="accordion-item">
-    <h2 style=" background-color: #fff; border-radius: 10px;"class="accordion-header" id="headingOne">
+    <h2 style=" background-color: #f2f7ff; border-radius: 10px;"class="accordion-header" id="headingOne">
       <a href="" class="accordion-button"  data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <i style="vertical-align: middle; font-size: 1.2rem;" class="bi bi-person-lines-fill"></i>
         STUDENT DETAILS
         </a>
     </h2>
@@ -142,9 +143,13 @@
       </div>
     </div>
   </div>
+
+<!-- ------------------------------------------------Accordion for Address and Guardians-------------------------------------- -->
+
   <div style="margin-top: 2rem;" class="accordion-item">
-    <h2 style=" background-color: #fff; border-radius: 10px;" class="accordion-header" id="headingTwo">
+    <h2 style=" background-color: #f2f7ff; border-radius: 10px;" class="accordion-header" id="headingTwo">
       <a href="" class="accordion-button btn-header-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <i style="vertical-align: middle; font-size: 1.2rem;" class="bi bi-geo-alt-fill"></i>
         ADDRESS AND GUARDIAN DETAILS
         </a>
     </h2>
@@ -289,9 +294,10 @@
     </div>
   </div>
   <div style="margin-top: 2rem;" class="accordion-item">
-    <h2 style=" background-color: #fff; border-radius: 10px;" class="accordion-header" id="headingThree">
+    <h2 style=" background-color: #f2f7ff; border-radius: 10px;" class="accordion-header" id="headingThree">
       <a href="" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        FOR TRANSFEREE
+      <i style="vertical-align: middle; font-size: 1.2rem;" class="bi bi-info-circle-fill"></i>
+      FOR TRANSFEREE
         </a>
     </h2>
     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
