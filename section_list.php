@@ -16,15 +16,16 @@
                     </div>
                 </div>
                 
+          
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                        <div class="col-12 d-flex justify-content-end reset-btn">                      
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Add Level/Section</button>                                                       
-                            </div> 
-                            <HR></HR> 
+                              <div class="col-12 d-flex justify-content-end reset-btn">                      
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Add Level/Section</button>                                                       
+                                  </div> 
+                                  <HR></HR> 
                         </div>
-                        <div class="card-body">
+                            <div class="card-body">
                      
                                 <?php
                                   $connection = mysqli_connect("localhost","root","");
@@ -34,50 +35,50 @@
                                   $query_run = mysqli_query($connection, $query);
                                 ?>
 
-                                    <table class="table table-bordered table-striped" id="table1">
-                                        <thead style="background-color: #435ebe; color: white;">
-                                            <tr>
-                                                <th>Level</th>
-                                                <th>Section</th>
-                                                <th>No. of Students</th>
-                                                <th>Advisor</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
+                                                      <table class="table table-bordered table-striped" id="table1">
+                                                          <thead style="background-color: #435ebe; color: white;">
+                                                              <tr>
+                                                                  <th>Level</th>
+                                                                  <th>Section</th>
+                                                                  <th>No. of Students</th>
+                                                                  <th>Advisor</th>
+                                                                  <th>Action</th>
+                                                              </tr>
+                                                          </thead>
 
-                                              <?php
-                                        if($query_run)
-                                        {
-                                          foreach($query_run as $row)
-                                          {
-                                      ?>
-                                        <tbody>
-                                          <tr>
-                                            <td><?php echo $row['level'];?></td>
-                                            <td><?php echo $row['section'];?></td>
-                                            <td><?php echo $row['quantity'];?></td>
-                                            <td><?php echo $row['advisory'];?></td>
-                                            <td>                               
-                                            <button type="button" class="badge btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@getbootstrap">Edit</button>                                 
-                                            </td>                    
-                                          </tr>
-                                            
-                                        </tbody>
+                                                                <?php
+                                                          if($query_run)
+                                                          {
+                                                            foreach($query_run as $row)
+                                                            {
+                                                        ?>
+                                                          <tbody>
+                                                            <tr>
+                                                              <td><?php echo $row['level'];?></td>
+                                                              <td><?php echo $row['section'];?></td>
+                                                              <td><?php echo $row['quantity'];?></td>
+                                                              <td><?php echo $row['advisory'];?></td>
+                                                              <td>                               
+                                                              <button type="button" class="badge btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@getbootstrap">Edit</button>                                 
+                                                              </td>                    
+                                                            </tr>
+                                                              
+                                                          </tbody>
 
-                                        <?php
-                                    }
-                                  }
-                                  else
-                                  {
-                                    echo "No record found!";
-                                  }
-                                  ?>
-                            </table>
-                        </div>
-                    </div>
-                        </div>
-                </section>
-            </div>
+                                                          <?php
+                                                      }
+                                                    }
+                                                    else
+                                                    {
+                                                      echo "No record found!";
+                                                    }
+                                                    ?>
+                                              </table>
+                             </div>
+                     </div>
+                </section>        
+        </div>
+
 <!----------------------------------------------- FOR ADDING LEVEL AND SECTION MODAL --------------------------------------------------------------------->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
