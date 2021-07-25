@@ -19,31 +19,16 @@
     <link rel="stylesheet" href="asset/vendors/iconly/bold.css">
 
     <?php
-    if(isset($data) && ($data == 'admission-list')){
-    ?>
-        <link rel="stylesheet" href="asset/vendors/simple-datatables/style.css">
-    <?php
-    } 
-    elseif(isset($data) && ($data == 'student-list')){
-    ?>
-        <link rel="stylesheet" href="asset/vendors/simple-datatables/style.css">
-    <?php
-    } 
-    elseif(isset($data) && ($data == 'section-list')){
-        ?>
-            <link rel="stylesheet" href="asset/vendors/simple-datatables/style.css">
-        <?php
+     if(isset($data)){
+        switch($data){
+            case 'admission-list':
+            case 'student-list':
+            case 'section-list':
+            case 'teacher-list':
+                echo '<link rel="stylesheet" href="asset/vendors/simple-datatables/style.css">';          
+            break;
+            }
      }
-    elseif(isset($data) && ($data == 'teacher-list')){
-    ?>
-        <link rel="stylesheet" href="asset/vendors/simple-datatables/style.css">
-    <?php
-        } 
-   
-
-
-
-
     ?>
     <link rel="stylesheet" href="asset/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="asset/vendors/bootstrap-icons/bootstrap-icons.css">
