@@ -22,12 +22,10 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
-
-                        
-
+                    
                         <li class="sidebar-item <?php echo (isset($page) && $page=='records' && isset($data) && $data !='')?'active':'' ?> has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
+                                <i class="bi bi-archive-fill"></i>
                                 <span>Records</span>
                             </a>
 
@@ -48,15 +46,15 @@
                         </li>
 
                         <li class="sidebar-item <?php echo (isset($page) && $page=='userprofile')?'active':'' ?>">
-                            <a href="user_profile.php" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
+                            <a href="?page=userprofile" class='sidebar-link'>
+                                <i class="bi bi-person-fill"></i>
                                 <span>User Profile</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item  ">
                             <a href="login.php" class='sidebar-link'>
-                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <i class="bi bi-box-arrow-left"></i>
                                 <span>Log-out</span>
                             </a>
                         </li>
