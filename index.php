@@ -1,14 +1,15 @@
 <?php
+
+session_start();
     //get pages
     $page="";
     $title = "";
+    /* --------------------------If no page, then display dashboard------------------------- */
     if(!isset($_GET['page'])){
         $page="dashboard";
         $title = "SPES Student Management System";
-    }elseif(!isset($_GET['page'])){
-        $page="userprofile";
-        $title = "SPES Student Management System";
     }else{
+        /* ---------------------------- If there is a page, read the records and sub list------------------- */
         //there's page
         if($_GET['page'] =='records' && isset($_GET['page'])) 
         {
@@ -45,8 +46,14 @@
                         $data='admission-list';
                 }
             }
+            /* --------------------- if page is not "records" or not empty then display user profile -------------------------- */
+        }elseif($page='userprofile'){
+            $page="userprofile";
+            $title = "SPES Student Management System - User Profile";
         }
     }
+
+    /* -------------------- start of including header and sidebar as fixed ---------------------------------- */
 ?>
 <?php include_once('includes/head_html.php'); ?>
 
@@ -62,65 +69,70 @@
             </a>
         </header>
 <?php
-    switch($page){
-         case 'dashboard':
-?>
-        <!-- Dashboard -->
-        <?php include_once('dashboard.php'); ?>
-        <!-- /Dashboard -->
-<?php   break; 
 
+    switch($page){
+        /* ------------------------ Dashboard ---------------------------------- */
+        case 'dashboard':
+
+
+        echo '<!-- Dashboard -->';
+        include_once('dashboard.php');
+        echo '<!-- /Dashboard -->'; 
+        break; 
+
+
+        /* -----------------------------Records Part---------------------------------- */
         case 'records':
+            
             if(isset($data) && $data=='admission-list'){
-?>
-        <!-- Admission List -->
-        <?php include_once('admission_list.php'); ?>
-        <!-- /Admission List -->
-<?php   
+
+        echo '<!-- Admission List -->';
+        include_once('admission_list.php');
+        echo '<!-- /Admission List -->';
+        
              }
              elseif(isset($data) && $data=='admission-new'){
-?>
-        <!-- Admission New -->
-        <?php include_once('admission_form.php'); ?>
-        <!-- /Admission New -->
-<?php
+
+        echo '<!-- Admission New -->';
+        include_once('admission_form.php');
+        echo '<!-- /Admission New -->';
+
              }
              elseif(isset($data) && $data=='student-list'){
-                ?>
-                        <!-- student-list -->
-                        <?php include_once('student_list.php'); ?>
-                        <!-- /student-list -->
-                <?php
+                
+                        echo '<!-- student-list -->';
+                        include_once('student_list.php'); 
+                        echo '<!-- /student-list -->';
+                
               }
              elseif(isset($data) && $data=='teacher-list'){
-                ?>
-                        <!-- teacher-list-->
-                        <?php include_once('teacher_list.php'); ?>
-                        <!-- /teacher-list -->
-                <?php
+                
+                        echo '<!-- teacher-list-->';
+                         include_once('teacher_list.php'); 
+                        echo '<!-- /teacher-list -->';
+                
                              }
             elseif(isset($data) && $data=='section-list'){
-                ?>
-                        <!-- section-list -->
-                        <?php include_once('section_list.php'); ?>
-                        <!-- /section-list -->
-                <?php
+                
+                        echo '<!-- section-list -->';
+                        include_once('section_list.php'); 
+                        echo '<!-- /section-list -->';
+                
                                 }                         
         break; 
 
         case 'userprofile':
-?>
-        <!-- User Profile -->
-        <?php include_once('user_profile.php'); ?>
-        <!-- /User Profile -->
-<?php   break; 
 
-        default: ?>
-        <!-- Dashboard -->
-        <?php include_once('dashboard.php'); ?>
-        <!-- /Dashboard -->
-<?php 
+        echo '<!-- User Profile -->';
+        include_once('user_profile.php');
+        echo '<!-- /User Profile -->';
+  break; 
+
+        default: 
+        echo '<!-- Dashboard -->';
+        include_once('dashboard.php');
+        echo '<!-- /Dashboard -->';
+
     } //close switch
-?>
         
-        <?php include_once('includes/footer_html.php'); ?>     
+        include_once('includes/footer_html.php');  
