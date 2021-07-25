@@ -56,6 +56,71 @@
                                             <button type="button" class="badge btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Edit</button>                                     
                                         </td>
                                     </tr> 
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1247564647</td>
+                                        <td>Ren Andy Hayag</td>
+                                        <td>Grade 2 A</td>
+                                        <td>Mr. Berba</td>
+                                        <td>Regular</td>     
+                                        <td>June 23, 2018</td>                                
+                                        <td>
+                                            <a href="?page=records&data=admission-new"><span class="badge bg-primary Edit">Profile</span></a>
+                                            <button type="button" class="badge btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Edit</button>                                     
+                                        </td>
+                                    </tr> 
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1247564647</td>
+                                        <td>Ren Andy Hayag</td>
+                                        <td>Grade 2 A</td>
+                                        <td>Mr. Berba</td>
+                                        <td>Regular</td>     
+                                        <td>June 23, 2018</td>                                
+                                        <td>
+                                            <a href="?page=records&data=admission-new"><span class="badge bg-primary Edit">Profile</span></a>
+                                            <button type="button" class="badge btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Edit</button>                                     
+                                        </td>
+                                    </tr> 
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1247564647</td>
+                                        <td>Ren Andy Hayag</td>
+                                        <td>Grade 2 A</td>
+                                        <td>Mr. Berba</td>
+                                        <td>Regular</td>     
+                                        <td>June 23, 2018</td>                                
+                                        <td>
+                                            <a href="?page=records&data=admission-new"><span class="badge bg-primary Edit">Profile</span></a>
+                                            <button type="button" class="badge btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Edit</button>                                     
+                                        </td>
+                                    </tr> 
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1247564647</td>
+                                        <td>Ren Andy Hayag</td>
+                                        <td>Grade 2 A</td>
+                                        <td>Mr. Berba</td>
+                                        <td>Regular</td>     
+                                        <td>June 23, 2018</td>                                
+                                        <td>
+                                            <a href="?page=records&data=admission-new"><span class="badge bg-primary Edit">Profile</span></a>
+                                            <button type="button" class="badge btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Edit</button>                                     
+                                        </td>
+                                    </tr> 
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1247564647</td>
+                                        <td>Ren Andy Hayag</td>
+                                        <td>Grade 2 A</td>
+                                        <td>Mr. Berba</td>
+                                        <td>Regular</td>     
+                                        <td>June 23, 2018</td>                                
+                                        <td>
+                                            <a href="?page=records&data=admission-new"><span class="badge bg-primary Edit">Profile</span></a>
+                                            <button type="button" class="badge btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Edit</button>                                     
+                                        </td>
+                                    </tr> 
                                 </tbody>
                             </table>
                           </div>
