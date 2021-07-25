@@ -278,64 +278,7 @@
                 <!-- // Basic Vertical form layout section end -->
 
 
-                <!-- // Basic multiple Column Form section start -->
-                <section id="multiple-column-form">
-                    <div class="row match-height">
-                        <div class="col-12">
-                            <div class="card"><!------------------------------- FOR RETURNING LEARNERS --------------------------------->
-                                <div class="card-header">
-                                    <h4 class="card-title">For Returning learners (Balik-Aral) and Those Who Shall Transfer / Move In</h4>
-                                    <HR></HR>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <form class="form">
-                                            <div class="row">
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="sem-dropdown">Semester</label><br>
-                                                        <select class="form-control" name="Sem" id="Sem">
-                                                            <option value="" disabled selected>Select Semester.</option>
-                                                            <option value="1st">1st Sem</option>
-                                                            <option value="2nd">2nd Sem</option>                                           
-                                                          </select>
-                                                    </div>
-                                                </div>
-                                                
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="city-column">Track</label>
-                                                        <input type="text" id="city-column" class="form-control"
-                                                            placeholder="" name="city-column">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="country-floating">Strand (if any)</label>
-                                                        <input type="text" id="country-floating" class="form-control"
-                                                            name="country-floating" placeholder="">
-                                                    </div>
-                                                </div>
-                                                <label for="country-floating" style="text-align: center; font-size: 14px;">I hereby certify that the above information on given are 
-                                                    true and correct to the best of my knowledge and I allow the Department of Education to use my
-                                                    child's details to create and/or update his/her learner profile in the Learner Information System.
-                                                The information herein shall be treated as confidential incompliance with Data Privacy Act of 2012.</label>
-                                                
-                                                
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <div class="col-12 d-flex justify-content-end reset-btn">
-                    <button type="reset"
-                        class="btn btn-light-secondary me-1 mb-1">Reset</button>
-                        <button class="btn btn-primary me-1 mb-1" style="background-color: #009933; border-color: #009933;" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Add</button>
-                        
+               
      </div> 
 
 
