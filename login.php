@@ -26,7 +26,12 @@
 
                     <div class="card col-md-12">
                         <div class="card-body">
-                        <form action="index.php" method="post">
+                        <form action="MyCrud.php" method="post">
+                            <!--  --------------------------------------------------->
+                            <?php if(isset($_GET['error'])) { ?>
+                            <p class="error"><?php echo $_GET['error']; ?></p>
+                             <?php } ?>
+                            <!--  --------------------------------------------------->
                             <div class="form-group position-relative has-icon-left mb-4">
                                 <input type="text" name="username" id="username" class="form-control form-control-xl" placeholder="Username">
                                 <div class="form-control-icon">
@@ -40,11 +45,11 @@
                                     <i class="bi bi-shield-lock"></i>
                                 </div>
                             </div>
-                            <button class="btn btn-primary btn-block btn-lg shadow-lg mt-2">Log in</button>
-                            <div class="register" style="text-align: center">
+                            <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-2">Log in</button>
+                            <!-- <div class="register" style="text-align: center">
                             <br>
                              <p>Not yet enrolled?<a href=""> Enroll now</a></p> 
-                            </div>   
+                            </div>    -->
                             </form>
                         </div>
                     </div>
