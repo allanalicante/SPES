@@ -1,7 +1,12 @@
 <?php
 
 session_start();
+
+    if (!isset($_SESSION["ADMIN"]) || !isset($_SESSION["name"]) || !isset($_SESSION["records"])){
+        header('location: login.php');
+    }
     //get pages
+    
     $page="";
     $title = "";
     /* --------------------------If no page, then display dashboard------------------------- */
