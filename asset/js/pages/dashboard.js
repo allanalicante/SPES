@@ -15,18 +15,19 @@ var optionsProfileVisit = {
 	plotOptions: {
 	},
 	series: [{
-		name: 'sales',
-		data: [9,20,30,20,10,20,30,20,10,20,30,20]
+		name: 'students',
+		data: [83,189,221,178,158,216,256]
 	}],
-	colors: '#435ebe',
+	colors: ['#435ebe'],
 	xaxis: {
-		categories: ["Jan","Feb","Mar","Apr","May","Jun","Jul", "Aug","Sep","Oct","Nov","Dec"],
+		categories: ["Kinder","Grade 1","Grade 2","Grade 3","Grade 4","Grade 5","Grade 6"],
 	},
 }
+
 let optionsVisitorsProfile  = {
-	series: [70, 30],
-	labels: ['Male', 'Female'],
-	colors: ['#435ebe','#55c6e8'],
+	series: [70,40,24,3,4],
+	labels: ['Online-Class','Modular','Blended','Radio','Television'],
+	colors: ['#435ebe','#55c6e8','#20c997','#9932CC','#F7c8d9'],
 	chart: {
 		type: 'donut',
 		width: '100%',
@@ -43,6 +44,68 @@ let optionsVisitorsProfile  = {
 		}
 	}
 }
+
+var optionsGender = {
+	series: [{
+		data: [800,697]
+	  }],
+		chart: {
+		type: 'bar',
+		height: 300
+	  },
+	  plotOptions: {
+		bar: {
+		  barHeight: '60%',
+		  distributed: true,
+		  horizontal: true,
+		  dataLabels: {
+			position: 'bottom'
+		  },
+		}
+	  },
+	  colors: ['#33b2df', '#F7c8d9'],
+	  dataLabels: {
+		enabled: true,
+		textAnchor: 'start',
+		style: {
+		  colors: ['#fff']
+		},
+		formatter: function (val, opt) {
+		  return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+		},
+		offsetX: 0,
+		dropShadow: {
+		  enabled: true
+		}
+	  },
+	  stroke: {
+		width: 1,
+		colors: ['#fff']
+	  },
+	  xaxis: {
+		categories: ['Boys', 'Girls'],
+	  },
+	  yaxis: {
+		labels: {
+		  show: false
+		}
+	  },
+	  tooltip: {
+		theme: 'dark',
+		x: {
+		  show: false
+		},
+		y: {
+		  title: {
+			formatter: function () {
+			  return ''
+			}
+		  }
+		}
+	  }
+  };
+
+
 
 var optionsEurope = {
 	series: [{
@@ -105,6 +168,8 @@ let optionsIndonesia = {
 
 var chartProfileVisit = new ApexCharts(document.querySelector("#chart-profile-visit"), optionsProfileVisit);
 var chartVisitorsProfile = new ApexCharts(document.getElementById('chart-visitors-profile'), optionsVisitorsProfile)
+var genderchart = new ApexCharts(document.querySelector("#chart-gender"), optionsGender);
+       
 var chartEurope = new ApexCharts(document.querySelector("#chart-europe"), optionsEurope);
 var chartAmerica = new ApexCharts(document.querySelector("#chart-america"), optionsAmerica);
 var chartIndonesia = new ApexCharts(document.querySelector("#chart-indonesia"), optionsIndonesia);
@@ -113,4 +178,5 @@ chartIndonesia.render();
 chartAmerica.render();
 chartEurope.render();
 chartProfileVisit.render();
-chartVisitorsProfile.render()
+chartVisitorsProfile.render();
+genderchart.render();
