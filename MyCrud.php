@@ -16,10 +16,11 @@ if(isset($_POST['insertdata']))
     $query_run = mysqli_query($connection,$query);
 
     if($query_run)
-    {     
- 
-        header("Location: http://localhost/SPES/index.php?page=records&data=section-list"); 
-       
+    {   
+        header("Location: http://localhost/SPES/index.php?page=records&data=section-list");
+        $message="Data added successfully!";
+        $_SESSION['addsuccess']=$message;    
+        exit();     
     }
     else
     {
@@ -27,6 +28,26 @@ if(isset($_POST['insertdata']))
     }
 }
 /* ----------------------------------- / Code to insert new level and section /--------------------------------------------- */
+
+elseif(isset($_POST['updatedata']))
+ {
+     $id = $_POST['update_id'];
+     $level = $_POST['editlevel'];
+     $section = $_POST['editsection'];
+     $advisory = $_POST['editadvisory'];
+ 
+     $query = "UPDATE levelsection SET level='$level',section='$section',advisory='$advisory' WHERE id='$id' ";
+     $query_run = mysqli_query($connection,$query);
+ 
+     if($query_run)
+     {   
+         header("Location: http://localhost/SPES/index.php?page=records&data=section-list");    
+     }
+     else
+     {
+         echo "Data not Saved" . $query . mysqli_error($connection);
+     }
+ } 
 
 
 
@@ -76,11 +97,18 @@ if(isset($_POST['insertdata']))
         }
      }
  }
- else{
-     header("Location: login.php");
-     exit();
- }
+ 
 
 
  /* -----------------------------------/ Code to login usename and password /--------------------------------------------- */
+
+ 
+
+
+
+ else{
+    header("Location: login.php");
+    exit();
+}
+
 ?>
