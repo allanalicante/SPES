@@ -16,353 +16,601 @@
                         </div>
                     </div>
                 </div>
-<!-- ------------------------------------------------Accordion for Student Details-------------------------------------- -->
+<!-- ------------------------------------------------Accordion for GRADE LEVEL AND SCHOOL INFORMATION-------------------------------------- -->
 <div class="accordion" id="accordionExample">
   <div style="margin-top: 2rem;" class="accordion-item">
     <h2 style=" background-color: #f2f7ff; border-radius: 10px;"class="accordion-header" id="headingOne">
       <a href="" class="accordion-button"  data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           <i style="vertical-align: middle; font-size: 1.2rem;" class="bi bi-person-lines-fill"></i>
-        STUDENT DETAILS
+          GRADE LEVEL AND SCHOOL INFORMATION
         </a>
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
       <section class="section">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">STUDENT DETAILS</h4>
-                            <HR></HR>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group ">
-                                        <label for="basicInput">PSA Birth Certificate No.</label>
-                                        <input type="text" class="form-control" id="basicInput">
-                                    </div>
+                            <div class="card">
+                                <div style="background-color: lightgray" class="card-header">
+                                    <h4 class="card-title">A. GRADE LEVEL AND SCHOOL INFORMATION</h4>                          
                                 </div>
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="helpInputTop">LRN</label>
-                                        <small class="text-muted">(<i>Learners Reference No.</i>)</small>
-                                        <input type="text" class="form-control" id="helpInputTop">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                <div class="form-group">
-                                        <label for="photo">Student Photo</label>
-                                        <input name="photo" type="file" class="form-control" id="photo" required="">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <label for="helpInputTop">Name</label>
-                                <div class="col-3">                                    
-                                    <input type="text" class="form-control" id="basicInput" placeholder="Last Name">  
-                                </div>
-                                <div class="col-3">    
-                                    <input type="text" class="form-control" id="basicInput" placeholder="First Name">                                        
-                                </div>
-                                <div class="col-3">    
-                                    <input type="text" class="form-control" id="basicInput" placeholder="Middle Name">                                        
-                                </div>
-                                <div class="col-1">    
-                                    <input type="text" class="form-control" id="basicInput" placeholder="Jr., II">                                        
-                                </div>
-                            </div>
+                                <br>
                             
-                            <br/>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group ">
-                                        <label for="basicInput">Birthday</label>
-                                        <input type="date"  id="birth-date" class="form-control" name="birthday" placeholder="">
-                                    </div>
-                                </div>
-                       
+                                <div class="card-body">
+                                    <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group ">
+                                                    <label for="basicInput">A1. School Year</label>
+                                                    <input type="text" class="form-control" id="basicInput">
+                                                </div>
+                                            </div>
 
-                                <div class="col-md-1">
-                                    <div class="form-group ">
-                                        <label for="basicInput">Age</label>
-                                        <input type="text" id="age-count" class="form-control" name="age" placeholder="0">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="helpInputTop">A2. Check the appropriate boxes only</label>                                      
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                        <label class="form-check-label" for="inlineCheckbox1">No LRN</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                                        <label class="form-check-label" for="inlineCheckbox2">With LRN</label>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <div class="form-group">
+                                                    <label for="photo">A3. Returning (Balik-aral)</label>
+                                                    <select class="form-select  mb-3" aria-label=".form-select-lg example">
+                                                    <option selected>Open this select menu</option>
+                                                    <option value="1">Yes</option>
+                                                    <option value="2">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                     </div>
-                                </div>
 
-                                
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="basicInput">Gender</label>
-                                        <select class="form-control" name="gender" id="gender">   
-                                            <option value="" disabled selected>Select</option>                                         
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>                                           
-                                        </select>
+                                    <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group ">
+                                                    <label for="basicInput">A4. Grade Level to enroll</label>
+                                                    <input type="text" class="form-control" id="basicInput">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group ">
+                                                    <label for="basicInput">A5. Last grade level completed</label>
+                                                    <input type="text" class="form-control" id="basicInput">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group ">
+                                                    <label for="basicInput">A6. Last school year completed</label>
+                                                    <input type="text" class="form-control" id="basicInput">
+                                                </div>
+                                            </div>
                                     </div>
-                                </div>
 
-                                <div class="col-md-4">
-                                    <div class="form-group ">
-                                        <label for="basicInput">Mother Tongue</label>
-                                        <input type="text" id="" class="form-control" name="" placeholder="" >
+                                    <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group ">
+                                                    <label for="basicInput">A7. Last school attended</label>
+                                                    <input type="text" class="form-control" id="basicInput">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group ">
+                                                    <label for="basicInput">A8. School ID</label>
+                                                    <input type="text" class="form-control" id="basicInput">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group ">
+                                                    <label for="basicInput">A9. School Address</label>
+                                                    <input type="text" class="form-control" id="basicInput">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                            <div class="form-group">
+                                                    <label for="photo">A10. School Type</label>
+                                                    <select class="form-select  mb-3" aria-label=".form-select-lg example">
+                                                    <option selected>Open this select menu</option>
+                                                    <option value="1">Public</option>
+                                                    <option value="2">Private</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                     </div>
-                                </div>
+
+                                    <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group ">
+                                                    <label for="basicInput">A11. School to enroll in</label>
+                                                    <input type="text" class="form-control" id="basicInput">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group ">
+                                                    <label for="basicInput">A12. School ID</label>
+                                                    <input type="text" class="form-control" id="basicInput">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group ">
+                                                    <label for="basicInput">A13. School Address</label>
+                                                    <input type="text" class="form-control" id="basicInput">
+                                                </div>
+                                            </div>
+                                    </div>                       
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="helpInputTop">Learning Modality</label>
-                                        <select class="form-control" name="Modality" id="Modality">   
-                                            <option value="" disabled selected>Select</option>                                         
-                                            <option value="Male">Online Class</option>
-                                            <option value="Female">Modular</option>  
-                                            <option value="Female">Blended</option>                                            
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group ">
-                                    <label for="helpInputTop">IP</label>
-                                        <small class="text-muted">(<i>Ethnic Group</i>)</small>
-                                        <input type="text" class="form-control" id="ethnicity">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group ">
-                                        <label for="helpInputTop">Religion</label>
-                                        <input type="text" class="form-control" id="religion">
-                                    </div>
-                                </div>
-                            </div>                          
                         </div>
-                    </div>
-                </section>
+                    </section>
       </div>
     </div>
   </div>
 
-<!-- ------------------------------------------------Accordion for Address and Guardians-------------------------------------- -->
-
+<!-- ------------------------------------------------Accordion for STUDENT INFORMATION-------------------------------------- -->
   <div style="margin-top: 2rem;" class="accordion-item">
     <h2 style=" background-color: #f2f7ff; border-radius: 10px;" class="accordion-header" id="headingTwo">
       <a href="" class="accordion-button btn-header-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
       <i style="vertical-align: middle; font-size: 1.2rem;" class="bi bi-geo-alt-fill"></i>
-        ADDRESS AND GUARDIAN DETAILS
+      STUDENT INFORMATION
         </a>
     </h2>
     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div class="accordion-body">
                 <!-- Basic Vertical form layout section start -->
-                <section id="basic-vertical-layouts">
-                    <div class="row match-height">
-                        <div class="col-md-5 col-12">
-                            <div class="card"><!----------------- ADDRESS CARD --------------------------->
-                                <div class="card-header">
-                                    <h4 class="card-title">ADDRESS</h4>
-                                    <HR></HR>
+                <section class="section">
+                            <div class="card">
+                                <div style="background-color: lightgray" class="card-header">
+                                    <h4 class="card-title">B. STUDENT INFORMATION</h4>
                                 </div>
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <form class="form form-vertical">
-                                            <div class="form-body">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label for="house-number-vertical">House Number and Street</label>
-                                                            <input type="text" id="house-info-vertical"
-                                                                class="form-control" name="house-number-street"
-                                                                placeholder="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label for="barangay-info-vertical">Barangay</label>
-                                                            <input type="text" id="barangay-info-vertical"
-                                                                class="form-control" name="barangay"
-                                                                placeholder="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label for="city-info-vertical">City / Municipality</label>
-                                                            <input type="text" id="city-info-vertical"
-                                                                class="form-control" name="city-municipality"
-                                                                placeholder="">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="province-info-vertical">Province</label>
-                                                            <input type="text" id="province-info-vertical"
-                                                                class="form-control" name="province-municipality"
-                                                                placeholder="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label for="zipcode-info-vertical">ZIP Code</label>
-                                                            <input type="number" id="zipcode-info-vertical"
-                                                                class="form-control" name="zipcode"
-                                                                placeholder="">
-                                                        </div>
-                                                    </div>  
-                                                </div>
+                                <br>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <label for="basicInput">B1. PSA Birth Certificate No.</label>
+                                                <input type="text" class="form-control" id="basicInput">
                                             </div>
-                                        </form>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="helpInputTop">B2. LRN</label>
+                                                <small class="text-muted">(<i>Learners Reference No.</i>)</small>
+                                                <input type="text" class="form-control" id="helpInputTop">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                        <div class="form-group">
+                                                <label for="photo">Student Photo</label>
+                                                <input name="photo" type="file" class="form-control" id="photo" required="">
+                                            </div>
+                                        </div>
                                     </div>
+
+                                    <div class="row">
+                                        <label for="helpInputTop">Name</label>
+                                        <div class="col-3">                                    
+                                            <input type="text" class="form-control" id="basicInput" placeholder="B3. Last Name">  
+                                        </div>
+                                        <div class="col-3">    
+                                            <input type="text" class="form-control" id="basicInput" placeholder="B4. First Name">                                        
+                                        </div>
+                                        <div class="col-3">    
+                                            <input type="text" class="form-control" id="basicInput" placeholder="B5. Middle Name">                                        
+                                        </div>
+                                        <div class="col-1">    
+                                            <input type="text" class="form-control" id="basicInput" placeholder="B6. Jr., II">                                        
+                                        </div>
+                                    </div>
+                                    
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <label for="basicInput">B7. Birthday</label>
+                                                <input type="date"  id="birth-date" class="form-control" name="birthday" placeholder="">
+                                            </div>
+                                        </div>
+                            
+
+                                        <div class="col-md-1">
+                                            <div class="form-group ">
+                                                <label for="basicInput">B8. Age</label>
+                                                <input type="text" id="age-count" class="form-control" name="age" placeholder="0">
+                                            </div>
+                                        </div>
+
+                                        
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="basicInput">B9. Sex</label>
+                                                <select class="form-control" name="sex" id="sex">   
+                                                    <option value="" disabled selected>Select</option>                                         
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>                                           
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                            <label for="helpInputTop">B10. IP</label>
+                                                <small class="text-muted">(<i>Ethnic Group</i>)</small>
+                                                <input type="text" class="form-control" id="ethnicity" placeholder="if you belong to indigenous group, please specifiy">
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+
+                                    <div class="row">
+                                        
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <label for="basicInput">B12. Mother Tongue</label>
+                                                <input type="text" id="" class="form-control" name="" placeholder="" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <label for="helpInputTop">Religion</label>
+                                                <input type="text" class="form-control" id="religion">
+                                            </div>
+                                        </div>
+                                    </div>                                  
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-7 col-12">
-                            <div class="card"><!-- ----------------PARENT'S / GUARDIAN INFORMATION--------------------- -->
-                                <div class="card-header">
-                                    <h4 class="card-title">PARENT'S / GUARDIAN INFORMATION</h4>
-                                    <HR></HR>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <form class="form form-vertical">
-                                            <div class="form-body">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label for="father-name-vertical">Father's Name (Last Name, First Name, Middle Name)</label>
-                                                            <input type="text" id="father-id-vertical"
-                                                                class="form-control" name="fname"
-                                                                placeholder="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label for="mother-name-vertical">Mother's Name (Last Name, First Name, Middle Name)</label>
-                                                            <input type="text" id="mother-id-vertical"
-                                                                class="form-control" name="mname"
-                                                                placeholder="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">                                           
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="Tel-info-vertical">Telephone No.</label>
-                                                                <input type="text" id="Tel-id-vertical"
-                                                                    class="form-control" name="telephone"
-                                                                    placeholder="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                        <div class="form-group">
-                                                                <label for="cellphone-info-vertical">Cellphone No.</label>
-                                                                <input type="text" id="cellphone-id-vertical"
-                                                                    class="form-control" name="cellphone"
-                                                                    placeholder="">
-                                                                    <br>
-                                                            </div>
-                                                        </div>
-                                                    </div>                            
-                                                    <h4 class="card-title">GUARDIAN (if not parent)</h4>
-                                                    <HR></HR>        
-                                                    <div class="row">                                           
-                                                        <div class="col-md-8">
-                                                            <div class="form-group">
-                                                                <label for="guardian-info-vertical">Guardian</label>
-                                                                <input type="text" id="guardian-id-vertical"
-                                                                    class="form-control" name="guardian"
-                                                                    placeholder="Last Name, First Name, Middle Name">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                        <div class="form-group">
-                                                                <label for="Relationship-info-vertical">Relationship</label>
-                                                                <input type="text" id="Relationship-id-vertical"
-                                                                    class="form-control" name="Relationship"
-                                                                    placeholder="">
-                                                            </div>
-                                                        </div>
-                                                    </div>                            
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+
+                     </section>
                 <!-- // Basic Vertical form layout section end -->
       </div>
     </div>
   </div>
+<!-------------------------------------------Accordion for LEARNERS WITH SPECIAL EDUCATION NEEDS & ADDRESS ------------------------------------------------------> 
   <div style="margin-top: 2rem;" class="accordion-item">
-    <h2 style=" background-color: #f2f7ff; border-radius: 10px;" class="accordion-header" id="headingThree">
-      <a href="" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-      <i style="vertical-align: middle; font-size: 1.2rem;" class="bi bi-info-circle-fill"></i>
-      FOR TRANSFEREE
+    <h2 style=" background-color: #f2f7ff; border-radius: 10px;" class="accordion-header" id="headingTwo">
+      <a href="" class="accordion-button btn-header-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
+      <i style="vertical-align: middle; font-size: 1.2rem;" class="bi bi-geo-alt-fill"></i>
+      FOR LEARNERS WITH SPECIAL EDUCATION NEEDS & ADDRESS
         </a>
     </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-            <!-- // Basic multiple Column Form section start -->
-            <section id="multiple-column-form">
-                    <div class="row match-height">
-                        <div class="col-12">
-                            <div class="card"><!------------------------------- FOR RETURNING LEARNERS --------------------------------->
-                                <div class="card-header">
-                                    <h4 class="card-title">For Returning learners (Balik-Aral) and Those Who Shall Transfer / Move In</h4>
-                                    <HR></HR>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <form class="form">
-                                            <div class="row">
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="sem-dropdown">Semester</label><br>
-                                                        <select class="form-control" name="Sem" id="Sem">
-                                                            <option value="" disabled selected>Select Semester.</option>
-                                                            <option value="1st">1st Sem</option>
-                                                            <option value="2nd">2nd Sem</option>                                           
-                                                          </select>
+             <!-------------------------------------------FOR LEARNERS WITH SPECIAL EDUCATION NEEDS ------------------------------------------------------>
+
+             <section id="basic-vertical-layouts">
+                        <div class="row match-height">
+                        <div class="col-md-7 col-12">
+                                <div class="card">
+                                    <div style="background-color: lightgray" class="card-header">
+                                        <h4 class="card-title">For Learners with Special Education Needs</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <form class="form form-vertical">
+                                                <div class="form-body">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                            <label for="select-special-type">B14. Does the learner have special education needs?</label>
+                                                                <select class="form-select mb-3" aria-label=".form-select-lg example">
+                                                                <option selected>Open this select menu</option>
+                                                                <option value="1">Yes</option>
+                                                                <option value="2">No</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="specify-info-vertical">B15. If yes, please specify</label>
+                                                                <input type="text" id="specify-info-vertical"
+                                                                    class="form-control" name="specify-needs"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>                      
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                            <label for="select-assistive-type">B16. Do you have any assistive technology available at home? 
+                                                                (i.e. screen reader, Braille, DAISY)</label>
+                                                                <select class="form-select mb-3" aria-label=".form-select-lg example">
+                                                                <option selected>Open this select menu</option>
+                                                                <option value="1">Yes</option>
+                                                                <option value="2">No</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="specify2-info-vertical">B17. If yes, please specify</label>
+                                                                <input type="text" id="specify2-info-vertical"
+                                                                    class="form-control" name="specify2-needs"
+                                                                    placeholder="">
+                                                                    <br>
+                                                            </div>
+                                                        </div>                                                                           
                                                     </div>
                                                 </div>
-                                                
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="city-column">Track</label>
-                                                        <input type="text" id="city-column" class="form-control"
-                                                            placeholder="" name="city-column">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="country-floating">Strand (if any)</label>
-                                                        <input type="text" id="country-floating" class="form-control"
-                                                            name="country-floating" placeholder="">
-                                                    </div>
-                                                </div>
-                                                <label for="country-floating" style="text-align: center; font-size: 14px;">I hereby certify that the above information on given are 
-                                                    true and correct to the best of my knowledge and I allow the Department of Education to use my
-                                                    child's details to create and/or update his/her learner profile in the Learner Information System.
-                                                The information herein shall be treated as confidential incompliance with Data Privacy Act of 2012.</label>   
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+    <!------------------------------------------------------------- ADDRESS INFORMATION ------------------------------------------------------>
+                            <div class="col-md-5 col-12">
+                                <div class="card"><!----------------- ADDRESS CARD --------------------------->
+                                    <div style="background-color: lightgray" class="card-header">
+                                        <h4 class="card-title">ADDRESS</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <form class="form form-vertical">
+                                                <div class="form-body">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="house-number-vertical">House Number and Street</label>
+                                                                <input type="text" id="house-info-vertical"
+                                                                    class="form-control" name="house-number-street"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="barangay-info-vertical">Barangay</label>
+                                                                <input type="text" id="barangay-info-vertical"
+                                                                    class="form-control" name="barangay"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="city-info-vertical">City / Municipality</label>
+                                                                <input type="text" id="city-info-vertical"
+                                                                    class="form-control" name="city-municipality"
+                                                                    placeholder="">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="province-info-vertical">Province</label>
+                                                                <input type="text" id="province-info-vertical"
+                                                                    class="form-control" name="province-municipality"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="Region-info-vertical">Region</label>
+                                                                <input type="text" id="Region-info-vertical"
+                                                                    class="form-control" name="Region"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>      
                         </div>
-                    </div>
                 </section>
+
       </div>
     </div>
   </div>
-</div>
-                <div class="col-12 d-flex justify-content-end reset-btn">
-                    <button type="reset"
-                        class="btn btn-light-secondary me-1 mb-1">Reset</button>
-                        <button class="btn btn-primary me-1 mb-1" style="background-color: #009933; border-color: #009933;" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Add</button>
-                        
-     </div> 
+<!-------------------------------------------Accordion for PARENT / GUARDIAN INFORMATION ------------------------------------------------------> 
+<div style="margin-top: 2rem;" class="accordion-item">
+    <h2 style=" background-color: #f2f7ff; border-radius: 10px;" class="accordion-header" id="headingTwo">
+      <a href="" class="accordion-button btn-header-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
+      <i style="vertical-align: middle; font-size: 1.2rem;" class="bi bi-geo-alt-fill"></i>
+      PARENT / GUARDIAN INFORMATION
+        </a>
+    </h2>
+    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+             <!-------------------------------------------FOR LEARNERS WITH SPECIAL EDUCATION NEEDS ------------------------------------------------------>
+
+             <section class="section">
+                         <div class="card">
+                        <div style="background-color: lightgray" class="card-header">
+                            <h4 class="card-title">C. PARENT  / GUARDIAN INFORMATION</h4>                          
+                        </div>
+                        <br>
+                      
+                        <div class="card-body">
+                            <div class="row">
+                                    <div style="border-right: solid 1px gray" class="col-md-4">
+                                        <div class="form-group ">
+                                            <label for="fathername">Father's Full Name</label>
+                                            <input type="text" class="form-control" id="fathername">
+                                        </div>
+                                    </div>
+                                    <div style="border-right: solid 1px gray" class="col-md-4">
+                                        <div class="form-group ">
+                                            <label for="mothername">Mother's Full Name</label>
+                                            <input type="text" class="form-control" id="mothername">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group ">
+                                            <label for="guardianname">Guardian's Full Name</label>
+                                            <input type="text" class="form-control" id="guardianname">
+                                        </div>
+                                    </div>
+                            </div>
+                            <!-- =-------------------------------------------------------------------------------------------------------- -->
+                            <div class="row">                                          
+                                <div style="border-right: solid 1px gray" class="col-md-4">
+                                        <div class="form-group">
+                                                <label for="fathereducation">Highest Educational Attainment</label>
+                                                <select class="form-select  mb-3" aria-label=".form-select-lg example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">Elementary Graduate</option>
+                                                <option value="2">High School Graduate</option>
+                                                <option value="3">College Graduate</option>
+                                                <option value="4">Vocational</option>
+                                                <option value="5">Master's/Doctorate Degree</option>
+                                                <option value="6">Did not attent school</option>
+                                                </select>
+                                            </div>
+                                 </div>
+                                <div style="border-right: solid 1px gray" class="col-md-4">
+                                        <div class="form-group">
+                                                <label for="mothereducation">Highest Educational Attainment</label>
+                                                <select class="form-select  mb-3" aria-label=".form-select-lg example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">Elementary Graduate</option>
+                                                <option value="2">High School Graduate</option>
+                                                <option value="3">College Graduate</option>
+                                                <option value="4">Vocational</option>
+                                                <option value="5">Master's/Doctorate Degree</option>
+                                                <option value="6">Did not attent school</option>
+                                                </select>
+                                            </div>
+                                 </div>
+                                <div class="col-md-4">
+                                        <div class="form-group">
+                                                <label for="guardianeducation">Highest Educational Attainment</label>
+                                                <select class="form-select  mb-3" aria-label=".form-select-lg example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">Elementary Graduate</option>
+                                                <option value="2">High School Graduate</option>
+                                                <option value="3">College Graduate</option>
+                                                <option value="4">Vocational</option>
+                                                <option value="5">Master's/Doctorate Degree</option>
+                                                <option value="6">Did not attent school</option>
+                                                </select>
+                                            </div>
+                                 </div>                                  
+                            </div>
+                            <!-------------------------------------------------------------------------------------------------------------  -->
+                            <div class="row">                                          
+                                <div style="border-right: solid 1px gray" class="col-md-4">
+                                        <div class="form-group">
+                                                <label for="fatheremployment">Employment Status</label>
+                                                <select class="form-select  mb-3" aria-label=".form-select-lg example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">Full Time</option>
+                                                <option value="2">Part Time</option>
+                                                <option value="3">Self-Employed (i.e family business)</option>
+                                                <option value="4">Unemployed due to ECQ</option>
+                                                <option value="5">Not Working</option>
+                                                </select>
+                                            </div>
+                                 </div>
+                                <div style="border-right: solid 1px gray" class="col-md-4">
+                                        <div class="form-group">
+                                                <label for="motheremployment">Employment Status</label>
+                                                <select class="form-select  mb-3" aria-label=".form-select-lg example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">Full Time</option>
+                                                <option value="2">Part Time</option>
+                                                <option value="3">Self-Employed (i.e family business)</option>
+                                                <option value="4">Unemployed due to ECQ</option>
+                                                <option value="5">Not Working</option>
+                                                </select>
+                                            </div>
+                                 </div>
+                                <div class="col-md-4">
+                                        <div class="form-group">
+                                                <label for="guardianemployment">Employment Status</label>
+                                                <select class="form-select  mb-3" aria-label=".form-select-lg example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">Full Time</option>
+                                                <option value="2">Part Time</option>
+                                                <option value="3">Self-Employed (i.e family business)</option>
+                                                <option value="4">Unemployed due to ECQ</option>
+                                                <option value="5">Not Working</option>
+                                                </select>
+                                            </div>
+                                 </div>                                   
+                            </div>    
+                            <!-- ------------------------------------------------------------------------------------------------ -->
+                            
+                            <div class="row">                                          
+                                <div style="border-right: solid 1px gray" class="col-md-4">
+                                        <div class="form-group">
+                                                <label for="fatherWFH">Working from home due to ECQ?</label>
+                                                <select class="form-select  mb-3" aria-label=".form-select-lg example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">Yes</option>
+                                                <option value="2">No</option>
+                                                </select>
+                                         </div>
+                                 </div>
+                                <div style="border-right: solid 1px gray" class="col-md-4">
+                                        <div class="form-group">
+                                                <label for="motherWFH">Working from home due to ECQ?</label>
+                                                <select class="form-select  mb-3" aria-label=".form-select-lg example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">Yes</option>
+                                                <option value="2">No</option>
+                                                </select>
+                                         </div>
+                                 </div>
+                                <div class="col-md-4">
+                                        <div class="form-group">
+                                                <label for="guardianWFH">Working from home due to ECQ?</label>
+                                                <select class="form-select  mb-3" aria-label=".form-select-lg example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">Yes</option>
+                                                <option value="2">No</option>
+                                                </select>
+                                         </div>
+                                 </div>
+                            </div>
+                            <!-- ------------------------------------------------------------------------------------------------------------- -->
+
+                            <div class="row">
+                                    <div style="border-right: solid 1px gray" class="col-md-4">
+                                        <div class="form-group ">
+                                            <label for="fathercontact">Contact Number/s (cellphone/telephone)</label>
+                                            <input type="text" class="form-control" id="fathercontact">
+                                        </div>
+                                    </div>
+                                    <div style="border-right: solid 1px gray" class="col-md-4">
+                                        <div class="form-group ">
+                                            <label for="mothercontact">Contact Number/s (cellphone/telephone)</label>
+                                            <input type="text" class="form-control" id="mothercontact">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group ">
+                                            <label for="guardiancontact">Contact Number/s (cellphone/telephone)</label>
+                                            <input type="text" class="form-control" id="guardiancontact">
+                                        </div>
+                                    </div>
+                            </div>
+                          
+                        </div>
+                        </div>
+                       </section>
+      </div>
+    </div>
+  </div>
+
+  
+
+
+  </div>
+
+
+
+
+
+
+  
+
+
+
+               
+
+
+
+
+
+               
 
 
         <!----------------------------------------------- FOR MODAL --------------------------------------------------------------------->
@@ -382,21 +630,415 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalToggleLabel2"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Request has been sent to the School Admin.
-      </div>
-      <div class="modal-footer">
-        <a href="?page=records&data=admission-list"><button class="btn btn-primary">Done</button></a>
-      </div>
-    </div>
-  </div>
+<!------------------------------------------- HOUSEHOLD CAPACITY AND ACCESS TO DISTANCE LEARNING ------------------------------------------------------> 
+<div style="margin-top: 2rem;" class="accordion-item">
+    <h2 style=" background-color: #f2f7ff; border-radius: 10px;" class="accordion-header" id="headingThree">
+      <a href="" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+      <i style="vertical-align: middle; font-size: 1.2rem;" class="bi bi-info-circle-fill"></i>
+      HOUSEHOLD CAPACITY AND ACCESS TO DISTANCE LEARNING
+        </a>
+    </h2>
+    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+            <!-- // Basic multiple Column Form section start -->
+            <section class="section">
+                      <div class="card">
+                        <div style="background-color: lightgray" class="card-header">
+                            <h4 class="card-title">D. HOUSEHOLD CAPACITY AND ACCESS TO DISTANCE LEARNING</h4>                          
+                         </div>
+                                <br>        
+                                <div class="card-body">
+                                    <div class="row">            
+
+                                        <!-- D1 & D3 -->
+                                        <div style="border-right: solid 1px gray" class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="helpInputTop">D1. How does your child go to school? Choose all that applies.</label>                                      
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">Walking</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">Public Commute (land/water)</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">Family-owned vehicle</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">School Service</label>
+                                                            </div> 
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="basicInput">D3. Who among the household members can provide instructional support
+                                                    to the child's distance learning? Choose all that applies.
+                                                </label>
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">Parents/Guardians</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">Elder siblings</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">Grandparents</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">Extended members of the family</label>
+                                                            </div> 
+                                                        </div>
+
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">Others(tutor, house helper)</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">none</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">able to do independent learning</label>
+                                                            </div>                                             
+                                                        </div> 
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- D2 -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="basicInput">D2. How many of your household members (including the enrolle) are
+                                                    studying in the current School Year? Please specify each.
+                                                </label>
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Kinder</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Grade 1</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Grade 2</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Grade 3</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Grade 4</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="col">
+                                                        <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Grade 5</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Grade 6</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Grade 7</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Grade 8</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Grade 9</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>
+                                                        </div>
+                                                        
+                                                        <div class="col ">
+                                                        <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Grade 10</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Grade 11</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Grade 12</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm"><i>Others</i></span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                            <label class="form-check-label" for="inlineCheckbox1"><i>(i.e college, vocational, etc.)</i></label>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        
+                                        <!-- D4 -->
+                                        <div style="border-right: solid 1px gray" class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="basicInput">D4. What devices are available at home that the learner can use for learning?
+                                                    Check all that applies.
+                                                </label>
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">cable tv</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">non-cable tv</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">basic cellphone</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">smartphone</label>
+                                                            </div> 
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">tablet</label>
+                                                            </div> 
+                                                        </div>
+
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">radio</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">desktop computer</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">laptop</label>
+                                                            </div>                                             
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">none</label>
+                                                            </div>                                             
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm"><i>Others</i></span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>                                            
+                                                        </div> 
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>  
+
+
+                                        <!-- D5 & D6 -->
+                                        <div class="col-md-6">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col form-group">
+                                                        <label for="basicInput">D5. Do you have a way to connect to the internet?
+                                                        </label>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">Yes</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">No. (if No, proceed to D7)</label>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col form-group">
+                                                            <label for="basicInput">D6. How do you connect to the internet? Choose all that applies.
+                                                            </label>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                    <label class="form-check-label" for="inlineCheckbox1">own mobile data</label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                    <label class="form-check-label" for="inlineCheckbox1">own broadband (DSL, wireless fiber, satellite)</label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                    <label class="form-check-label" for="inlineCheckbox1">computer shop</label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                    <label class="form-check-label" for="inlineCheckbox1">other places outside the home with internet connection</label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                    <label class="form-check-label" for="inlineCheckbox1">none</label>
+                                                                </div>
+                                                    </div>
+                                                </div>
+                                                    
+                                            </div>
+                                        </div>
+                                    
+
+
+                                        <!-- D7 -->
+                                        <div style="border-right: solid 1px gray" class="col-md-6">
+                                         <div class="form-group">
+                                                <label for="basicInput">D7. What distance learning modalities do you prefer for 
+                                                    your child? Choose all that applies.
+                                                </label>
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">online learning</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">television</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">radio</label>
+                                                            </div>
+                                                        
+                                                        </div>
+
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">modular learning</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">combination of face to face with other modalities</label>
+                                                            </div>                                                                                             
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm"><i>Others</i></span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>                                            
+                                                        </div> 
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                
+
+
+                                        <!-- D8 -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="basicInput">D8. What are the challenges that may affect your child's learning process
+                                                    through distance education? Choose all that applies.
+                                                </label>
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">lack of available gadgets/equipment</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">insufficient load/data allowance</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">unstable internet connection</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">existing health condition</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">difficulty in independent learning</label>
+                                                            </div> 
+                                                        </div>
+
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">conflict with other activities</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">high electrical consumption</label>
+                                                            </div>                                                                                             
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">distractions (i.e. social media, noise)</label>
+                                                            </div>                                                                                             
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm"><i>Others</i></span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                                </div>                                            
+                                                        </div> 
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                 </div>                            
+                          </div>
+                     </div>       
+                 </section>
+            </div>
+         </div>
+     </div>
 </div>
 
-       
+
+<!------------------------------------------------- Modal 2 --------------------------------------------------------------------------->
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalToggleLabel2"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Request has been sent to the School Admin.
+        </div>
+        <div class="modal-footer">
+            <a href="?page=records&data=admission-list"><button class="btn btn-primary">Done</button></a>
+        </div>
+        </div>
+    </div>
+    </div>
+
+<div class="col-12 d-flex justify-content-end reset-btn">
+                         <button type="reset"
+                        class="btn btn-light-secondary me-1 mb-1" >Reset</button>
+                        <button class="btn btn-primary me-1 mb-1" style="background-color: #009933; border-color: #009933;" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Add</button>              
+ </div> 
