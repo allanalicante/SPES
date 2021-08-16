@@ -1,3 +1,24 @@
+<?php
+ 
+
+
+  include('asset/database/MysqliDB.php');
+
+  
+    $db = new MysqliDb ('localhost', 'root', '', 'spes_db');
+    //$users = $db->get('users');
+    
+   
+    $records = $db->rawQueryOne('SELECT COUNT(id) as total FROM levelsection');
+    if($records !=NULL){    
+      $_SESSION['records'] = $records['total'];
+    }
+
+  
+
+?>
+
+
 
  <div class="page-heading">
             <h3>Profile Statistics</h3>
@@ -5,91 +26,145 @@
         <div class="page-content">
             <section class="row">
                 <div class="col-12 col-lg-9">
-                    <div class="row">
-                        <div class="col-6 col-lg-4 col-md-6">
-                            <div class="card">
-                                <div class="card-body px-3 py-4-5">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="stats-icon purple">
-                                                <lord-icon
-                                                src="https://cdn.lordicon.com//eszyyflr.json"
-                                                trigger="hover"
-                                                colors="primary:#ffffff,secondary:#ffffff"
-                                                style="width:250px;height:250px">
-                                            </lord-icon>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <h6 class="text-muted font-semibold">Students</h6>
-                                            <h6 class="font-extrabold mb-0">112</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-4 col-md-6">
-                            <div class="card">
-                                <div class="card-body px-3 py-4-5">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="stats-icon blue">
-                                                <lord-icon
-                                                 src="https://cdn.lordicon.com//bwnhdkha.json"
-                                                trigger="hover"
-                                                colors="primary:#ffffff,secondary:#ffffff"
-                                                  style="width:250px;height:250px">
+                        <div class="row">
+                            <div class="col-6 col-lg-4 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon purple">
+                                                    <lord-icon
+                                                    src="https://cdn.lordicon.com//eszyyflr.json"
+                                                    trigger="hover"
+                                                    colors="primary:#ffffff,secondary:#ffffff"
+                                                    style="width:250px;height:250px">
                                                 </lord-icon>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Students</h6>
+                                                <h6 class="font-extrabold mb-0">112</h6>
                                             </div>
                                         </div>
-                                        <div class="col-md-8">
-                                            <h6 class="text-muted font-semibold">Teachers</h6>
-                                            <h6 class="font-extrabold mb-0">183</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-4 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon blue">
+                                                    <lord-icon
+                                                    src="https://cdn.lordicon.com//bwnhdkha.json"
+                                                    trigger="hover"
+                                                    colors="primary:#ffffff,secondary:#ffffff"
+                                                    style="width:250px;height:250px">
+                                                    </lord-icon>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Teachers</h6>
+                                                <h6 class="font-extrabold mb-0">183</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-4 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon green">
+                                                    <lord-icon
+                                                    src="https://cdn.lordicon.com//jvucoldz.json"
+                                                    trigger="hover"
+                                                    colors="primary:#ffffff,secondary:#ffffff"
+                                                    style="width:250px;height:250px">
+                                                </lord-icon>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Sections</h6>
+                                                <h6 class="font-extrabold mb-0"><?php echo $_SESSION['records']; ?></h6>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6 col-lg-4 col-md-6">
-                            <div class="card">
-                                <div class="card-body px-3 py-4-5">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="stats-icon green">
-                                                <lord-icon
-                                                src="https://cdn.lordicon.com//jvucoldz.json"
-                                                trigger="hover"
-                                                colors="primary:#ffffff,secondary:#ffffff"
-                                                style="width:250px;height:250px">
-                                            </lord-icon>
+<!---------------------------------------------------------- Apex Chart JS ------------------------------------------>
+                            <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4>Grade Level Statistic</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div id="chart-profile-visit"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-8">
-                                            <h6 class="text-muted font-semibold">Sections</h6>
-                                            <h6 class="font-extrabold mb-0">80</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>Profile Visit</h4>
+
+                                <div id="carouselExampleFade" class="carousel carousel-dark slide carousel-fade col-md-4" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active" data-bs-interval="5000" >
+                                    <div>
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4>Learning Modality Statistic</h4>
+                                                    <hr>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div id="chart-visitors-profile"></div>
+                                                </div>
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                
+                                    <div class="carousel-item" data-bs-interval="5000">
+                                    <div>
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4>Gender Statistics</h4>                                                 
+                                                </div>
+                                                <div class="card-body">
+                                                    <div id="chart-gender"></div>
+                                                </div>                                          
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <div id="chart-profile-visit"></div>
+                                <button style="width:24px; height:24px; margin-top:200px" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden"></span>
+                                </button>
+                                <button style="width:24px; height:24px; margin-top:200px" class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden"></span>
+                                </button>
                                 </div>
+
+
+                                        
+                                        
                             </div>
-                        </div>
-                    </div>
-              
+
+
+
+                            
+                            
+<!---------------------------------------------------------- /Apex Chart JS/ ------------------------------------------>
+
+                           
                 </div>
 
 
+        <!-------------------------------- Display the Name of user who is currently using the program -->
                 <div class="col-12 col-lg-3">
                     <div class="card">
                         <div class="card-body py-4">
@@ -104,9 +179,14 @@
                             </div>
                         </div>
                     </div>
+<!-------------------------------- /Display the Name of user who is currently using the program/ -->
+
+
+
+                <!-- --------------------------Announcements---------------------------------- -->
                     <div class="card">
                         <div class="card-header">
-                            <h4>Recent Messages</h4>
+                            <h4>Notifications</h4>
                         </div>
                         <div class="card-content pb-4">
                             <div class="recent-message d-flex px-4 py-3">
@@ -136,13 +216,28 @@
                                     <h6 class="text-muted mb-0">@dodoljohn</h6>
                                 </div>
                             </div>
+                            <div class="recent-message d-flex px-4 py-3">
+                                <div class="avatar avatar-lg">
+                                    <img src="asset/images/faces/1.jpg">
+                                </div>
+                                <div class="name ms-4">
+                                    <h5 class="mb-1">John Dodol</h5>
+                                    <h6 class="text-muted mb-0">@dodoljohn</h6>
+                                </div>
+                            </div>
                            <!--  <div class="px-4">
                                 <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>Start
                                     Conversation</button>
                             </div> -->
                         </div>
                     </div>
+
+                     <!-- --------------------------/Announcements/---------------------------------- -->
                 </div>
             </section>
         </div>
+
+
+
+
 
