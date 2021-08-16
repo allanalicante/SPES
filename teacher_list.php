@@ -8,7 +8,7 @@
                           <div class="col-12 col-md-6 order-md-2 order-first">
                               <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                   <ol class="breadcrumb">
-                                      <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                      <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                                       <li class="breadcrumb-item active" aria-current="page">DataTable</li>
                                   </ol>
                               </nav>
@@ -17,11 +17,10 @@
                 </div>
                       <section class="section">
                           <div class="card">
-                              <div class="card-header">
+                              <div class="card-header">                    
                                     <div class="col-12 d-flex justify-content-end reset-btn">                      
-                                            <a href=""><button type="submit"
-                                                class="btn btn-primary me-1 mb-1" id="myBtn">Add Teacher</button></a>                                                        
-                                    </div> 
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Add Teacher</button>                                                       
+                                  </div>        
                                      <HR></HR> 
                               </div>
                                       <div class="card-body">
@@ -40,7 +39,7 @@
                                                             <td>Joven Hayag</td>
                                                             <td>Grade 2 Aguinaldo</td>
                                                             <td>
-                                                                <span class="badge bg-primary">Profile</span>
+                                                                <button type="button" class="badge btn btn-primary">Profile</button>
                                                                 <button type="button" class="badge btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Edit</button>                                 
                                                             </td>
                                                         </tr>    
@@ -54,23 +53,88 @@
 
    <!----------------------------------------------- FOR MODAL --------------------------------------------------------------------->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">MANAGE TEACHER</h5>
+      <div class="modal-header bg-primary">
+        <h5 style="color:white" class="modal-title" id="exampleModalLabel">MANAGE TEACHER</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form>
-          <div class="mb-3">
-            <label for="lrn-name" class="col-form-label">Name</label>
-            <input type="text" class="form-control" id="lrn-name">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="lrn-name" class="col-form-label">Name</label>
+              <input type="text" class="form-control" id="lrn-name">
+            </div>
+            <div class="col-md-4">
+              <label for="name-text" class="col-form-label">Advisory Class</label>
+              <input type="text" class="form-control" id="name-text"></textarea>
+            </div> 
+            <div class="col-md-4">
+              <label for="name-text" class="col-form-label">Contact No.</label>
+              <input type="text" class="form-control" id="name-text"></textarea>
+            </div> 
+          </div>   
+          
+          <div class="row">
+            <div class="col-md-4">
+              <label for="lrn-name" class="col-form-label">Employee No.</label>
+              <input type="text" class="form-control" id="lrn-name">
+            </div>
+            <div class="col-md-4">
+              <label for="name-text" class="col-form-label">Address</label>
+              <input type="text" class="form-control" id="name-text"></textarea>
+            </div> 
+            <div class="col-md-4">
+              <label for="name-text" class="col-form-label">Division</label>
+              <input type="text" class="form-control" id="name-text"></textarea>
+            </div> 
           </div>
-          <div class="mb-3">
-            <label for="name-text" class="col-form-label">Advisory Class</label>
-            <input type="text" class="form-control" id="name-text"></textarea>
+          
+          <div class="row">
+            <div class="col-md-4">
+              <label for="lrn-name" class="col-form-label">Station No.</label>
+              <input type="text" class="form-control" id="lrn-name">
+            </div>
+            <div class="col-md-4">
+              <label for="name-text" class="col-form-label">SSS No.</label>
+              <input type="text" class="form-control" id="name-text"></textarea>
+            </div> 
+            <div class="col-md-4">
+              <label for="name-text" class="col-form-label">PAG-IBIG No.</label>
+              <input type="text" class="form-control" id="name-text"></textarea>
+            </div> 
           </div>
-         
+
+          <div class="row">
+            <div class="col-md-4">
+              <label for="lrn-name" class="col-form-label">GSIS No.</label>
+              <input type="text" class="form-control" id="lrn-name">
+            </div>
+            <div class="col-md-4">
+              <label for="name-text" class="col-form-label">PHILHEALTH No.</label>
+              <input type="text" class="form-control" id="name-text"></textarea>
+            </div> 
+            <div class="col-md-4">
+              <label for="name-text" class="col-form-label">BIR/TIN No.</label>
+              <input type="text" class="form-control" id="name-text"></textarea>
+            </div> 
+          </div>
+          
+          <div class="row">
+            <div class="col-md-4">
+              <label for="lrn-name" class="col-form-label">PRC No.</label>
+              <input type="text" class="form-control" id="lrn-name">
+            </div>
+            <div class="col-md-4">
+              <label for="name-text" class="col-form-label">Position</label>
+              <input type="text" class="form-control" id="name-text"></textarea>
+            </div> 
+            <div class="col-md-4">
+              <label for="name-text" class="col-form-label">Educ. Attainment</label>
+              <input type="text" class="form-control" id="name-text"></textarea>
+            </div> 
+          </div> 
         </form>
       </div>
       <div class="modal-footer">
