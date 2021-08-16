@@ -1,3 +1,25 @@
+
+
+<?php
+/* include('asset/database/MysqliDB.php');
+if(isset($_POST['insertdata'])){
+  $db = new MysqliDb ('localhost', 'root', '', 'spes_db');
+  //$users = $db->get('users');
+  
+  $level = $_POST['level'];
+  $section = $_POST['section'];
+  $advisory = $_POST['advisory']; 
+
+    $data = Array ("level" => "$level",
+                "section" => "$section",
+                "advisory" => "$advisory"
+  );
+  $id = $db->insert ('levelsection', $data);
+  if($id)
+      echo 'user was created. Id=' . $id;
+} */
+?>
+
 <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
@@ -15,29 +37,32 @@
                         </div>
                     </div>
                 </div>
-                
-          
+                         
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
                               <div class="col-12 d-flex justify-content-end reset-btn">                      
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Add Level/Section</button>                                                       
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" data-bs-whatever="@getbootstrap">Add Level/Section</button>                                                       
                                   </div> 
+                                <?php
+                                  if(isset($_SESSION['addsuccess'])){ 
+                                ?>
+                                <div class="alert alert-success alert-dismissible show fade" role="alert">
+                                <?php echo $_SESSION['addsuccess']?>  
+                                  <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">  
+                                  </button>
+                                </div>
+                                <?php     
+                                unset($_SESSION['addsuccess']); 
+                                }
+                                ?>
                                   <HR></HR> 
                         </div>
-                            <div class="card-body">
-                     
-                                <?php
-                                  $connection = mysqli_connect("localhost","root","");
-                                  $db = mysqli_select_db($connection,'spes_db');
-
-                                  $query = "SELECT * FROM levelsection";
-                                  $query_run = mysqli_query($connection, $query);
-                                ?>
-
-                                                      <table class="table table-bordered table-striped" id="table1">
+                            <div class="card-body">                                        
+                                                      <table class="table" id="table1">
                                                           <thead style="background-color: #435ebe; color: white;">
                                                               <tr>
+                                                                  <th>ID</th>
                                                                   <th>Level</th>
                                                                   <th>Section</th>
                                                                   <th>No. of Students</th>
@@ -45,42 +70,38 @@
                                                                   <th>Action</th>
                                                               </tr>
                                                           </thead>
-
-                                                                <?php
-                                                          if($query_run)
-                                                          {
-                                                            foreach($query_run as $row)
-                                                            {
-                                                        ?>
                                                           <tbody>
+
+                                                          <?php
+                                                    $connection = mysqli_connect("localhost","root","");
+                                                    $db = mysqli_select_db($connection,'spes_db');
+
+                                                    $query = "SELECT * FROM levelsection";
+                                                    $query_run = mysqli_query($connection, $query);
+                                                    while($row=$query_run->fetch_assoc()){
+                                                    ?>
                                                             <tr>
+                                                              <td><?php echo $row['id'];?></td>
                                                               <td><?php echo $row['level'];?></td>
                                                               <td><?php echo $row['section'];?></td>
                                                               <td><?php echo $row['quantity'];?></td>
                                                               <td><?php echo $row['advisory'];?></td>
                                                               <td>                               
-                                                              <button type="button" class="badge btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@getbootstrap">Edit</button>                                 
+                                                              <button type="button" class="badge btn btn-success editBtn" data-bs-toggle="modal" 
+                                                               data-bs-target="#editmodal" data-bs-whatever="@getbootstrap">Edit</button>                                 
                                                               </td>                    
                                                             </tr>
-                                                              
+                                                            <?php } ?>
+        
                                                           </tbody>
-
-                                                          <?php
-                                                      }
-                                                    }
-                                                    else
-                                                    {
-                                                      echo "No record found!";
-                                                    }
-                                                    ?>
-                                              </table>
+                                             </table>
                              </div>
                      </div>
                 </section>        
         </div>
 
 <!----------------------------------------------- FOR ADDING LEVEL AND SECTION MODAL --------------------------------------------------------------------->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="addModal" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-primary">
@@ -88,10 +109,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="MyCrud.php" method="POST" >
+                                                 
+        <form form action="MyCrud.php" method="POST" >
           <div class="mb-3">
-          <label for="cars">Level</label>
-          <select class="form-control" name="level" id="Level">
+          <label for="level">Level</label>
+          <select class="form-control" name="level" id="level">
           <option value="" disabled selected>Select</option> 
             <option value="Grade1">Grade 1</option>
             <option value="Grade2">Grade 2</option>
@@ -102,18 +124,19 @@
           </select>
           </div>
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">Section</label>
-            <input type="text" name="section" class="form-control" id="section-text"></textarea>
+            <label for="section" class="col-form-label">Section</label>
+            <input type="text" name="section" class="form-control" id="section"></textarea>
           </div>
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">Advisory</label>
-            <input type="text" name="advisory" class="form-control" id="advisory-text"></textarea>
+            <label for="advisory" class="col-form-label">Advisory</label>
+            <input type="text" name="advisory" class="form-control" id="advisory"></textarea>
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" name="insertdata" data-bs-toggle="sweet-alert" data-sweet-alert="confirm" class="btn btn-primary">Save</button>
+        <button type="submit" name="insertdata" class="btn btn-primary">Save</button>
       </div>
         </form>
+        
       </div>
       
     </div>
@@ -123,18 +146,25 @@
 
 
 <!----------------------------------------------- FOR EDITING LEVEL AND SECTION MODAL --------------------------------------------------------------------->
-<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editmodal" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">EDIT LEVEL AND SECTION</h5>
+        <h5 class="modal-title" id="exampleModalLabel1">EDIT LEVEL AND SECTION</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+
+      <form action="MyCrud.php" method="POST" >
+
           <div class="mb-3">
-          <label for="cars">Level</label>
-          <select class="form-control" name="Level" id="Level">
+            <label for="id" class="col-form-label">Id</label>
+            <input type="text" readonly class="form-control" name="update_id" id="update_id"></textarea>
+          </div>
+
+          <div class="level-3">
+          <label for="level">Level</label>
+          <select class="form-control" name="editlevel" id="editlevel">
           <option value="" disabled selected>Select</option> 
             <option value="Grade1">Grade 1</option>
             <option value="Grade2">Grade 2</option>
@@ -144,24 +174,29 @@
             <option value="Grade6">Grade 6</option>        
           </select>
           </div>
+
           <div class="mb-3">
-            <label for="section-text" class="col-form-label">Section</label>
-            <input type="text" class="form-control" id="section-text"></textarea>
+            <label for="section" class="col-form-label">Section</label>
+            <input type="text" class="form-control" name="editsection" id="editsection"></textarea>
           </div>
+
           <div class="mb-3">
-            <label for="no-students-text" class="col-form-label">No. of Students</label>
-            <input type="text" class="form-control" id="no-students-text"></textarea>
+            <label for="advisory" class="col-form-label">Advisory</label>
+            <input type="text" class="form-control" name="editadvisory" id="editadvisory"></textarea>
           </div>
-          <div class="mb-3">
-            <label for="advisory-text" class="col-form-label">Advisory</label>
-            <input type="text" class="form-control" id="advisory-text"></textarea>
-          </div>
+
+          <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" name="updatedata" class="btn btn-primary ">Update Data</button>
+      </div>
+
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
-      </div>
+      
+      
     </div>
   </div>
 </div>
+
+
+ 
