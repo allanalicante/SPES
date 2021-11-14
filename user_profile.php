@@ -20,7 +20,7 @@
                 </div>
 
                 <section class="section">
-                    <div class="card">
+                    <div class="card logbrand">
                         <div class="card-header">
                             <h4 class="card-title">USER INFORMATION</h4>
                             <HR></HR>
@@ -142,7 +142,7 @@
                  <section id="basic-vertical-layouts">
                     <div class="row match-height">
                         <div class="col-md-5 col-12">
-                            <div class="card"><!----------------- ADDRESS CARD --------------------------->
+                            <div class="card logbrand"><!----------------- ADDRESS CARD --------------------------->
                                 <div class="card-header">
                                     <h4 class="card-title">ADDRESS</h4>
                                     <HR></HR>
@@ -200,7 +200,7 @@
                             </div>
                         </div>
                         <div class="col-md-7 col-12">
-                            <div class="card"><!-- ----------------PARENT'S / GUARDIAN INFORMATION--------------------- -->
+                            <div class="card logbrand"><!-- ----------------PARENT'S / GUARDIAN INFORMATION--------------------- -->
                                 <div class="card-header">
                                     <h4 class="card-title">PARENT'S / GUARDIAN INFORMATION</h4>
                                     <HR></HR>

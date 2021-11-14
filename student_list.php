@@ -15,36 +15,45 @@
                         </div>
                     </div>
                 </div>
-                <section class="section">
+                <section class="section brand">
                     <div class="card">
                         
-                        <div class="card-header">
-                                                 
-                        </div>
+                        <div class="card-header"></div>                                
+                       
                         <div class="card-body">
                            
                             <table class="table table-bordered table-striped" id="table1">   
                                 <thead style="background-color: #435ebe; color: white;">
                                     <tr>
-                                        <th>#</th>
+                                        <th>Student ID</th>
                                         <th>LRN</th>
                                         <th>Name</th>
-                                        <th>Level & Section</th>
-                                        <th>Adviser</th>
-                                        <th>Student Type</th>
-                                     
+                                        <th>Age</th>
+                                        <th>Sex</th>
+                                        <th>Birthday</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1247564647</td>
-                                        <td>Ren Andy Hayag</td>
-                                        <td>Grade 2 A</td>
-                                        <td>Mr. Berba</td>
-                                        <td>Regular</td>     
+
+                                <?php
+                                $connection = mysqli_connect("localhost","root","");
+                                $db = mysqli_select_db($connection,'spes_db');
+
+                                $query = "SELECT * FROM `student_tbl` WHERE `status`='enrolled'";
+                                $query_run = mysqli_query($connection, $query);
+                                while($row=$query_run->fetch_assoc()){
+                                ?>                    
+                                <tr>
+                                        <td><?php echo $row['stud_id'];?></td>
+                                        <td><?php echo $row['lrn'];?></td>
+                                        <td><?php echo $row['firstname'] ." ".$row['lastname'];?></td>
+                                        <td><?php echo $row['age'];?></td>
+                                        <td><?php echo $row['sex'];?></td>
+                                        <td><?php echo $row['birthday'];?></td>
+                                        
                                     </tr>
-                                   
+                                    <?php } ?>
                                    
                                 </tbody>
                             </table>
