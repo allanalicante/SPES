@@ -61,6 +61,35 @@
 .carousel-inner{border-radius:.7rem}
 .carousel-caption h5{color:#fff}
 .card{margin-bottom:2.2rem;border:none}
+.card.brand
+{
+	transition: transform .4s ease;
+	border: 1px solid #201f1f17;
+}
+.card.brand:hover{
+	box-shadow: 0px 10px 30px rgba(57, 56, 61, 0.205);
+	transform: scale(1.1);
+}
+.recent-message.brand 
+{
+	transition: transform .4s ease;
+	border: 1px solid #201f1f17;
+}
+.recent-message.brand:hover{
+	box-shadow: 0px 10px 30px rgba(57, 56, 61, 0.205);
+	transform: scale(1.1);
+}
+
+.section.brand{
+	box-shadow: 0px 10px 30px rgba(57, 56, 61, 0.205);
+	transform: scale(1.0);
+}
+.logbrand{
+	box-shadow: 0px 10px 30px rgba(57, 56, 61, 0.205);
+	transform: scale(1.0);
+}
+
+
 .card.card-statistic{box-shadow:1px 2px 5px rgba(47,170,244,.5);
 	background:linear-gradient(180deg,#25a6f1,#54b9ff)}.card.card-statistic
 	.card-title{text-transform:uppercase;color:#fff;

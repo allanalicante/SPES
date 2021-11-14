@@ -2,9 +2,10 @@
 
 session_start();
 
-    if (!isset($_SESSION["ADMIN"]) || !isset($_SESSION["name"]) || !isset($_SESSION["records"])){
-        header('location: login.php');
-    }
+if (!isset($_SESSION["name"])){
+    header('location: login.php');
+    exit();
+}
     //get pages
     
     $page="";
@@ -30,7 +31,12 @@ session_start();
                     case 'admission-new':
                         $data='admission-new';
                         $title = "Student Admission Form";
-                        break;   
+                        break;
+                        
+                    case 'pending-student':
+                        $data='pending-student';
+                        $title = "Student Admission list";
+                        break;    
                         
                     case 'student-list':
                         $data='student-list';
@@ -103,6 +109,14 @@ session_start();
         echo '<!-- /Admission New -->';
 
              }
+
+             elseif(isset($data) && $data=='pending-student'){
+
+                echo '<!-- Pending-Student -->';
+                include_once('pending_list.php');
+                echo '<!-- /Pending-Student -->';
+        
+            }
              elseif(isset($data) && $data=='student-list'){
                 
                         echo '<!-- student-list -->';

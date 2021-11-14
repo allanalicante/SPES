@@ -31,6 +31,9 @@
         exit();
     }
   }
+  else{
+    unset($_REQUEST['login']); 
+    }
 ?>
 
 <!DOCTYPE html>
@@ -60,10 +63,9 @@
                     <h2 class="auth-title">User Login</h2>
                     <p class="auth-subtitle mb-5">Log in with your username and password</p>
 
-                    <div class="card col-md-12">
+                    <div class="card logbrand col-md-12">
                         <div class="card-body">
                           <?php
-
                             if(isset($_SESSION['error'])){ 
                           ?>
                            <div class="alert alert-danger alert-dismissible show fade" role="alert">
@@ -74,7 +76,6 @@
                           <?php     
                           unset($_SESSION['error']); 
                             }
-
                           ?>
                         <form method="post">
                             <!--  ------------------------------------------------------------------------------>
@@ -99,18 +100,18 @@
                            
                             <div class="register" style="text-align: center">
                             <br>
-                             <p>Not yet enrolled?<a href="enroll-now.php"> Enroll now</a></p> 
+                             <p style="font-size: 20px">Not yet enrolled?<a href="enroll-now.php"> Enroll now</a></p> 
                             </div>   
                         </form>
                         </div>
                     </div>
-                   
+                   <!-- 
                     <div class="text-center mt-5 text-lg fs-4">
                         <p class="text-gray-600">Don't have an account? <a href="auth-register.html"
                                 class="font-bold">Sign
                                 up</a>.</p>
                         <p><a class="font-bold" href="table-datatable.php">Forgot password?</a>.</p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
                 <div class="col-lg-7 d-none d-lg-block main">

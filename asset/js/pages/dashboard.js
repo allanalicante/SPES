@@ -16,7 +16,13 @@ var optionsProfileVisit = {
 	},
 	series: [{
 		name: 'students',
-		data: [83,189,221,178,158,216,256]
+		data: [83,
+			189,
+			221,
+			178,
+			158,
+			216,
+			256]
 	}],
 	colors: ['#435ebe'],
 	xaxis: {
