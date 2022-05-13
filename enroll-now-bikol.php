@@ -370,22 +370,22 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12">
-                            <h3 style="text-align: center">LEARNER ENROLLMENT AND SURVEY FORM</h3><br>
+                            <h3 style="text-align: center">PORMA KAN ENROLLMENT ASIN PAGSURI KAN MAG-AARAL</h3><br>
                             <h6>Instructions:</h6>
-                            <h6>1. This enrollment survey shall be answered by the parent/guardian of the learner.</h6>
-                            <h6>2. Please read the questions carefully and fill in all applicable spaces and write your answers legibly in CAPITAL
-                                letters. For items not applicable, write N/A.
+                            <h6>1. Ang enrollment survey na ini ay sisimbagan kan magurang/tagapag-ataman kan mag-aaral.</h6>
+                            <h6>2. Himuong basahun nin maray ang mga hahaputon nan punuan intirong ng naaangkop na mga puwang nan isurat ang saimong mga simbag nin malinaw asin DARAGKO
+                                na letra. Para sa mga bagay na bako tama, isurat ang N/A.
                             </h6>
-                            <h6>3. For questions / clarifications, please ask for the assistance of the teacher / person-in-charge.</h6>
-                            <h6>4. If fields are not applicable, leave it blank.</h6>
-                            <h6>5. Fields with (<span style="color: red; font-weight: 900;">*</span>) symbols are required to be fill in.</h6><br>
+                            <h6>3. Para sa mga hahaputon/klaripikasyon, mag hagad ki gawad sa maestro o maestra</h6>
+                            <h6>4. Kung bako tama ang patlang, bayaan sana na blangko.</h6>
+                            <h6>5. Ang mga patlang na igwa kan (<span style="color: red; font-weight: 900;">*</span>) na simbolo ay kaipoan simbagan.</h6><br>
 
                             <div class="row nonprintable">
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label >Grade Level to enroll</label><span id="id"></span>
+                                        <label >Grado na eentraan</label><span id="id"></span>
                                         <select class="form-select mb-3" style="background-image: none;" aria-label=".form-select-lg example" onchange="displayform(); resetStudentTypeSelection();" name="A0" id="A0" required>
-                                        <option disabled selected >Open this select menu</option>
+                                        <option disabled selected >Bukasan ining select menu</option>
                                             <?php 
 
                                             $query = "SELECT * FROM `gradelevel_tbl`";
@@ -403,9 +403,9 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <div class="type">
-                                            <label >Select Student Type</label>
+                                            <label >Magpili kan klaseng estudyante</label>
                                             <select class="form-select mb-3" style="background-image: none;" aria-label=".form-select-lg example" onchange="verifyType()" name="A00" id="A00">
-                                            <option disabled selected >Open this select menu</option>
+                                            <option disabled selected >Bukasan ining select menu</option>
                                             <option value="Regular">Regular</option>
                                             <option value="Transferee">Transferee</option>
                                             <option value="New Enrollee">New Enrollee</option>
@@ -440,7 +440,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                 <section class="section myDiv">
                     <div class="card logbrand">
                         <div style="background-color: lightgray" class="card-header">
-                            <h4 class="card-title">A. GRADE LEVEL AND SCHOOL INFORMATION</h4>
+                            <h4 class="card-title">A. ANTAS KAN BAITANG NAN IMPORMASYON KAN ESKUELA</h4>
                             <input type="hidden" class="form-control" style="background-image: none;" id="stud_id" name="stud_id">                                                          
                         </div>
                         <br>               
@@ -448,7 +448,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                             <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group ">
-                                            <label>A1. School Year</label>
+                                            <label>A1. Anyos kan Eskuela</label>
                                             <?php                                 
                                                 $query = "SELECT SchoolYear FROM `schoolyear_tbl` WHERE `Active` = 'Yes' ";
                                                 $query_run = mysqli_query($connection, $query);
@@ -463,14 +463,14 @@ $thisquery = "SELECT * FROM schoolyear_tbl
 
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>A2. Check the appropriate boxes only <span style="color: red; font-weight: 900">  *</span></label>                                     
+                                            <label>A2. Checkan ang mga tamang kahon lamang <span style="color: red; font-weight: 900">  *</span></label>                                     
                                             <div class="form-check form-check-inline" >
                                                 <input  class="form-check-input noLrn" type="radio" id="A2" name="A2" value="No LRN" onchange="myLrn()" required="">
-                                                <label class="form-check-label" >No LRN</label><br>
+                                                <label class="form-check-label" >Wara LRN</label><br>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input  class="form-check-input withLrn" type="radio" id="A2" name="A2" value="With LRN" onchange="myLrn()" required="">
-                                                <label class="form-check-label" >With LRN</label><br>
+                                                <label class="form-check-label" >Igwa LRN</label><br>
                                             </div>   
                                         </div>  
                                     </div>
@@ -479,12 +479,12 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                         <div class="form-group">
                                             <label>A3. Returning (Balik-aral) <span style="color: red; font-weight: 900;">  *</span></label>
                                             <select class="form-select mb-3" aria-label=".form-select-lg example" style="background-image: none;" name="A3" id="A3" required="">
-                                            <option value="">Open this select menu</option>
-                                            <option value="Yes">Yes</option>
-                                            <option value="No">No</option>
+                                            <option value="">Bukasan ining select menu</option>
+                                            <option value="Yes">>Iyo<</option>
+                                            <option value="No">>Dai<</option>
                                             </select>
                                             <div class="invalid-feedback">
-                                                Please select option first.
+                                                Magpili anay ki simbag.
                                             </div>  
                                         </div>
                                     </div>
@@ -493,9 +493,9 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                             <div class="row">
                                     <div class="col-md-3">
                                             <div class="form-group">
-                                            <label>A4. Grade Level to enroll</label>
+                                            <label>A4. Grado na eentraan</label>
                                             <select class="form-select mb-3" aria-label=".form-select-lg example" style="background-image: none;" name="A4" id="A4" value="<?php echo isset($_POST['A4']) ? $_POST['A4'] : ""?>" required>
-                                            <option disabled selected >Open this select menu</option>
+                                            <option disabled selected >Bukasan ining select menu</option>
                                                 <?php    
                                                 $query = "SELECT * FROM `gradelevel_tbl`";
                                                 $query_run = mysqli_query($connection, $query);
@@ -511,16 +511,16 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group ">
-                                            <label>A5. Last grade level completed</label>
+                                            <label>A5. Huri na gradong tinapusan</label>
                                             <input type="text" readonly class="form-control" name="A5" id="A5">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group autocomplete">
-                                            <label>A6. Last school year completed</label>
+                                            <label>A6. Huri na anyos kan eskuela na tinapusan</label>
                                             <input type="text" class="form-control" name="A6" id="A6" required="">
                                             <div class="invalid-feedback">
-                                                This field cannot be left blank.
+                                                >Dai< pwedeng wara simbag.
                                             </div>  
                                         </div>
                                     </div>
@@ -529,41 +529,41 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                             <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group autocomplete">
-                                            <label>A7. Last school attended</label>
+                                            <label>A7. Huri na eskuelang na entraan</label>
                                             <input type="text" class="form-control" name="A7" id="A7" required="">
                                             <div class="invalid-feedback">
-                                                This field cannot be left blank.
+                                                >Dai< pwedeng wara simbag.
                                             </div>  
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group ">
-                                            <label>A8. School ID</label>
+                                            <label>A8. ID kan Eskuela</label>
                                             <input type="number" class="form-control" name="A8" id="A8" required="">
                                             <div class="invalid-feedback">
-                                                This field cannot be left blank.
+                                                >Dai< pwedeng wara simbag.
                                             </div>  
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group ">
-                                            <label>A9. School Address</label>
+                                            <label>A9. Adres kan Eskuela</label>
                                             <input type="text" class="form-control" name="A9" id="A9" required="">
                                             <div class="invalid-feedback">
-                                                This field cannot be left blank.
+                                                >Dai< pwedeng wara simbag.
                                             </div>  
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                     <div class="form-group">
-                                            <label>A10. School Type <span style="color: red; font-weight: 900;">  *</span></label>
+                                            <label>A10. Uri kang Eskuela <span style="color: red; font-weight: 900;">  *</span></label>
                                             <select class="form-select mb-3" aria-label=".form-select-lg example" style="background-image: none;" name="A10" id="A10" required="">
-                                            <option value="">Open this select menu</option>
-                                            <option value="PUBLIC">PUBLIC</option>
-                                            <option value="PRIVATE">PRIVATE</option>
+                                            <option value="">Bukasan ining select menu</option>
+                                            <option value="PUBLIC">PUBLIKO</option>
+                                            <option value="PRIVATE">PRIBADO</option>
                                             </select>
                                             <div class="invalid-feedback">
-                                                Please select an option first.
+                                                Magpili anay ki simbag.
                                             </div>  
                                         </div>
                                     </div>
@@ -572,7 +572,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                             <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group ">
-                                            <label>A11. School to enroll in</label>
+                                            <label>A11. Eskuela na eentraan</label>
                                             <input type="text" class="form-control" name="A11" id="A11" 
                                             value ="Sorsogon Pilot Elementary School" placeholder="Sorsogon Pilot Elementary School" 
                                             readonly>
@@ -580,14 +580,14 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group ">
-                                            <label>A12. School ID</label>
+                                            <label>A12. ID kan Eskuela</label>
                                             <input type="text" class="form-control" name="A12" id="A12"
                                             value="114581" placeholder="114581" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group ">
-                                            <label>A13. School Address</label>
+                                            <label>A13. Adres kan Eskuela</label>
                                             <input type="text" class="form-control" name="A13" id="A13" 
                                             value ="De Vera St, Sorsogon City, 4700 Sorsogon" 
                                             placeholder="De Vera St, Sorsogon City, 4700 Sorsogon" 
@@ -602,7 +602,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                 <section class="section myDiv">
                     <div class="card logbrand">
                         <div style="background-color: lightgray" class="card-header">
-                            <h4 class="card-title">B. STUDENT INFORMATION</h4>
+                            <h4 class="card-title">B. IMPORMASION KAN ESTUDIANTE</h4>
                         </div>
                         <br>
                         <div class="card-body">
@@ -621,39 +621,39 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                         <input type="tel" class="form-control check_email" style="background-image: none;" id="B2" name="B2" maxlength="12" required="">
                                         <p class="feedback" style="font-size: .875em; color: #dc3545; margin-top: .25rem"></p>
                                         <div class="invalid-feedback">
-                                                This field cannot be left blank.
+                                                >Dai< pwedeng wara simbag.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                 <div class="form-group">
-                                        <label>Student Photo <span style="color: red; font-weight: 900;">  *</span><!-- <i style="color: red; font-size: 12px"> (Note: Recommended file size: 1-5 mb.)</i> --></label>
+                                        <label>Litrato kan Estudiante <span style="color: red; font-weight: 900;">  *</span><!-- <i style="color: red; font-size: 12px"> (Note: Recommended file size: 1-5 mb.)</i> --></label>
                                         <input name="photo" type="file" class="form-control" id="photo" required="">
                                         <div class="invalid-feedback">
-                                                This field cannot be left blank.
+                                                >Dai< pwedeng wara simbag.
                                             </div>  
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label>Name<span style="color: red; font-weight: 900;">  *</span></label>
+                                <label>Ngaran<span style="color: red; font-weight: 900;">  *</span></label>
                                 <div class="col-md-3">                                    
-                                    <input type="text" class="form-control" id="B3" name="B3" placeholder="B3. Last Name" required=""> 
+                                    <input type="text" class="form-control" id="B3" name="B3" placeholder="B3. Apelyido" required=""> 
                                     <div class="invalid-feedback">
-                                        This field cannot be left blank.
+                                        >Dai< pwedeng wara simbag.
                                     </div> 
                                 </div>
                                 <div class="col-md-3">    
-                                    <input type="text" class="form-control"id="B4" name="B4" placeholder="B4. First Name" required="">
+                                    <input type="text" class="form-control"id="B4" name="B4" placeholder="B4. Ngaran" required="">
                                     <div class="invalid-feedback">
-                                        This field cannot be left blank.
+                                        >Dai< pwedeng wara simbag.
                                     </div>                                        
                                 </div>
                                 <div class="col-md-3">    
-                                    <input type="text" class="form-control" id="B5" name="B5" placeholder="B5. Middle Name" required="">  
+                                    <input type="text" class="form-control" id="B5" name="B5" placeholder="B5. Tahaw na Ngaran" required="">  
                                     <div class="invalid-feedback">
-                                        This field cannot be left blank.
+                                        >Dai< pwedeng wara simbag.
                                     </div>                                      
                                 </div>
                                 <div class="col-md-2">    
@@ -665,45 +665,45 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group ">
-                                        <label>B7. Birthday <span style="color: red; font-weight: 900;">  *</span></label>
+                                        <label>B7. KUMPLE-ANYO <span style="color: red; font-weight: 900;">  *</span></label>
                                         <input type="date" class="form-control" id="B7" name="B7" onchange="ageCalculator()" required="">
                                         <div class="invalid-feedback">
-                                                This field cannot be left blank.
+                                                >Dai< pwedeng wara simbag.
                                         </div>  
                                     </div>
                                 </div>
                     
                                 <div class="col-md-1">
                                     <div class="form-group ">
-                                        <label>B8. Age <span style="color: red; font-weight: 900;">  *</span></label>
+                                        <label>B8. Edad <span style="color: red; font-weight: 900;">  *</span></label>
                                         <input type="tel" maxlength="2" class="form-control" id="B8" name="B8" required="">
                                         <div class="invalid-feedback">
-                                                This field cannot be left blank.
+                                                >Dai< pwedeng wara simbag.
                                         </div>  
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label>B9. Sex <span style="color: red; font-weight: 900;">  *</span></label>
+                                        <label>B9. Henero <span style="color: red; font-weight: 900;">  *</span></label>
                                         <select class="form-control" name="B9" id="B9" required="">   
-                                            <option value="">Select</option>                                         
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>                                           
+                                            <option value="">Seleksion</option>                                         
+                                            <option value="Male">Lalaki</option>
+                                            <option value="Female">Babayi</option>                                           
                                         </select>
                                         <div class="invalid-feedback">
-                                                Please select an option first.
+                                                Magpili anay ki simbag.
                                         </div>  
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group ">
-                                    <label>B10. Indigenous Group <span style="color: red; font-weight: 900;">  *</span></label>
+                                    <label>B10. Grupong Katutubo (Indigenous Group) <span style="color: red; font-weight: 900;">  *</span></label>
                                         <small class="text-muted">(<i>Ethnic Group</i>)</small>
                                         <input list="B10list" type="text" class="form-control" name="B10" id="B10" placeholder="Select">
                                         <datalist id="B10list" required="">   
-                                            <option value="">Select</option>                                         
+                                            <option value="">Seleksion</option>                                         
                                             <option value="Ifugao">Ifugao</option>
                                             <option value="Bontoc">Bontoc</option>                                           
                                             <option value="Kankanay">Kankanay</option>                                           
@@ -718,7 +718,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                             <option value="None">None</option>                                          
                                             </datalist>
                                         <div class="invalid-feedback">
-                                                Please select an option first.
+                                                Magpili anay ki simbag.
                                         </div>  
                                     </div>
                                 </div>                      
@@ -748,13 +748,13 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                             <option value="None">None</option>                                                                                        
                                         </datalist>
                                         <div class="invalid-feedback">
-                                                Please select an option first.
+                                                Magpili anay ki simbag.
                                         </div>  
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group ">
-                                        <label>Religion <span style="color: red; font-weight: 900;">  *</span></label>
+                                        <label>Relih>Iyo<n <span style="color: red; font-weight: 900;">  *</span></label>
                                         <input list="religionlist" type="text" class="form-control" name="religion" id="religion" placeholder="Select">
                                         <datalist id="religionlist" required="">                                           
                                             <option value="Roman Catholic">Roman Catholic</option>
@@ -771,22 +771,22 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                             <option value="None">None</option>                                         
                                             </datalist>
                                         <div class="invalid-feedback">
-                                                Please select an option first.
+                                                Magpili anay ki simbag.
                                         </div>  
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group ">
-                                        <label>Learning Mode <span style="color: red; font-weight: 900;">  *</span></label>
+                                        <label>Moda kan pag Adal <span style="color: red; font-weight: 900;">  *</span></label>
                                         <select class="form-control" name="modality" id="modality" required="">   
-                                            <option value="">Select</option>                                         
+                                            <option value="">Seleksion</option>                                         
                                             <option value="Modular">Modular</option>
                                             <option value="Online Class">Online Class</option>                                                                                      
                                             <option value="Flexible">Flexible</option>                                                                                      
-                                            <option value="F2F">Face to Face</option>                                                                                      
+                                            <option value="F2F">Magka Atubang (Face to Face)</option>                                                                                      
                                         </select>
                                         <div class="invalid-feedback">
-                                                Please select an option first.
+                                                Magpili anay ki simbag.
                                             </div>  
                                     </div>
                                 </div>
@@ -794,12 +794,12 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     <div class="form-group ">
                                         <label>4Ps Member <span style="color: red; font-weight: 900;">  *</span></label>
                                         <select class="form-control" name="4ps" id="4ps" required="">   
-                                            <option value="">Select</option>                                         
-                                            <option value="Yes">Yes</option>
-                                            <option value="No">No</option>                                                                                                                                                                           
+                                            <option value="">Seleksion</option>                                         
+                                            <option value="Yes">Iyo</option>
+                                            <option value="No">Dai</option>                                                                                                                                                                           
                                         </select>
                                         <div class="invalid-feedback">
-                                                Please select an option first.
+                                                Magpili anay ki simbag.
                                             </div> 
                                     </div>
                                 </div>
@@ -813,7 +813,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                         <div class="col-md-7 col-12">
                             <div class="card logbrand">
                                 <div style="background-color: lightgray" class="card-header">
-                                    <h4 class="card-title">For Learners with Special Education Needs</h4>
+                                    <h4 class="card-title">Para sa Mag-aadal na nangangaipuhan kang Edukasyon na Espesial</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
@@ -822,14 +822,14 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                        <label>B14. Does the learner have special education needs? <span style="color: red; font-weight: 900;">  *</span></label>
+                                                        <label>B14. May espesial ba na pangangaipuan ang Mag-aadal? <span style="color: red; font-weight: 900;">  *</span></label>
                                                             <div class="col-6">
                                                             <select class="form-select mb-3" aria-label=".form-select-lg example" style="background-image: none;" id="B14" name="B14" onchange="special()" required="">
-                                                            <option value="No">No</option>
-                                                            <option value="Yes">Yes</option>
+                                                            <option value="No">Dai</option>
+                                                            <option value="Yes">Iyo</option>
                                                             </select>
                                                             <div class="invalid-feedback">
-                                                                Please select an option first.
+                                                                Magpili anay ki simbag.
                                                             </div> 
                                                             </div>
                                                         </div>
@@ -837,21 +837,21 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                                 
                                                     <div class="col-12">
                                                         <div class="form-group spedlink">
-                                                            <label>B15. If yes, Choose all that applies.
+                                                            <label>B15. Kung iyo, piliun intiro na tama.
                                                                 </label>  
                                                                     <div class="row">                                                                                                                        
                                                                         <div class="col">
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input checkothers" style="background-image: none;" type="checkbox" name="B15[]" value="Mental Retardation" onclick="thisenable()" >
-                                                                                <label class="form-check-label" >Mental Retardation</label>
+                                                                                <label class="form-check-label" >Kulang sa Pag-iisip (Mental Retardation)</label>
                                                                             </div>
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input checkothers" style="background-image: none;" type="checkbox" name="B15[]" value="Hearing Impairment" onclick="thisenable()" >
-                                                                                <label class="form-check-label" >Hearing Impairment</label>
+                                                                                <label class="form-check-label" >Kapansanan sa pag Dangog (Hearing Impairment)</label>
                                                                             </div>
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input checkothers" style="background-image: none;" type="checkbox" name="B15[]" value="Visual Impairmentlexia" onclick="thisenable()" >
-                                                                                <label class="form-check-label" >Visual Impairment</label>
+                                                                                <label class="form-check-label" >Kapansanan sa Bision (Visual Impairment)</label>
                                                                             </div>
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input checkothers" style="background-image: none;" type="checkbox" name="B15[]" value="Autism" onclick="thisenable()" >
@@ -863,11 +863,11 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                                                         <div class="col">
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input checkothers" style="background-image: none;" type="checkbox" name="B15[]" value="Multiple Disabilities" onclick="thisenable()" >
-                                                                                <label class="form-check-label" >Multiple Disabilities</label>
+                                                                                <label class="form-check-label" >Dakol na Kapansanan</label>
                                                                             </div>
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input checkothers" style="background-image: none;" type="checkbox" name="B15[]" value="Physical Disabilities & Health Impairment" onclick="thisenable()" >
-                                                                                <label class="form-check-label" >Physical Disabilities & Health Impairment</label>
+                                                                                <label class="form-check-label" >Kapansanang Pisikal asin Kapansanan sa Karahayan</label>
                                                                             </div>
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input checkothers" style="background-image: none;" type="checkbox" name="B15[]" value="Giftedness" onclick="thisenable()" >
@@ -875,7 +875,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                                                             </div>                                             
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input checkothers" style="background-image: none;" type="checkbox" name="B15[]" value="Others" onclick="thisenable()" >
-                                                                                <label class="form-check-label" >Others</label>
+                                                                                <label class="form-check-label" >Iba pa</label>
                                                                             </div>                                             
                                                                         </div>  
                                                                     </div>                                                                  
@@ -884,7 +884,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
 
                                                     <div class="col-12">
                                                         <div class="form-group B151">
-                                                            <label>Please specify</label>
+                                                            <label>Maging tiyak</label>
                                                             <input type="text" class="form-control" style="background-image: none;" id="B151" name="B151">
                                                                 
                                                         </div>
@@ -892,22 +892,22 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                                                                             
                                                     <div class="col-12">
                                                         <div class="form-group spedlink">
-                                                        <label>B16. Do you have any assistive technology available at home? 
+                                                        <label>B16. Igwa ki teknolohiyang pang tabang na magagamit sa bahay? 
                                                             (i.e. Screen Reader, Braille, Daisy) <span style="color: red; font-weight: 900;">  *</span></label>
                                                             <div class="col-6">
                                                             <select class="form-select mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="B16" name="B16" onchange="assistive(); special2();" required="">
-                                                            <option value="No">No</option>
-                                                            <option value="Yes">Yes</option>       
+                                                            <option value="No">Dai</option>
+                                                            <option value="Yes">Iyo</option>       
                                                             </select>
                                                             <div class="invalid-feedback">
-                                                                Please select an option first.
+                                                                Magpili anay ki simbag.
                                                             </div> 
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group Bb17" id="Bb17">
-                                                            <label>B17. If yes, please specify</label>
+                                                            <label>B17. Kung iyo, maging tiyak</label>
                                                             <input type="text" class="form-control" style="background-image: none;" id="B17" name="B17" >
                                                                 <br>
                                                         </div>
@@ -923,7 +923,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                     <div class="col-md-5 col-12">
                             <div class="card logbrand"><!----------------- ADDRESS CARD --------------------------->
                                 <div style="background-color: lightgray" class="card-header">
-                                    <h4 class="card-title">STUDENT ADDRESS</h4>
+                                    <h4 class="card-title">ADRES KAN ESTUDIANTE</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
@@ -932,7 +932,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            <label>House No. and Street</label>
+                                                            <label>Numero kan harong asin Ngaran kan kalye</label>
                                                             <input type="text" class="form-control" style="background-image: none;" id="street" name="street">
                                                         </div>
                                                     </div>
@@ -941,34 +941,34 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                                             <label>Barangay <span style="color: red; font-weight: 900;">  *</span></label>
                                                             <input type="text" class="form-control" id="barangay" name="barangay" required=""> 
                                                             <div class="invalid-feedback">
-                                                            This field cannot be left blank.
+                                                            Dai pwedeng wara simbag.
                                                             </div>                                                                
                                                         </div>            
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group autocomplete">
-                                                            <label>City / Municipality <span style="color: red; font-weight: 900;">  *</span></label>
+                                                            <label>Siudad/Munisipio <span style="color: red; font-weight: 900;">  *</span></label>
                                                             <input type="text" class="form-control" id="municipality" name="municipality" required=""> 
                                                             <div class="invalid-feedback">
-                                                                 This field cannot be left blank.
+                                                                 Dai pwedeng wara simbag.
                                                             </div>                                                                                 
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group autocomplete">
-                                                            <label>Province <span style="color: red; font-weight: 900;">  *</span></label>
+                                                            <label>Probinsia <span style="color: red; font-weight: 900;">  *</span></label>
                                                             <input type="text" class="form-control" id="province" name="province" required="">
                                                             <div class="invalid-feedback">
-                                                            This field cannot be left blank.
+                                                            Dai pwedeng wara simbag.
                                                             </div>
                                                         </div>    
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            <label>Region <span style="color: red; font-weight: 900;">  *</span></label>
+                                                            <label>Rehion <span style="color: red; font-weight: 900;">  *</span></label>
                                                             <input type="text" value="V" placeholder="V" readonly class="form-control" id="region" name="region" required="">   
                                                             <div class="invalid-feedback">
-                                                            This field cannot be left blank.
+                                                            Dai pwedeng wara simbag.
                                                             </div> 
                                                             <br>                                                   
                                                         </div>
@@ -985,7 +985,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                 <section class="section myDiv">
                     <div class="card logbrand">
                         <div style="background-color: lightgray" class="card-header">
-                            <h4 class="card-title">C. PARENT  / GUARDIAN INFORMATION</h4>                          
+                            <h4 class="card-title">C. IMPORMASION KAN MAGURANG  asin TAGAPAG-ATAMAN</h4>                          
                         </div>
                         <br>
                       
@@ -993,22 +993,22 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                             <div class="row">
                                     <div style="border-right: solid 1px gray" class="col-md-4">
                                         <div class="form-group ">
-                                            <label>Father's Full Name <span style="color: red; font-weight: 900;">  *</span></label>
+                                            <label>Bilog na Ngaran kan Ama <span style="color: red; font-weight: 900;">  *</span></label>
                                             <input type="text" class="form-control" style="background-image: none;" id="father" name="father">
                                         </div>
                                     </div>
                                     <div style="border-right: solid 1px gray" class="col-md-4">
                                         <div class="form-group ">
-                                            <label>Mother's Full Name <span style="color: red; font-weight: 900;">  *</span></label>
+                                            <label>Bilog na Ngaran kan Ina <span style="color: red; font-weight: 900;">  *</span></label>
                                             <input type="text" class="form-control" style="background-image: none;" id="mother" name="mother">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group ">
-                                            <label>Guardian's Full Name <span style="color: red; font-weight: 900;">  *</span></label>
+                                            <label>Bilog na Ngaran kan Tagapag-Ataman <span style="color: red; font-weight: 900;">  *</span></label>
                                             <input type="text" class="form-control" id="guardian" name="guardian" required="">
                                             <div class="invalid-feedback">
-                                                This field cannot be left blank.
+                                                Dai pwedeng wara simbag.
                                             </div>
                                         </div>
                                     </div>
@@ -1019,7 +1019,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                         <div class="form-group">
                                                 <label>Highest Educational Attainment</label>
                                                 <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="fathereducattainment" name="fathereducattainment">
-                                                <option value="" selected>Open this select menu</option>
+                                                <option value="" selected>Bukasan ining select menu</option>
                                                 <option value="Elementary Graduate">Elementary Graduate</option>
                                                 <option value="High School Graduate">High School Graduate</option>
                                                 <option value="College Graduate">College Graduate</option>
@@ -1032,31 +1032,31 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 <div style="border-right: solid 1px gray" class="col-md-4">
                                         <div class="form-group">
                                                 <label>Highest Educational Attainment</label>
-                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="mothereducattainment" name="mothereducattainment">
-                                                <option value="" selected>Open this select menu</option>
+                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="fathereducattainment" name="fathereducattainment">
+                                                <option value="" selected>Bukasan ining select menu</option>
                                                 <option value="Elementary Graduate">Elementary Graduate</option>
                                                 <option value="High School Graduate">High School Graduate</option>
                                                 <option value="College Graduate">College Graduate</option>
                                                 <option value="Vocational">Vocational</option>
                                                 <option value="Master's/Doctorate Degree">Master's/Doctorate Degree</option>
                                                 <option value="Did not attent school">Did not attent school</option>
-                                                </select>
+                                                </select>   
                                             </div>
                                  </div>
                                 <div class="col-md-4">
                                         <div class="form-group">
-                                                <label>Highest Educational Attainment <span style="color: red; font-weight: 900;">  *</span></label>
-                                                <select class="form-select  mb-3" aria-label=".form-select-lg example" id="guardianeducattainment" name="guardianeducattainment" required="">
-                                                <option value="" selected>Open this select menu</option>
+                                                <label>Highest Educational Attainment</label>
+                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="fathereducattainment" name="fathereducattainment">
+                                                <option value="" selected>Bukasan ining select menu</option>
                                                 <option value="Elementary Graduate">Elementary Graduate</option>
                                                 <option value="High School Graduate">High School Graduate</option>
                                                 <option value="College Graduate">College Graduate</option>
                                                 <option value="Vocational">Vocational</option>
                                                 <option value="Master's/Doctorate Degree">Master's/Doctorate Degree</option>
                                                 <option value="Did not attent school">Did not attent school</option>
-                                                </select>
+                                                </select>   
                                                 <div class="invalid-feedback">
-                                                    Please select an option first.
+                                                    Magpili anay ki simbag.
                                                 </div>
                                         </div>
                                  </div>                                  
@@ -1065,43 +1065,43 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                             <div class="row">                                          
                                 <div style="border-right: solid 1px gray" class="col-md-4">
                                         <div class="form-group">
-                                                <label>Employment Status</label>
+                                                <label>Tungod kan Trabaho</label>
                                                 <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="fatheremployment" name="fatheremployment" >
-                                                <option value="" selected>Open this select menu</option>
+                                                <option value="" selected>Bukasan ining select menu</option>
                                                 <option value="Full Time">Full Time</option>
                                                 <option value="Part Time">Part Time</option>
-                                                <option value="Self-Employed (i.e family business)">Self-Employed (i.e family business)</option>
-                                                <option value="Unemployed due to ECQ">Unemployed due to ECQ</option>
-                                                <option value="Not Working">Not Working</option>
+                                                <option value="Self-Employed (i.e family business)">Sa Sadiri nag Tatrabaho (Self-Employed i.e negosyong pamilya)</option>
+                                                <option value="Unemployed due to ECQ">Dai ki Trabaho mala sa ECQ</option>
+                                                <option value="Not Working">Dai Nagtatrabaho</option>
                                                 </select>
                                             </div>
                                  </div>
                                 <div style="border-right: solid 1px gray" class="col-md-4">
                                         <div class="form-group">
-                                                <label>Employment Status</label>
-                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="motheremployment" name="motheremployment" >
-                                                <option value="" selected>Open this select menu</option>
+                                                <label>Tungod kan Trabaho</label>
+                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="fatheremployment" name="fatheremployment" >
+                                                <option value="" selected>Bukasan ining select menu</option>
                                                 <option value="Full Time">Full Time</option>
                                                 <option value="Part Time">Part Time</option>
-                                                <option value="Self-Employed (i.e family business)">Self-Employed (i.e family business)</option>
-                                                <option value="Unemployed due to ECQ">Unemployed due to ECQ</option>
-                                                <option value="Not Working">Not Working</option>
+                                                <option value="Self-Employed (i.e family business)">Sa Sadiri nag Tatrabaho (Self-Employed i.e negosyong pamilya)</option>
+                                                <option value="Unemployed due to ECQ">Dai ki Trabaho mala sa ECQ</option>
+                                                <option value="Not Working">Dai Nagtatrabaho</option>
                                                 </select>
                                             </div>
                                  </div>
                                 <div class="col-md-4">
                                         <div class="form-group">
-                                                <label>Employment Status <span style="color: red; font-weight: 900;">  *</span></label>
-                                                <select class="form-select  mb-3" aria-label=".form-select-lg example" id="guardianemployment" name="guardianemployment" required="">
-                                                <option value="" selected>Open this select menu</option>
+                                                <label>Tungod kan Trabaho</label>
+                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="fatheremployment" name="fatheremployment" >
+                                                <option value="" selected>Bukasan ining select menu</option>
                                                 <option value="Full Time">Full Time</option>
                                                 <option value="Part Time">Part Time</option>
-                                                <option value="Self-Employed (i.e family business)">Self-Employed (i.e family business)</option>
-                                                <option value="Unemployed due to ECQ">Unemployed due to ECQ</option>
-                                                <option value="Not Working">Not Working</option>
+                                                <option value="Self-Employed (i.e family business)">Sa Sadiri nag Tatrabaho (Self-Employed i.e negosyong pamilya)</option>
+                                                <option value="Unemployed due to ECQ">Dai ki Trabaho mala sa ECQ</option>
+                                                <option value="Not Working">Dai Nagtatrabaho</option>
                                                 </select>
                                                 <div class="invalid-feedback">
-                                                    Please select an option first.
+                                                    Magpili anay ki simbag.
                                                 </div>
                                             </div>
                                  </div>                                   
@@ -1111,34 +1111,34 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                             <div class="row">                                          
                                 <div style="border-right: solid 1px gray" class="col-md-4">
                                         <div class="form-group">
-                                                <label>Working from home due to ECQ?</label>
+                                                <label>Nagtatrabaho sa harong mala sa ECQ?</label>
                                                 <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="fatherWFH" name="fatherWFH">
-                                                <option value="" selected>Open this select menu</option>
-                                                <option value="Yes">Yes</option>
-                                                <option value="No">No</option>
+                                                <option value="" selected>Bukasan ining select menu</option>
+                                                <option value="Yes">Iyo</option>
+                                                <option value="No">Dai</option>
                                                 </select>
                                          </div>
                                  </div>
                                 <div style="border-right: solid 1px gray" class="col-md-4">
                                         <div class="form-group">
-                                                <label>Working from home due to ECQ?</label>
-                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="motherWFH" name="motherWFH">
-                                                <option value="" selected>Open this select menu</option>
-                                                <option value="Yes">Yes</option>
-                                                <option value="No">No</option>
+                                                <label>Nagtatrabaho sa harong mala sa ECQ?</label>
+                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="fatherWFH" name="fatherWFH">
+                                                <option value="" selected>Bukasan ining select menu</option>
+                                                <option value="Yes">Iyo</option>
+                                                <option value="No">Dai</option>
                                                 </select>
                                          </div>
                                  </div>
                                 <div class="col-md-4">
                                         <div class="form-group">
-                                                <label>Working from home due to ECQ? <span style="color: red; font-weight: 900;">  *</span></label>
-                                                <select class="form-select  mb-3"  aria-label=".form-select-lg example" id="guardianWFH" name="guardianWFH" required="">
-                                                <option value="" selected>Open this select menu</option>
-                                                <option value="Yes">Yes</option>
-                                                <option value="No">No</option>
+                                                <label>Nagtatrabaho sa harong mala sa ECQ?</label>
+                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="fatherWFH" name="fatherWFH">
+                                                <option value="" selected>Bukasan ining select menu</option>
+                                                <option value="Yes">Iyo</option>
+                                                <option value="No">Dai</option>
                                                 </select>
                                                 <div class="invalid-feedback">
-                                                    Please select an option first.
+                                                    Magpili anay ki simbag.
                                                 </div>
                                          </div>
                                  </div>
@@ -1163,13 +1163,13 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                             <label>Contact Number/s (cellphone/telephone) <span style="color: red; font-weight: 900;">  *</span></label>
                                             <input type="tel" maxlength="11" class="form-control" id="guardiancontact" name="guardiancontact" required="">
                                             <div class="invalid-feedback">
-                                                    This field cannot be left blank.
+                                                    Dai pwedeng wara simbag.
                                                 </div>
                                             <br>
                                             <label>Relationship to the Guardian <span style="color: red; font-weight: 900;">  *</span></label>
                                             <input type="text" class="form-control" id="guardianrelate" name="guardianrelate" required="">
                                             <div class="invalid-feedback">
-                                                    This field cannot be left blank.
+                                                    Dai pwedeng wara simbag.
                                                 </div>
                                         </div>
                                     </div>
@@ -1182,7 +1182,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                 <section class="section myDiv forms2">
                       <div class="card logbrand"><!-- Household Survey -->
                         <div style="background-color: lightgray" class="card-header">
-                            <h4 class="card-title">D. HOUSEHOLD CAPACITY AND ACCESS TO DISTANCE LEARNING</h4>                          
+                            <h4 class="card-title">D. KAPASIDAD KAN KASARARO ASIN PAAGI SA DISTANCE LEARNING</h4>                          
                          </div>
                                 <br>        
                                 <div class="card-body">
@@ -1191,25 +1191,25 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                         <!-- D1 & D3 -->
                                         <div style="border-right: solid 1px gray" class="col-md-6">
                                             <div class="form-group ">
-                                                <label>D1. How does your child go to school? Choose all that applies.</label>                                      
+                                                <label>D1. Pan'o magpa duman sa Eskuela ang saimong aki? Piliun intirong tama.</label>                                      
                                                 <div class="container">
                                                     <div class="row">
                                                         <div class="col">
                                                             <div class="form-check">
                                                                 <input class="form-check-input " type="checkbox"  name="D1[]" value="Walking">
-                                                                <label class="form-check-label" >Walking</label>
+                                                                <label class="form-check-label" >Baklay (Walking)</label>
                                                             </div>
                                                             <div class="form-check">
                                                                 <input class="form-check-input " type="checkbox"  name="D1[]" value="Public Commute (land/water)">
-                                                                <label class="form-check-label" >Public Commute (land/water)</label>
+                                                                <label class="form-check-label" >Publikong Puli-puli (Public Commute)</label>
                                                             </div>
                                                             <div class="form-check">
                                                                 <input class="form-check-input " type="checkbox"  name="D1[]" value="Family-owned vehicle">
-                                                                <label class="form-check-label" >Family-owned vehicle</label>
+                                                                <label class="form-check-label" >Lunad pang Pamilya (Family-owned vehicle)</label>
                                                             </div>
                                                             <div class="form-check">
                                                                 <input class="form-check-input " type="checkbox"  name="D1[]" value="School Service">
-                                                                <label class="form-check-label" >School Service</label>
+                                                                <label class="form-check-label" >Serbisiong pang Eskuela (School Service)</label>
                                                             </div>
                                                             
                                                         </div> 
@@ -1217,42 +1217,41 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>D3. Who among the household members can provide instructional support
-                                                    to the child's distance learning? Choose all that applies.
+                                                <label>D3. Sin'o sa mga kasararo ang makahatag ki gawad sa pag tukdo sa distance learning kan aki? Piliun intirong tama.
                                                 </label>
                                                 <div class="container">
                                                     <div class="row">
                                                         <div class="col">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox" name="D3[]" value="Parents/Guardians">
-                                                                <label class="form-check-label" >Parents/Guardians</label>
+                                                                <label class="form-check-label" >Magurang/Tagapag-ataman</label>
                                                             </div>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox" name="D3[]" value="Elder siblings">
-                                                                <label class="form-check-label" >Elder siblings</label>
+                                                                <label class="form-check-label" >Mga Manoy/Manay (Elder siblings)</label>
                                                             </div>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox" name="D3[]" value="Grandparents">
-                                                                <label class="form-check-label" >Grandparents</label>
+                                                                <label class="form-check-label" >Apo (Grandparents)</label>
                                                             </div>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox" name="D3[]" value="Extended members of the family">
-                                                                <label class="form-check-label" >Extended members of the family</label>
+                                                                <label class="form-check-label" >Iba pang miyembro kan pamilya</label>
                                                             </div> 
                                                         </div>
 
                                                         <div class="col">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox" name="D3[]" value="Others(tutor, house helper)">
-                                                                <label class="form-check-label" >Others(tutor, house helper)</label>
+                                                                <label class="form-check-label" >Iba pa(tutor, kabulig sa harong)</label>
                                                             </div>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox" name="D3[]" value="none">
-                                                                <label class="form-check-label" >none</label>
+                                                                <label class="form-check-label" >Mayo (None)</label>
                                                             </div>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox" name="D3[]" value="able to do independent learning">
-                                                                <label class="form-check-label" >able to do independent learning</label>
+                                                                <label class="form-check-label" >Kaya mag sadiri (Self study)</label>
                                                             </div>                                             
                                                         </div> 
 
@@ -1265,8 +1264,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                         <!-- D2 -->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>D2. How many of your household members (including the Enrollee) are
-                                                    studying in the current School Year? Please specify each.
+                                                <label>D2. Pirang miyembro kan kasararo (kaupod ang Enrollee) ang nag-aadal sa ngonian na taon kan Eskuela? Itukdo kada saro.
                                                 </label>
                                                 <div class="container">
                                                     <div class="row">
@@ -1330,7 +1328,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                                                 <input type="tel" style="background-image: none;" maxlength="2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="D2[]">
                                                                 </div>
                                                             <div class="input-group input-group-sm mb-3">
-                                                                <span class="input-group-text" id="inputGroup-sizing-sm"><i>Others</i></span>
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm"><i>Iba pa</i></span>
                                                                 <input type="text" class="form-control" style="background-image: none;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="D2[]">
                                                                 </div>
                                                             <div class="input-group input-group-sm mb-3">
@@ -1345,8 +1343,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                         <!-- D4 -->
                                         <div style="border-right: solid 1px gray" class="col-md-6">
                                             <div class="form-group">
-                                                <label>D4. What devices are available at home that the learner can use for learning?
-                                                    Check all that applies.
+                                                <label>D4. Anong device ang available sa harong na magagamit kan mag-aadal para sa pag-adal. Saro-saroon intirong tama.
                                                 </label>
                                                 <div class="container">
                                                     <div class="row">
@@ -1407,19 +1404,19 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col form-group">
-                                                        <label>D5. Do you have a way to connect to the internet?
+                                                        <label>D5. Igwa ka ki paagi para maka konekta sa internet?
                                                         </label>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="radio" name="D5" id="D5" value="Yes">
-                                                                <label class="form-check-label" >Yes</label>
+                                                                <label class="form-check-label" >Igwa</label>
                                                             </div>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="radio" name="D5" id="D5" value="No">
-                                                                <label class="form-check-label" >No. (if No, proceed to D7)</label>
+                                                                <label class="form-check-label" >Mayo (Kung mayo, dumiretso sa D7)</label>
                                                             </div>
                                                     </div>
                                                     <div class="col form-group">
-                                                            <label>D6. How do you connect to the internet? Choose all that applies.
+                                                            <label>D6. Pan'o ka mag konekta sa internet? Piliun intirong tama.
                                                             </label>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="D6[]" id="inlineCheckbox1" value="own mobile data">
@@ -1452,8 +1449,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                         <!-- D7 -->
                                         <div style="border-right: solid 1px gray" class="col-md-6">
                                          <div class="form-group">
-                                                <label>D7. What distance learning modalities do you prefer for 
-                                                    your child? Choose all that applies.
+                                                <label>D7. Anong paagi kan pag-adal kan distansya ang gusto mo sa saimong aki? Piliun intirong tama.
                                                 </label>
                                                 <div class="container">
                                                     <div class="row">
@@ -1497,8 +1493,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                         <!-- D8 -->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>D8. What are the challenges that may affect your child's learning process
-                                                    through distance education? Choose all that applies.
+                                                <label>D8. Ano ang mga angat (challenge) na makaapekto sa proseso kan pag-adal sa saimong aki sa pamamagitan kan distance education? Piliun intirong tama.
                                                 </label>
                                                 <div class="container">
                                                     <div class="row">
@@ -1556,9 +1551,10 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="check" onclick="enablefirst()">
                                 <label class="form-check-label" >
-                                    <i>"In accordance with the Department of Education’s mandate to protect and promote the right to and 
-                        access to quality basic education, DepEd collects various data and information, 
-                        including personal information, from various subjects using different systems. more info."</i></label>
+                                    <i>"Alinsunod sa mandato kan Departamento ng Edukasyon na protektahan asin asenso ang karapatan asin magka igwa kan de-kalidad na batayang edukasyon, ang DepEd ay nangongolekta kan iba't ibang datos asin impormasion,
+					kaupod ang personal na impormasion,
+					hali sa iba't ibang paksa gamit ang iba't ibang sistema.
+					karagdagang impormasion."</i></label>
                             </div>
                         </div>
                     </div>                        
@@ -1570,14 +1566,14 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                         <div class="card-body">
                             <label class="form-check-label" >
                             <span style="color: red; font-weight: 900;">Note:</span> 
-                            Before submitting, kindly review your answers to match the relevant questions. 
-                            <i>(ex. mispelled words, incorrect number format, etc.) </i>
+                            Bago magsumite, i-check ang sa saimong mga simbag tanganing tugma sa mga hahaputon ang mga kasimbagan. 
+                            <i>(ex. sarala na spelling kan mga tataramun, sarala na format kan numero etc.) </i>
                                     </label><hr>
                                 <div class="form-check">                 
                                     <input class="form-check-input" type="checkbox" id="check2" onclick="enable()">
                                     <label class="form-check-label" >
-                                        <i>I agree that all of my answers are correct, reliable, and true. 
-                                            This information I have provided will be necessary for my learner's enrollment form.</i>
+                                        <i>Uyon na intiro kong kasimbagan ay tama, maaasahan, asin totoo. 
+                                            Ang impormasiong inihatag ko ay kinakaipuhan para sa pormularyo kang pagpapatala (enrollment) kan akong mag-aaral.</i>
                                     </label>
                                 </div>
                                              
@@ -1595,16 +1591,16 @@ $thisquery = "SELECT * FROM schoolyear_tbl
         </div>
 </form>
 
-    
+  
                                                 <!-- Semi Footer -->
-         <div class="col-12 d-flex justify-content-center " <?php if ($enrollmentstatus===false){?> hidden<?php } ?>>
-            <a href="index.php"><button type="button" class="btn btn-primary me-1 mb-1 " <?php if ($enrollmentstatus===false){?> hidden<?php } ?>>Go Back To Home Page</button></a>
-            <a href="check-enrolled.php"><button type="button" class="btn btn-info me-1 mb-1" <?php if ($enrollmentstatus===false){?> hidden<?php } ?>>Check Admission status</button></a> 
+         <div class="col-12 d-flex justify-content-center " <?php if ($enrollmentstatus===false){?> hidden<?php } ?> >
+            <a href="index.php"><button type="button" class="btn btn-primary me-1 mb-1 " <?php if ($enrollmentstatus===false){?> hidden<?php } ?>>Bumalik sa Home Page</button></a>
+            <a href="check-enrolled.php"><button type="button" class="btn btn-info me-1 mb-1" <?php if ($enrollmentstatus===false){?> hidden<?php } ?>>Check ang tungod kang pag laog</button></a> 
          </div>       
                                                     <!-- Footer -->
             <hr <?php if ($enrollmentstatus===false){?> hidden<?php } ?>>
         <div class="text-center footer " >
-            <p><a class="text-muted" href="enroll-now-tagalog.php">TAGALOG</a><span class="text-muted">&nbsp | &nbsp</span><a class="text-muted" href="enroll-now-bikol.php">BIKOL</a></p>
+            <p ><a class="text-muted" href="enroll-now-tagalog.php">TAGALOG</a><span class="text-muted">&nbsp | &nbsp</span><a class="text-muted" href="enroll-now.php">ENGLISH</a></p>
         </div>
 
         <div id="notfound" <?php if ($enrollmentstatus===true){?> style="display:none"<?php } ?> >
@@ -1623,12 +1619,12 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                
                     <h1>oops!</h1>
                     <h2>Enrollment Status: <span style="color:red">Ended</span></h2><br>
-                    <h4>For more information, feel free to contact or visit <br> Sorsogon Pilot Elementary School.</h4>
+                    <h4>Para sa karagdagang impormasyon, tawagan o bisitahon ang <br> Sorsogon Pilot Elementary School.</h4>
 
-                    <a href="http://sorsogon-pilot-elem-school.ccdisors-capstone2021.com/">go back</a>
+                    <a href="http://sorsogon-pilot-elem-school.ccdisors-capstone2021.com/">Bumalik</a>
                 </div>
         </div>
-   
+ 
         
 <?php include_once('includes/footer_html.php'); ?>
 

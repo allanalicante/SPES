@@ -1,4 +1,10 @@
-            <div class="page-heading">
+<?php
+if (!isset($_SESSION["role"])){
+    header('location: login.php');
+    exit();
+}
+?>
+<div class="page-heading">
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
@@ -9,7 +15,7 @@
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Admission List</li>
                                 </ol>
                             </nav>
                         </div>
@@ -21,7 +27,7 @@
                         <div class="card-header">
                             <div class="col-12 d-flex justify-content-end reset-btn">                      
                                 <a href="?page=records&data=admission-new"><button type="submit"
-                                    class="btn btn-primary me-1 mb-1" id="myBtn">Add New Student</button></a>     
+                                    class="btn btn-primary me-1 mb-1" id="myBtn" >Add New Student</button></a>     
                                 <a href="?page=records&data=pending-student"><button type="submit"
                                     class="btn btn-primary me-1 mb-1" id="myBtn">Check Pending Enrollees</button></a>     
                                                
@@ -58,25 +64,29 @@
                            <table class="table table-bordered table-striped" id="table1">   
                                 <thead style="background-color: #435ebe; color: white;">
                                     <tr>
-                                        <th>Student ID</th>
+                                        <th>#</th>
+                                        <th>Photo</th>
                                         <th>LRN</th>
                                         <th>Name</th>
-                                        <th>Level & Section</th>
+                                        <th>Grade</th>
+                                        <th>Section</th>
                                         <th>Adviser</th>
+                                        <th>Modality</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                 <?php
-                                $connection = mysqli_connect("localhost","root","");
-                                $db = mysqli_select_db($connection,'spes_db');
+                             
 
-                                $query = "SELECT t1.stud_id,t1.lrn,CONCAT(t1.firstname,' ',t1.lastname) AS `Full Name`,
-                                CONCAT(t2.level,' ',t2.section) AS `Level & Section`, t3.name
+                                $query = "SELECT t1.modality, t1.stud_id,t1.lrn,CONCAT(t1.firstname,' ',t1.lastname) AS `Full Name`,
+                                g.Grade,t2.section AS `Section`, t3.name, t1.photo
                                 FROM student_tbl t1
                                 INNER JOIN levelsection t2
                                 ON t2.id=t1.level_section_id
+                                INNER JOIN gradelevel_tbl g
+                                ON g.id = t2.level
                                 INNER JOIN teacher t3
                                 ON t3.level_section_id=t1.level_section_id
                                 WHERE `status`='enrolled'";
@@ -85,10 +95,14 @@
                                 ?>                    
                                 <tr>
                                         <td><?php echo $row['stud_id'];?></td>
+                                        <td><img alt ="No Photo Saved"style="width: 100px;height:100px;object-fit: cover;" 
+                                         class="img-thumbnail" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['photo']); ?>"/></td>
                                         <td><?php echo $row['lrn'];?></td>
                                         <td><?php echo $row['Full Name'];?></td>
-                                        <td><?php echo $row['Level & Section'];?></td>
+                                        <td><?php echo $row['Grade'];?></td>
+                                        <td><?php echo $row['Section'];?></td>
                                         <td><?php echo $row['name'];?></td>
+                                        <td><?php echo $row['modality'];?></td>
                                         <td>                               
                                         <button type="button" class="badge btn btn-success editStudentSection" data-bs-toggle="modal" 
                                           data-bs-target="#editStudentSection" data-bs-whatever="@getbootstrap">Edit</button>                                 
@@ -116,37 +130,53 @@
       </div>
       <div class="modal-body">
 
-        <form action="MyCrud.php" method="POST">    
-              <div class="mb-3">
+        <form action="MyCrud.php" method="POST" enctype="multipart/form-data">   
+          <div class="row">
+              <div class="col-md-6">
                 <label for="editlrn" class="col-form-label">LRN</label>
                 <input type="text" readonly name="editlrn" class="form-control" id="editlrn">
               </div>
-
-              <div class="mb-3">
+               
+              <div class="col-md-6">
                 <label for="editname" class="col-form-label">Name</label>
                 <input type="text" readonly name="editname"  class="form-control" id="editname"></textarea>
               </div>
+         </div>
 
-              <div class="mb-3">
-              <label for="editlevelsectionid1">Level (Choose from below)</label>
-              <select class="form-control" name="editlevelsectionid1" id="editlevelsectionid1" required>
-              <option value="" disabled selected>Select</option> 
-              <?php 
-                $connection = mysqli_connect("localhost","root","");
-                $db = mysqli_select_db($connection,'spes_db');
-                $query = "SELECT id,CONCAT(t1.level,' - ',t1.section) AS `Advisory Class`
-                FROM levelsection t1";
-                $query_run = mysqli_query($connection, $query);
-                while($row=$query_run->fetch_assoc()){  
-                ?>
-                <option value="<?php echo $row['id']?>"><?php echo $row['Advisory Class']; ?></option>
-                <?php  
-                }
-                ?>           
+          <div class="row">
+              <div class="col-md-6">
+            <label for="grade" class="col-form-label">Grade</label>
+            <input type="text" readonly name="editlevelsectionid1" class="form-control" id="editlevelsectionid1"></textarea>
+             </div>
+
+              <div class="col-md-6">
+              <label for="editlevelsectionid1" class="col-form-label">Section</label>
+              <select class="form-control" name="editGradeSection" id="editGradeSection" required>
+              <option value="" disabled selected>Select</option>          
               </select>
-              </div>
+              </div>    
+          </div>
 
-              <input type="hidden" name="editstud_id"  class="form-control" id="editstud_id"></textarea>
+          <div class="row">
+               <div class="col-md-12">
+                      <label for="name-text" class="col-form-label">Modality</label>
+                      <select class="form-control" name="editmodality" id="editmodality" required>
+                      <option value="" disabled selected>Select</option> 
+                      <option value="Modular">Modular</option> 
+                      <option value="Online Class">Online Class</option> 
+                      </select>
+                    </div>                
+          </div> 
+
+          <div class="row">
+               <div class="col-md-12">
+                      <label for="name-text" class="col-form-label">Select Image File</label>
+                      <input type="file" class="form-control" name="updateimage" id="updateimage" required></textarea>
+                    </div>                
+               </div> 
+          </div>
+          <input type="hidden" name="editstud_id"  class="form-control col-md-6" id="editstud_id"></textarea>
+             
 
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -159,12 +189,3 @@
   </div>
 </div>
 
-
-
-<!-- SELECT t2.name, CONCAT(t3.level,t3.section) AS `Grade - Section` FROM student_tbl t1
-INNER JOIN teacher t2
-ON t2.level_section_id=t1.level_section_id
-INNER JOIN levelsection t3
-ON t3.id=t2.level_section_id
-
-WHERE `status`='enrolled' -->

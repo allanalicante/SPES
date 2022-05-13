@@ -1,251 +1,417 @@
+<script src="asset/vendors/apexcharts/apexcharts.js"></script>
 <?php
- 
+    if(!isset($_SESSION['role']))
+    {
+    header('location:login.php');
+    exit();
+    } 
+?>
+<?php 
+
+//Condition queries if Admin or Teacher
+if ($_SESSION['role'] == 'Admin'){
+  $sqly = "SELECT ( SELECT COUNT(*) FROM student_tbl s INNER JOIN enrollment_tbl e ON s.id = e.student_id WHERE e.`status` = 'enrolled' ) AS `TotalPupils`,
+  ( SELECT COUNT(*) FROM teacher t INNER JOIN users u ON t.id = u.id WHERE u.`status` = 'Active' ) AS `TotalTeachers`,
+  ( SELECT COUNT(*) FROM section_tbl ) AS `TotalClass`,
+  ( SELECT COUNT(*) FROM enrollment_tbl WHERE STATUS = 'pending') AS `TotalPending`";
+  $result = mysqli_query($connection,$sqly);
+  }
+elseif ($_SESSION['role'] == 'Teacher'){
+  $id = $_SESSION['gradeid'];
+  $userid = $_SESSION['userid'];
+
+  $sqlz = "SELECT ( SELECT COUNT(*) AS `TotalPupils`
+                    FROM student_tbl s 
+                    INNER JOIN enrollment_tbl e 
+                    ON s.id = e.student_id
+                    INNER JOIN section_tbl se
+                    ON e.`section_id` = se.`id` 
+                    INNER JOIN teacher t
+                    ON se.`teacher_id` = t.`id`
+                    WHERE e.`status` = 'enrolled'
+                    AND t.id = '$userid') AS `TotalPupils`,
+              ( SELECT COUNT(*) FROM teacher t INNER JOIN users u ON t.id = u.id WHERE u.`status` = 'Active' ) AS `TotalTeachers`,
+              ( SELECT COUNT(*) FROM section_tbl  WHERE teacher_id = '$userid') AS `TotalClass`,
+              ( SELECT COUNT(e.id)
+                    FROM enrollment_tbl e
+                    LEFT JOIN section_tbl s
+                    ON e.section_id = s.id
+                    LEFT JOIN gradelevel_tbl g
+                    ON s.gradelevel_id = g.id
+                    LEFT JOIN teacher t
+                    ON s.gradelevel_id = t.gradetohandle
+                    LEFT JOIN student_tbl st
+                    ON e.student_id = st.id
+                    WHERE e.status ='pending'
+                    AND st.gradetoenroll = '$id') AS `TotalPending`";
+                    $result = mysqli_query($connection,$sqlz);
+  }             
+      while ($row = mysqli_fetch_array($result)) { 
+            $totalstudents = $row['TotalPupils'];
+            $totalteachers = $row['TotalTeachers'];
+            $totalpending = $row['TotalPending'];
+            $totalclass = $row['TotalClass'];
+          }
+          
+ //Query for counting total male enrolled for gender statistic per role
 
 
-  include('asset/database/MysqliDB.php');
+ $userid = $_SESSION['userid'];
+if ($_SESSION['role'] == 'Admin'){
+  $sql10 = "SELECT COUNT(s.id) AS totalmale FROM student_tbl s
+              INNER JOIN enrollment_tbl e
+              ON e.student_id = s.id
+              WHERE STATUS='enrolled' AND sex = 'Male'";
+               $result = mysqli_query($connection,$sql10);
+  }
+elseif ($_SESSION['role'] == 'Teacher') {
+  $sql100 = "SELECT COUNT(*) AS `totalmale`
+            FROM student_tbl s 
+            INNER JOIN enrollment_tbl e 
+            ON s.id = e.student_id
+            INNER JOIN section_tbl se
+            ON e.`section_id` = se.`id` 
+            INNER JOIN teacher t
+            ON se.`teacher_id` = t.`id`
+            WHERE e.`status` = 'enrolled'
+            AND s.`sex` = 'Male'
+            AND t.id = ".$userid."";
+            $result = mysqli_query($connection,$sql100);
+  }
+               while ($row = mysqli_fetch_array($result)) { 
+                    $male = $row['totalmale'];
+               }
+          
+//Query for counting total female enrolled for gender statistic per role
+if ($_SESSION['role'] == 'Admin'){
+  $sql11 = "SELECT COUNT(s.id) AS totalfemale FROM student_tbl s
+              INNER JOIN enrollment_tbl e
+              ON e.student_id = s.id
+              WHERE STATUS='enrolled' AND sex = 'Female'";
+               $result = mysqli_query($connection,$sql11);
+  }
+elseif ($_SESSION['role'] == 'Teacher') {
+  $sql111 = "SELECT COUNT(*) AS `totalfemale`
+            FROM student_tbl s 
+            INNER JOIN enrollment_tbl e 
+            ON s.id = e.student_id
+            INNER JOIN section_tbl se
+            ON e.`section_id` = se.`id` 
+            INNER JOIN teacher t
+            ON se.`teacher_id` = t.`id`
+            WHERE e.`status` = 'enrolled'
+            AND s.`sex` = 'Female'
+            AND t.id = ".$userid."";
+            $result = mysqli_query($connection,$sql111);
+    }
+            while ($row = mysqli_fetch_array($result)) { 
+              $female = $row['totalfemale'];
+            }
 
-  
-    $db = new MysqliDb ('localhost', 'root', '', 'spes_db');
-    //$users = $db->get('users');
-    
-   
-    $records = $db->rawQueryOne('SELECT COUNT(id) as total FROM levelsection');
-    $teachers = $db->rawQueryOne('SELECT COUNT(teacher_id) as totalteachers FROM teacher');
-    $students = $db->rawQueryOne('SELECT COUNT(stud_id) as totalstudents FROM student_tbl WHERE STATUS="enrolled"');
-    if($records !=NULL || $teachers !=NULL || $students !=NULL){    
-      $_SESSION['records'] = $records['total'];
-      $_SESSION['teachers'] = $teachers['totalteachers'];
-      $_SESSION['students'] = $students['totalstudents'];
+    $sql="SELECT g.grade, COUNT(s.id) AS `MaleEnrolled`
+    FROM gradelevel_tbl g
+    LEFT JOIN section_tbl ss
+    ON g.id = ss.gradelevel_id
+    LEFT JOIN enrollment_tbl e
+    ON ss.id = e.section_id
+    LEFT JOIN student_tbl s
+    ON e.id = s.id
+    AND s.sex = 'male' AND e.dateofenroll = CURDATE()
+    GROUP BY g.id";
+    $result = mysqli_query($connection,$sql);
+
+    while ($row = mysqli_fetch_array($result)) { 
+      
+      $Grade[] = $row['grade'];
+      $MaleEnrolled[] = $row['MaleEnrolled'];     
+    }
+    /* ------------------------------------------------- */
+    $sql1="SELECT g.grade, COUNT(s.id) AS `FemaleEnrolled`
+    FROM gradelevel_tbl g
+    LEFT JOIN section_tbl ss
+    ON g.id = ss.gradelevel_id
+    LEFT JOIN enrollment_tbl e
+    ON ss.id = e.section_id
+    LEFT JOIN student_tbl s
+    ON e.id = s.id
+    AND s.sex = 'female' AND e.dateofenroll = CURDATE()
+    GROUP BY g.id";
+    $result = mysqli_query($connection,$sql1);
+
+    while ($row = mysqli_fetch_array($result)) { 
+      $FemaleEnrolled[] = $row['FemaleEnrolled'];     
+    }
+    /* ------------------------------------------------- */
+    $sql2 ="SELECT 'Male' AS Label, COUNT(sex) AS VALUE FROM student_tbl WHERE sex = 'Male'
+    UNION (
+    SELECT 'Female' AS Label, COUNT(sex) AS VALUE FROM student_tbl WHERE sex= 'Female' )";
+    $result = mysqli_query($connection,$sql2);
+
+    while ($row = mysqli_fetch_array($result)) { 
+      
+      $Label[]  = $row['Label'];
+      $Value[] = $row['VALUE'];      
+    }
+    /* ---------------------------------------------------- */
+    $sql3 ="SELECT g.grade, COUNT(s.id) AS `enrolled`
+    FROM gradelevel_tbl g
+    LEFT JOIN section_tbl ss
+    ON g.id = ss.gradelevel_id
+    LEFT JOIN enrollment_tbl e
+    ON ss.id = e.section_id
+    LEFT JOIN student_tbl s
+    ON e.id = s.id
+    AND e.dateofenroll = CURDATE()
+    GROUP BY g.id";
+    $result = mysqli_query($connection,$sql3);
+
+    while ($row = mysqli_fetch_array($result)) {           
+      $total[]  = $row['enrolled'];
+    }
+            
+    $sql4 = "SELECT EnrollmentStatus FROM schoolyear_tbl WHERE ACTIVE = 'Yes'";
+    $result = mysqli_query($connection,$sql4);
+
+    while ($row = mysqli_fetch_array($result)) {           
+      $status  = $row['EnrollmentStatus'];
     }
 
-  
+
+    $sql77 = "SELECT image FROM users WHERE id = '$userid'";
+    $result = mysqli_query($connection,$sql77);
+
+    while ($row = mysqli_fetch_array($result)) {           
+      $profileimage  = $row['image'];
+    }
 
 ?>
 
-
-
- <div class="page-heading">
-            <h3>Profile Statistics</h3>
+        <div class="page-heading"> <!--------------------------------- Profile Statistic Heading -------------------------->
+          <h3>PROFILE STATISTICS<span style="float:right">ENROLLMENT STATUS: <span style="color:red"><?php echo $status?></span></span></h3>
         </div>
-        <div class="page-content">
-            <section class="row">
-                <div class="col-12 col-lg-9">
-                        <div class="row">
-                            <div class="col-6 col-lg-4 col-md-6">
-                                <a href="?page=records&data=student-list">
+
+          <div class="page-content">
+              <section class="row">
+                  <div class="col-12 col-lg-12 ">  <!-------------------- Basic Statistics Row 1 -------------------------->
+                          <div class="row">
+                              <div class="col-12 col-lg-3 col-md-6">
+                                  <a href="?page=records&data=student-list">
+                                      <div class="card brand">
+                                          <div class="card-body py-4">                                         
+                                                  <div class="d-flex align-items-center">
+                                                      <div class="stats-icon purple">
+                                                          <lord-icon
+                                                          src="https://cdn.lordicon.com/vusrdugn.json"
+                                                          trigger="hover"
+                                                          colors="outline:#121331,primary:#b26836,secondary:#4bb3fd,tertiary:#f9c9c0,quaternary:#ebe6ef"
+                                                          style="width:250px;height:250px">
+                                                      </lord-icon>
+                                                      </div>
+                                                  <div class="ms-3 name">
+                                                      <h6 class="text-muted font-semibold">Total Pupils</h6>
+                                                      <h6 class="font-extrabold mb-0"><?php echo $totalstudents?></h6>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </a>
+                              </div>
+                              <div class="col-12 col-lg-3 col-md-6">
                                     <div class="card brand">
-                                        <div class="card-body px-3 py-4-5">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="stats-icon purple">
-                                                        <lord-icon
-                                                        src="https://cdn.lordicon.com//eszyyflr.json"
-                                                        trigger="hover"
-                                                        colors="primary:#ffffff,secondary:#ffffff"
-                                                        style="width:250px;height:250px">
-                                                    </lord-icon>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <h6 class="text-muted font-semibold">Students</h6>
-                                                    <h6 class="font-extrabold mb-0"><?php echo $_SESSION['students']; ?></h6>
-                                                </div>
+                                          <div class="card-body py-4">                                           
+                                                  <div class="d-flex align-items-center">
+                                                      <div class="stats-icon blue">
+                                                      <lord-icon
+                                                          src="https://cdn.lordicon.com/qemhfpjm.json"
+                                                          trigger="hover"
+                                                          style="width:250px;height:250px">
+                                                      </lord-icon>
+                                                      </div>                                             
+                                                  <div class="ms-3 name">
+                                                      <h6 class="text-muted font-semibold">Total Teachers</h6>
+                                                      <h6 class="font-extrabold mb-0"><?php echo $totalteachers ?></h6>
+                                                  </div>
+                                          </div>                                      
+                                      </div>
+                                  </div>      
+                              </div>
+                              <div class="col-12 col-lg-3 col-md-6">
+                                  <a href="?page=records&data=section-list">
+                                      <div class="card brand">
+                                          <div class="card-body py-4">
+                                              <div class="d-flex align-items-center">                                               
+                                                      <div class="stats-icon green">
+                                                          <lord-icon
+                                                          src="https://cdn.lordicon.com/ddqkigxl.json"
+                                                          trigger="hover"
+                                                          style="width:250px;height:250px">
+                                                      </lord-icon>
+                                                      </div>                                            
+                                                  <div class="ms-3 name">
+                                                      <h6 class="text-muted font-semibold">Total Classes</h6>
+                                                      <h6 class="font-extrabold mb-0"><?php echo $totalclass ?></h6>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </a>
+                              </div>
+                              <div class="col-12 col-lg-3 col-md-6">
+                                <div class="card brand" >
+                                  <a href="?page=profile" class="ManageTeacher">
+                                    <div class="card-body py-4">
+                                        <div class="d-flex align-items-center">
+                                            <div class="stats-icon">
+                                            <img style="width: 50px;height:50px;object-fit: cover; border-radius: 10%" 
+                                            src="uploads/<?php echo $profileimage?>"/>
+                                            </div>
+                                            <div class="ms-3 name">
+                                                <h6 class="text-muted font-semibold"><?php echo $_SESSION['role']; ?></h6>
+                                                <h6 class="font-extrabold mb-0"><?php echo $_SESSION['name']; ?></h5>                       
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-4 col-md-6">
-                                <a href="?page=records&data=teacher-list">
-                                    <div class="card brand">
-                                        <div class="card-body px-3 py-4-5">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="stats-icon blue">
-                                                        <lord-icon
-                                                        src="https://cdn.lordicon.com//bwnhdkha.json"
-                                                        trigger="hover"
-                                                        colors="primary:#ffffff,secondary:#ffffff"
-                                                        style="width:250px;height:250px">
-                                                        </lord-icon>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <h6 class="text-muted font-semibold">Teachers</h6>
-                                                    <h6 class="font-extrabold mb-0"><?php echo $_SESSION['teachers']; ?></h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-4 col-md-6">
-                                <a href="?page=records&data=section-list">
-                                    <div class="card brand">
-                                        <div class="card-body px-3 py-4-5">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="stats-icon green">
-                                                        <lord-icon
-                                                        src="https://cdn.lordicon.com//jvucoldz.json"
-                                                        trigger="hover"
-                                                        colors="primary:#ffffff,secondary:#ffffff"
-                                                        style="width:250px;height:250px">
-                                                    </lord-icon>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <h6 class="text-muted font-semibold">Sections</h6>
-                                                    <h6 class="font-extrabold mb-0"><?php echo $_SESSION['records']; ?></h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-<!---------------------------------------------------------- Apex Chart JS ------------------------------------------>
-                            <div class="row">
-                                        <div class="col-md-8">
-                                            <div class="card">
+                                    </div>   
+                                  </a>            
+                                </div>
+                              </div>
+                  </div>
+                  <div class="col-12 col-lg-12"> <!-------------------- Advanced Statistic Using Apex Chart JS Row 2 -------------------------------->
+                          <div class="row">
+                              <div class="col-lg-9 col-md-12"><!-- Today's Enrollees -->
+                                          <div class="card">
                                                 <div class="card-header">
-                                                    <h4>Grade Level Statistic</h4>
+                                                    <h4>Daily Enrollees</h4>
                                                 </div>
                                                 <div class="card-body">
-                                                    <div id="chart-profile-visit"></div>
+                                                    <div id="chart-profile-visit"></div>  
+                                                    <script>
+                                                    var barOptions = {
+                                                      series: [
+                                                        {
+                                                          name: "Male",
+                                                          data: <?php echo json_encode($MaleEnrolled); ?>,
+                                                        },
+                                                        {
+                                                          name: "Total",
+                                                          data: <?php echo json_encode($total); ?>,
+                                                        },
+                                                        {
+                                                          name: "Female",
+                                                          data: <?php echo json_encode($FemaleEnrolled); ?>,
+                                                        },
+                                                      ],
+                                                      chart: {
+                                                        type: "bar",
+                                                        height: 350,
+                                                      },
+                                                      plotOptions: {
+                                                        bar: {
+                                                          borderRadius: 10,
+                                                          horizontal: false,
+                                                          columnWidth: "60%",
+                                                          endingShape: "rounded",
+                                                          dataLabels: {
+                                                          position: 'top',
+                                                          },
+                                                        },
+                                                      },
+                                                      dataLabels: {
+                                                        enabled: true,
+                                                      },
+                                                      stroke: {
+                                                        show: true,
+                                                        width: 1,
+                                                        colors: ["transparent"],
+                                                      },
+                                                      xaxis: {
+                                                        categories: <?php echo json_encode($Grade); ?>,
+                                                      },
+                                                      yaxis: {
+                                                    /*     labels: {
+                                                          formatter: function(val) {
+                                                            return val.toFixed(0)
+                                                          }
+                                                        }, */
+                                                        title: {
+                                                          text: "",
+                                                        },
+                                                      },
+                                                      fill: {
+                                                        opacity: 1,
+                                                      },
+                                                      
+                                                    };
+                                                        var chartbarOptions = new ApexCharts(document.querySelector("#chart-profile-visit"), barOptions);
+                                                        chartbarOptions.render();
+                                                    </script>                                                              
                                                 </div>
-                                            </div>
-                                        </div>
-
-
-                                <div id="carouselExampleFade" class="carousel carousel-dark slide carousel-fade col-md-4" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active" data-bs-interval="5000" >
-                                    <div>
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <h4>Learning Modality Statistic</h4>
-                                                    <hr>
+                                  </div>
+                              </div> 
+                              <div class="col-lg-3 col-md-4">
+                                <div class="row">
+                                  <a href="?page=records&data=pending-student">
+                                      <div class="card brand">
+                                          <div class="card-body py-4">
+                                                  <div class="d-flex align-items-center">
+                                                      <div class="stats-icon green">
+                                                      <lord-icon
+                                                          src="https://cdn.lordicon.com/osvvqecf.json"
+                                                          trigger="hover"
+                                                          
+                                                          style="width:250px;height:250px">
+                                                      </lord-icon>
+                                                      </div>
+                                                      <div class="ms-3 name">
+                                                          <h6 class="text-muted font-semibold">Pending</h6>
+                                                          <h6 class="font-extrabold mb-0"><?php echo $totalpending ?></h6>
+                                                      </div>
                                                 </div>
-                                                <div class="card-body">
-                                                    <div id="chart-visitors-profile"></div>
-                                                </div>
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                          </div>
+                                      </div>                              
+                                  </a>
+                                  </div>  
 
                                 
-                                    <div class="carousel-item" data-bs-interval="5000">
-                                    <div>
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <h4>Gender Statistics</h4>                                                 
-                                                </div>
-                                                <div class="card-body">
-                                                    <div id="chart-gender"></div>
-                                                </div>                                          
-                                            </div>
-                                        </div>
+                                    <div class="card brand">
+                                      <div class="card-header">
+                                        <h4>Gender Statistic</h4>
+                                      </div>
+                                    <div class="card-body">
+                                      <div id="chart-profile"></div>
+                                        <script>
+                                          var optionsGenderProfile  = {
+                                              series: [<?php echo $male ?>,<?php echo $female ?>],
+                                              labels: ['Male', 'Female'],
+                                              colors: ['#435ebe','#e970ac'],
+                                              chart: {
+                                                type: 'donut',
+                                                width: '100%',
+                                                height:'350px'
+                                              },
+                                              legend: {
+                                                position: 'bottom'
+                                              },
+                                              plotOptions: {
+                                                pie: {
+                                                  donut: {
+                                                    size: '30%'
+                                                  }
+                                                }
+                                              }
+                                            };
+                                          var genderchart = new ApexCharts(document.querySelector('#chart-profile'), optionsGenderProfile);
+                                            genderchart.render();
+                                        </script>
+                                      </div>
                                     </div>
-                                </div>
-                                <button style="width:24px; height:24px; margin-top:200px; border-radius: 50%; border: 1px solid #201f1f17" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden"></span>
-                                </button>
-                                <button style="width:24px; height:24px; margin-top:200px; border-radius: 50%; border: 1px solid #201f1f17" class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden"></span>
-                                </button>
-                                </div>
-
-
-                                        
-                                        
-                            </div>
-
-
-
-                            
-                            
-<!---------------------------------------------------------- /Apex Chart JS/ ------------------------------------------>
-
-                           
-                </div>
-
-
-        <!-------------------------------- Display the Name of user who is currently using the program -->
-                <div class="col-12 col-lg-3">
-                        <div class="card brand">
-                            <div class="card-body py-4">
-                                <div class="d-flex align-items-center">
-                                    <div class="avatar avatar-xl">
-                                        <img src="asset/images/faces/1.jpg" alt="Face 1">
-                                    </div>
-                                    <div class="ms-3 name">
-                                        <h5 class="font-bold"><?php echo $_SESSION['name']; ?></h5>
-                                        <h6 class="text-muted mb-0">User</h6>
-                                    </div>
-                                </div>
-                            </div>             
-                    </div>
-<!-------------------------------- /Display the Name of user who is currently using the program/ -->
-
-
-
-                <!-- --------------------------Announcements---------------------------------- -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Announcements</h4>
+                                
+                                                
+                              </div>          
                         </div>
-                        <div class="card-content pb-4">
-                            <div class="recent-message brand d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <img src="asset/images/faces/4.jpg">
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">Hank Schrader</h5>
-                                    <h6 class="text-muted mb-0">@johnducky</h6>
-                                </div>
-                            </div>
-                            <div class="recent-message brand d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <img src="asset/images/faces/5.jpg">
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">Dean Winchester</h5>
-                                    <h6 class="text-muted mb-0">@imdean</h6>
-                                </div>
-                            </div>
-                            <div class="recent-message brand d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <img src="asset/images/faces/1.jpg">
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">John Dodol</h5>
-                                    <h6 class="text-muted mb-0">@dodoljohn</h6>
-                                </div>
-                            </div>
-                            <div class="recent-message brand d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <img src="asset/images/faces/1.jpg">
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">John Dodol</h5>
-                                    <h6 class="text-muted mb-0">@dodoljohn</h6>
-                                </div>
-                            </div>
-                           <!--  <div class="px-4">
-                                <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>Start
-                                    Conversation</button>
-                            </div> -->
-                        </div>
-                    </div>
-
-                     <!-- --------------------------/Announcements/---------------------------------- -->
-                </div>
-            </section>
-        </div>
+                  </div>
+              </section>
+          </div>
+      
 
 
 
