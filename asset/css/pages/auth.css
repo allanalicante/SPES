@@ -61,6 +61,18 @@ html,body{
 }
 
 
-@media screen and (max-width:767px){
-    #auth #auth-left{padding:5rem}}
+
+@media only screen and (max-width: 767px){
+#auth #auth-left {
+    padding: 2rem 2rem 0 2rem;
+}
+}
+
+@media only screen and (min-width: 379px) {
+    #auth #auth-left {
+      padding:  1.4rem 5rem;
+    }
+  }
+
+
     /*  */

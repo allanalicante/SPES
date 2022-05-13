@@ -88,6 +88,11 @@
 	box-shadow: 0px 10px 30px rgba(57, 56, 61, 0.205);
 	transform: scale(1.0);
 }
+.logbrand2{
+	transition: transform .4s ease;
+	border: 1px solid #201f1f17;
+}
+
 
 
 .card.card-statistic{box-shadow:1px 2px 5px rgba(47,170,244,.5);
@@ -393,8 +398,11 @@
 				}
 				.sidebar-wrapper .sidebar-toggler.x{
 					display:block
-				}
+				}		
 			}
+	
+		
+
 		.nav-pills .nav-link.active{
 			box-shadow:0 2px 10px rgba(67,94,190,.5)
 		}
@@ -517,9 +525,10 @@
 		.page-item:last-child{
 			margin-left:.4rem
 		}
+	
 		
 		.dataTable-table td,.dataTable-table thead th,.table td,.table thead th{
-			vertical-align:middle
+			vertical-align: middle;
 		}
 		.dataTable-table:not(.table-borderless) thead th,.table:not(.table-borderless) thead th{
 			border-bottom:1px solid #dedede!important
@@ -800,5 +809,6 @@
 		.icon-mid:before{
 			vertical-align:middle
 		}
-		
+
+		  
 
