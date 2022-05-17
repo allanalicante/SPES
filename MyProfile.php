@@ -185,11 +185,6 @@ $sql2 = "SELECT ( SELECT COUNT(*) AS `TotalPupils`
             this.classList.toggle("bi-eye");
         });
 
-        // prevent form submit
-        const form = document.querySelector("form");
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-        });
 </script>
 
 

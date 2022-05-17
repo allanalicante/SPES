@@ -2,9 +2,11 @@
 session_start();
 include_once('includes/scripts.php');
 include_once('connect.php');
-?>
 
-<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 
 /* ----------------------------------- Code to insert new level and section --------------------------------------------- */
 if(isset($_POST['insertsection']))
@@ -21,13 +23,13 @@ if(isset($_POST['insertsection']))
     {   
         $_SESSION['status']= "Section is successfully added.";    
         $_SESSION['status_code']= "success"; 
-        header("Location: /SPES/index.php?page=records&data=section-list");
+        header("Location: index.php?page=records&data=section-list");
     }
     else
     {
         $_SESSION['status']= "Failed to Add Section.";    
         $_SESSION['status_code']= "error"; 
-        header("Location: /SPES/index.php?page=records&data=section-list");
+        header("Location: index.php?page=records&data=section-list");
 
     }
     }
@@ -56,13 +58,13 @@ elseif(isset($_POST['updatesection']))
      {   
         $_SESSION['status']= "Class is updated successfully.";    
         $_SESSION['status_code']= "success"; 
-         header("Location: /SPES/index.php?page=records&data=section-list");      
+         header("Location: index.php?page=records&data=section-list");      
      }
      else
      {
         $_SESSION['status']= "Failed to Update Class.";    
         $_SESSION['status_code']= "error"; 
-        header("Location: /SPES/index.php?page=records&data=section-list");
+        header("Location: index.php?page=records&data=section-list");
      } 
     }
     catch (mysqli_sql_exception $exception) 
@@ -76,7 +78,10 @@ elseif(isset($_POST['updatesection']))
 /* -----------------------------------  Code to insert new teacher/user  --------------------------------------------- */
 elseif(isset($_POST['insertteacher']))
 {
-            $id = $_POST['id'];
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+           
             $roletype = $_POST['roletype'];
             $status = $_POST['status'];
             $name = str_replace("'","\'",strtoupper($_POST['name']));
@@ -86,33 +91,32 @@ elseif(isset($_POST['insertteacher']))
             $username = str_replace("'","\'",$_POST['username']);
             $password = str_replace("'","\'",$_POST['password']);
             
-
-            mysqli_begin_transaction($connection);
+            
 
     try{       
         
                 // Insert into Database
-                $query1 = "INSERT INTO users (`username`,`password`,`role`,`status`) 
+                $sql1 = "INSERT INTO users (`username`,`password`,`role`,`status`) 
                 VALUES
                 ('$username','$password','$roletype','$status')";
 
-                $query2 = "INSERT INTO teacher (`id`,`name`,`contactno`,`address`,`gradetohandle`) 
+                $sql2 = "INSERT INTO teacher (`id`,`name`,`contactno`,`address`,`gradetohandle`) 
                 VALUES
                 (LAST_INSERT_ID(),'$name','$contactno','$address','$gradetohandle')";
                 
-                $query1 = mysqli_query($connection,$query1);
-                $query2 = mysqli_query($connection,$query2);
+                $query1 = mysqli_query($connection,$sql1);
+                $query2 = mysqli_query($connection,$sql2);
 
 
                 if(mysqli_commit($connection)){
                     $_SESSION['status']= "Teacher is successfully Added.";    
                     $_SESSION['status_code']= "success";
-                    header("Location: /SPES/index.php?page=records&data=teacher-list");        
+                    header("Location: index.php?page=records&data=teacher-list");        
                 }               
                 else {
                      $_SESSION['status']= "An error occured. Failed adding data.";    
                     $_SESSION['status_code']= "error"; 
-                    header("Location: /SPES/index.php?page=records&data=teacher-list");
+                    header("Location: index.php?page=records&data=teacher-list");
                 }
         }
 
@@ -120,7 +124,7 @@ elseif(isset($_POST['insertteacher']))
         {
         mysqli_rollback($connection);
         throw $exception;
-        echo "Error";   
+        echo "<p>Error</p>";   
         }
 }
 
@@ -160,13 +164,13 @@ elseif(isset($_POST['updateteacher']))
             if(mysqli_commit($connection)){
                 $_SESSION['status']= "Teacher profile is updated successfully.";    
                 $_SESSION['status_code']= "success";
-                header("Location: /SPES/index.php?page=records&data=teacher-list");        
+                header("Location: index.php?page=records&data=teacher-list");        
             }
                
         else {
                  $_SESSION['status']= "Unknown error occured. Try changing your photo.";    
                 $_SESSION['status_code']= "error"; 
-                header("Location: /SPES/index.php?page=records&data=teacher-list");
+                header("Location: index.php?page=records&data=teacher-list");
         }
     }
     catch (mysqli_sql_exception $exception) 
@@ -197,10 +201,10 @@ elseif(isset($_POST['updateselfteacher']) && isset($_FILES['photo']))
         $error = $_FILES['photo']['error'];
 
         if ($error === 0) {
-            if ($img_size > 5000000) {
+            if ($img_size > 99999999) {
                 $_SESSION['status']= "Sorry, your file is too large.";    
                 $_SESSION['status_code']= "error";
-                header("Refresh: 0"); 
+                header("Location: index.php?page=profile");
             }else {
                 $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
                 $img_ex_lc = strtolower($img_ex);
@@ -233,21 +237,22 @@ elseif(isset($_POST['updateselfteacher']) && isset($_FILES['photo']))
             if(mysqli_commit($connection)){
                 $_SESSION['status']= "Teacher profile is updated successfully.";    
                 $_SESSION['status_code']= "success";
-                header("Location: /SPES/index.php?page=profile");
+                header("Location: index.php?page=profile");
                        
             }
             }else 
             {
                 $_SESSION['status']= "You can't upload this type of file.";    
                 $_SESSION['status_code']= "error";
-                /*  header("Location: http://localhost/SPES/index.php?page=records&data=admission-new"); */
+                header("Location: index.php?page=profile");
+             
             }
                 }
                
             }else {
                  $_SESSION['status']= "Unknown error occured. Try changing your photo.";    
                 $_SESSION['status_code']= "error"; 
-                header("Location: /SPES/index.php?page=profile");
+                header("Location: index.php?page=profile");
         }
     }
     catch (mysqli_sql_exception $exception) 
@@ -297,13 +302,13 @@ elseif(isset($_POST['updatestudent']))
      {   
         $_SESSION['status']= "Student is updated Successfully.";    
         $_SESSION['status_code']= "success"; 
-         header("Location: /SPES/index.php?page=records&data=student-list");          
+         header("Location: index.php?page=records&data=student-list");          
      }
      else
      {
         $_SESSION['status']= "Failed to update student.";    
         $_SESSION['status_code']= "error"; 
-        header("Location: /SPES/index.php?page=records&data=student-list");  
+        header("Location: index.php?page=records&data=student-list");  
      }
     }
             catch (mysqli_sql_exception $exception) 
@@ -332,7 +337,6 @@ elseif(isset($_POST['adminupdatestudent']))
         $query_run = mysqli_query($connection,$sql1);
    
         $sql2 = "UPDATE enrollment_tbl SET
-        schoolyear_id = NULL,
         section_id = NULL,
         dateofenroll = NULL,
         dateofexit = now(),
@@ -349,13 +353,13 @@ elseif(isset($_POST['adminupdatestudent']))
         {   
            $_SESSION['status']= "Student has been moved to archive list.";    
            $_SESSION['status_code']= "success"; 
-            header("Location: /SPES/index.php?page=records&data=student-list");          
+            header("Location: index.php?page=records&data=student-list");          
         }
         else
         {
            $_SESSION['status']= "Failed to archive student.";    
            $_SESSION['status_code']= "error"; 
-           header("Location: /SPES/index.php?page=records&data=student-list");  
+           header("Location: index.php?page=records&data=student-list");  
         }
        }
                catch (mysqli_sql_exception $exception) 
@@ -429,8 +433,8 @@ elseif(isset($_POST['updatepending']))
         $sender = "SPES Advisory";
         $msg = "is now enrolled. His/Her class is";
         $msg2 = "and his/her advisor is";
-        $api = "TR-SORSO890634_TCXW3";//ST-SORSO880451_U3LTP - last month
-        $apipass = "29zfzzd9v9"; // ")8b%(9}m&] last month
+        $api = "TR-SPEST659738_Z7BGU";//ST-SORSO880451_U3LTP - last month
+        $apipass = "(g[y#}l{9e"; // ")8b%(9}m&] last month
         $text = $sender. ": " .$student. " " .$msg. " " .$classname;
        /*  $text = $sender. ": " .$student. " " .$msg. " " .$classname. " " .$msg2. " " .$classteacher; */
 
@@ -439,90 +443,90 @@ elseif(isset($_POST['updatepending']))
             $_SESSION['status']= "Student is successfully enrolled."; 
             $_SESSION['text']= "Sending of message failed: No response from server!";
             $_SESSION['status_code']= "warning"; 
-            header("Location: /SPES/index.php?page=records&data=pending-student");  
+            header("Location: index.php?page=records&data=pending-student");  
         }else if ($result == 0){            
             $_SESSION['status']= "Student is successfully enrolled.";   
             $_SESSION['text']= "Success! Message is now on queue and will be sent soon."; 
             $_SESSION['status_code']= "success"; 
-            header("Location: /SPES/index.php?page=records&data=pending-student");  
+            header("Location: index.php?page=records&data=pending-student");  
         }
         else if ($result == 1){            
             $_SESSION['status']= "Student is successfully enrolled.";   
             $_SESSION['text']= "Sending of message failed: Invalid contact number of guardian."; 
             $_SESSION['status_code']= "warning"; 
-            header("Location: /SPES/index.php?page=records&data=pending-student");  
+            header("Location: index.php?page=records&data=pending-student");  
         }
         else if ($result == 2){            
             $_SESSION['status']= "Student is successfully enrolled.";   
             $_SESSION['text']= "Sending of message failed: Number prefix not supported. Please contact us so we can add."; 
             $_SESSION['status_code']= "warning"; 
-            header("Location: /SPES/index.php?page=records&data=pending-student");  
+            header("Location: index.php?page=records&data=pending-student");  
         }
         else if ($result == 3){            
             $_SESSION['status']= "Student is successfully enrolled.";   
             $_SESSION['text']= "Sending of message failed: Invalid ApiCode."; 
             $_SESSION['status_code']= "warning"; 
-            header("Location: /SPES/index.php?page=records&data=pending-student");  
+            header("Location: index.php?page=records&data=pending-student");  
         }
         else if ($result == 4){            
             $_SESSION['status']= "Student is successfully enrolled.";   
             $_SESSION['text']= "Sending of message failed: Maximum Message per day reached. This will be reset every 12MN."; 
             $_SESSION['status_code']= "warning"; 
-            header("Location: /SPES/index.php?page=records&data=pending-student");  
+            header("Location: index.php?page=records&data=pending-student");  
         }
         else if ($result == 5){            
             $_SESSION['status']= "Student is successfully enrolled.";   
             $_SESSION['text']= "Sending of message failed: Maximum allowed characters for message reached."; 
             $_SESSION['status_code']= "warning"; 
-            header("Location: /SPES/index.php?page=records&data=pending-student");  
+            header("Location: index.php?page=records&data=pending-student");  
         }
         else if ($result == 6){            
             $_SESSION['status']= "Student is successfully enrolled.";   
             $_SESSION['text']= "Sending of message failed: System OFFLINE.System OFFLINE."; 
             $_SESSION['status_code']= "warning"; 
-            header("Location: /SPES/index.php?page=records&data=pending-student");  
+            header("Location: index.php?page=records&data=pending-student");  
         }
         else if ($result == 7){            
             $_SESSION['status']= "Student is successfully enrolled.";   
             $_SESSION['text']= "Sending of message failed: Expired ApiCode."; 
             $_SESSION['status_code']= "warning"; 
-            header("Location: /SPES/index.php?page=records&data=pending-student");  
+            header("Location: index.php?page=records&data=pending-student");  
         }
         else if ($result == 8){            
             $_SESSION['status']= "Student is successfully enrolled.";   
             $_SESSION['text']= "Sending of message failed: iTexMo Error. Please try again later."; 
             $_SESSION['status_code']= "warning"; 
-            header("Location: /SPES/index.php?page=records&data=pending-student");  
+            header("Location: index.php?page=records&data=pending-student");  
         }
         else if ($result == 9){            
             $_SESSION['status']= "Student is successfully enrolled.";   
             $_SESSION['text']= "Sending of message failed: Invalid Function Parameters."; 
             $_SESSION['status_code']= "warning"; 
-            header("Location: /SPES/index.php?page=records&data=pending-student");  
+            header("Location: index.php?page=records&data=pending-student");  
         }
         else if ($result == 10){            
             $_SESSION['status']= "Student is successfully enrolled.";   
             $_SESSION['text']= "Sending of message failed: Guardian's number is blocked due to FLOODING, message was ignored."; 
             $_SESSION['status_code']= "warning"; 
-            header("Location: /SPES/index.php?page=records&data=pending-student");  
+            header("Location: index.php?page=records&data=pending-student");  
         }
         else if ($result == 11){            
             $_SESSION['status']= "Student is successfully enrolled.";   
             $_SESSION['text']= "Guardian's number is blocked temporarily due to HARD sending (after 3 retries of sending and message still failed to send) and the message was ignored. Try again after an hour."; 
             $_SESSION['status_code']= "warning"; 
-            header("Location: /SPES/index.php?page=records&data=pending-student");  
+            header("Location: index.php?page=records&data=pending-student");  
         }
         else{	
             $_SESSION['status']= "Error encountered." . $result;    
             $_SESSION['status_code']= "error"; 
-            header("Location: /SPES/index.php?page=records&data=pending-student"); 
+            header("Location: index.php?page=records&data=pending-student"); 
         }
      }
      else
      {
         $_SESSION['status']= "Failed to enroll student.";    
         $_SESSION['status_code']= "error"; 
-        header("Location: /SPES/index.php?page=records&data=pending-student");  
+        header("Location: index.php?page=records&data=pending-student");  
      }
         }
  
@@ -586,9 +590,9 @@ elseif(isset($_POST['admitstudent']) && isset($_FILES['photo']))
     $father = str_replace("'","\'",strtoupper($_POST['father']));
     $mother = str_replace("'","\'",strtoupper($_POST['mother']));
     $guardian = str_replace("'","\'",strtoupper($_POST['guardian']));
-    $fathereducattainment = $_POST['fathereducattainment'];
-    $mothereducattainment = $_POST['mothereducattainment'];
-    $guardianeducattainment = $_POST['guardianeducattainment'];
+    $fathereducattainment = str_replace("'","\'",strtoupper($_POST['fathereducattainment']));
+    $mothereducattainment = str_replace("'","\'",strtoupper($_POST['mothereducattainment']));
+    $guardianeducattainment = str_replace("'","\'",strtoupper($_POST['guardianeducattainment']));
     $fatheremployment = $_POST['fatheremployment'];
     $motheremployment = $_POST['motheremployment'];
     $guardianemployment = $_POST['guardianemployment'];
@@ -683,13 +687,13 @@ elseif(isset($_POST['admitstudent']) && isset($_FILES['photo']))
                 }else {
                     $_SESSION['status']= "You can't upload this type of file.";    
                     $_SESSION['status_code']= "error";
-                    /*  header("Location: http://localhost/SPES/index.php?page=records&data=admission-new"); */
+                  
                 }
                     }
                 }else {
                     $_SESSION['status']= "Unknown error occured. Try changing your photo and try again.";    
                     $_SESSION['status_code']= "error";
-                    /*   header("Location: http://localhost/SPES/index.php?page=records&data=admission-new"); */
+                 
                 }
             }
             catch (mysqli_sql_exception $exception) 
@@ -756,9 +760,9 @@ elseif(isset($_POST['manueladmit']) && isset($_FILES['photo']))
     $father = str_replace("'","\'",strtoupper($_POST['father']));
     $mother = str_replace("'","\'",strtoupper($_POST['mother']));
     $guardian = str_replace("'","\'",strtoupper($_POST['guardian']));
-    $fathereducattainment = $_POST['fathereducattainment'];
-    $mothereducattainment = $_POST['mothereducattainment'];
-    $guardianeducattainment = $_POST['guardianeducattainment'];
+    $fathereducattainment = str_replace("'","\'",strtoupper($_POST['fathereducattainment']));
+    $mothereducattainment = str_replace("'","\'",strtoupper($_POST['mothereducattainment']));
+    $guardianeducattainment = str_replace("'","\'",strtoupper($_POST['guardianeducattainment']));
     $fatheremployment = $_POST['fatheremployment'];
     $motheremployment = $_POST['motheremployment'];
     $guardianemployment = $_POST['guardianemployment'];
@@ -832,7 +836,7 @@ elseif(isset($_POST['manueladmit']) && isset($_FILES['photo']))
             if ($img_size > 5000000) {
                 $_SESSION['status']= "Sorry, your file is too large.";    
                 $_SESSION['status_code']= "error";
-                header("Location:  /index.php?page=records&data=pending-student");   
+                header("Location:  index.php?page=records&data=pending-student");   
             }else {
                 $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
                 $img_ex_lc = strtolower($img_ex);
@@ -881,18 +885,19 @@ elseif(isset($_POST['manueladmit']) && isset($_FILES['photo']))
                     if(mysqli_commit($connection)){
                         $_SESSION['status']= "Successfully Admitted, kindly wait for your text confirmation.";    
                         $_SESSION['status_code']= "success";
-                        header("Location: /spes/index.php?page=records&data=pending-student");        
+                        header("Location: index.php?page=records&data=pending-student");        
                     }
                 }else {
                     $_SESSION['status']= "You can't upload this type of file.";    
                     $_SESSION['status_code']= "error";
-                    /*  header("Location: http://localhost/SPES/index.php?page=records&data=admission-new"); */
+                    
                 }
                     }
                 }else {
                     $_SESSION['status']= "Unknown error occured. Try changing your photo and try again.";    
                     $_SESSION['status_code']= "error";
-                    /*   header("Location: http://localhost/SPES/index.php?page=records&data=admission-new"); */
+                
+
                 }
             }
             catch (mysqli_sql_exception $exception) 
@@ -961,9 +966,9 @@ elseif(isset($_POST['readmitstudent']) && isset($_FILES['photo']))
     $father = str_replace("'","\'",strtoupper($_POST['father']));
     $mother = str_replace("'","\'",strtoupper($_POST['mother']));
     $guardian = str_replace("'","\'",strtoupper($_POST['guardian']));
-    $fathereducattainment = $_POST['fathereducattainment'];
-    $mothereducattainment = $_POST['mothereducattainment'];
-    $guardianeducattainment = $_POST['guardianeducattainment'];
+    $fathereducattainment = str_replace("'","\'",strtoupper($_POST['fathereducattainment']));
+    $mothereducattainment = str_replace("'","\'",strtoupper($_POST['mothereducattainment']));
+    $guardianeducattainment = str_replace("'","\'",strtoupper($_POST['guardianeducattainment']));
     $fatheremployment = $_POST['fatheremployment'];
     $motheremployment = $_POST['motheremployment'];
     $guardianemployment = $_POST['guardianemployment'];
@@ -1052,13 +1057,13 @@ elseif(isset($_POST['readmitstudent']) && isset($_FILES['photo']))
             }else {
                 $_SESSION['status']= "You can't upload this type of file.";    
                 $_SESSION['status_code']= "error";
-            /*  header("Location: http://localhost/SPES/index.php?page=records&data=admission-new"); */
+           
             }
                 }
             }else {
                 $_SESSION['status']= "Unknown error occured. Try changing your photo and try again.";    
                 $_SESSION['status_code']= "error";
-            /*   header("Location: http://localhost/SPES/index.php?page=records&data=admission-new"); */
+           
             }
         }
         catch (mysqli_sql_exception $exception) 
@@ -1143,20 +1148,20 @@ elseif(isset($_POST['addschoolyear']))
     VALUES ('$schoolyear','$schoolhead','Yes','Ongoing')";
     $query_run = mysqli_query($connection,$sql2);
 
-    $query1 = mysqli_query($connection,$sql1);
-    $query2 = mysqli_query($connection,$sql2);
+  /*   $query1 = mysqli_query($connection,$sql1);
+    $query2 = mysqli_query($connection,$sql2); */
 
     if(mysqli_commit($connection))
     {   
         $_SESSION['status']= "SchoolYear added successfully.";    
         $_SESSION['status_code']= "success"; 
-        header("Location: /SPES/index.php?page=schoolyear");
+        header("Location: index.php?page=schoolyear");
     }
     else
     {
         $_SESSION['status']= "Failed to Add SchoolYear.";    
         $_SESSION['status_code']= "error"; 
-        header("Location: /SPES/index.php?page=schoolyear");
+        header("Location: index.php?page=schoolyear");
     }
     }
     catch (mysqli_sql_exception $exception) 
@@ -1193,13 +1198,13 @@ elseif(isset($_POST['editschoolyear']))
         {   
             $_SESSION['status']= "SchoolYear updated successfully.";    
             $_SESSION['status_code']= "success"; 
-            header("Location: /SPES/index.php?page=schoolyear");
+            header("Location: index.php?page=schoolyear");
         }
         else
         {
             $_SESSION['status']= "Failed to update SchoolYear.";    
             $_SESSION['status_code']= "error"; 
-            header("Location: /SPES/index.php?page=schoolyear"); 
+            header("Location: index.php?page=schoolyear"); 
         }
     }
     catch (mysqli_sql_exception $exception) 
@@ -1226,13 +1231,13 @@ elseif(isset($_POST['deleteschoolyear']))
     {   
         $_SESSION['status']= "Successfully Removed.";    
         $_SESSION['status_code']= "success"; 
-        header("Location: /SPES/index.php?page=settings");
+        header("Location: index.php?page=settings");
     }
     else
     {
         $_SESSION['status']= "Failed to Remove data.";    
         $_SESSION['status_code']= "error"; 
-        header("Location: /SPES/index.php?page=settings");
+        header("Location: index.php?page=settings");
 
     }
     }
@@ -1251,24 +1256,35 @@ elseif(isset($_POST['deleteSection']))
     try{
     
     $id = $_POST['removeId'];
-    
+    $total = $_POST['totalstudents'];
 
-    $query = "DELETE FROM section_tbl WHERE id ='$id'";
-    $query_run = mysqli_query($connection,$query);
-
-    if($query_run)
-    {   
-        $_SESSION['status']= "Successfully Removed.";    
-        $_SESSION['status_code']= "success"; 
-        header("Location: /SPES/index.php?page=records&data=section-list");
-    }
+    if ($total > 0)
+    {
+        $_SESSION['status']= "Failed to remove section.";  
+        $_SESSION['text']= "You cannot remove an allocated section.";  
+        $_SESSION['status_code']= "error"; 
+        header("Location: index.php?page=records&data=section-list");
+    } 
     else
     {
-        $_SESSION['status']= "Failed to Remove data.";    
-        $_SESSION['status_code']= "error"; 
-        header("Location: /SPES/index.php?page=records&data=section-list");
-
+        $query = "DELETE FROM section_tbl WHERE id ='$id'";
+        $query_run = mysqli_query($connection,$query);
+    
+        if($query_run)
+        {   
+            $_SESSION['status']= "Successfully Removed.";    
+            $_SESSION['status_code']= "success"; 
+            header("Location: index.php?page=records&data=section-list");
+        }
+        else
+        {
+            $_SESSION['status']= "Failed to Remove data.";    
+            $_SESSION['status_code']= "error"; 
+            header("Location: index.php?page=records&data=section-list");
+    
+        }
     }
+   
     }
     catch (mysqli_sql_exception $exception) 
                 {
@@ -1303,13 +1319,13 @@ elseif(isset($_POST['deleteteacher']))
     {   
         $_SESSION['status']= "Successfully Removed.";    
         $_SESSION['status_code']= "success"; 
-        header("Location: /SPES/index.php?page=records&data=teacher-list");
+        header("Location: index.php?page=records&data=teacher-list");
     }
     else
     {
         $_SESSION['status']= "Failed to Remove data.";    
         $_SESSION['status_code']= "error"; 
-        header("Location: /SPES/index.php?page=records&data=teacher-list");
+        header("Location: index.php?page=records&data=teacher-list");
 
     }
     }
@@ -1341,13 +1357,13 @@ elseif(isset($_POST['removeStudent']))
     {   
         $_SESSION['status']= "Removed Successfully.";    
         $_SESSION['status_code']= "success"; 
-        header("Location: /SPES/index.php?page=records&data=pending-student");
+        header("Location: index.php?page=records&data=pending-student");
     }
     else
     {
         $_SESSION['status']= "Failed to Remove Data.";    
         $_SESSION['status_code']= "error"; 
-        header("Location: /SPES/index.php?page=records&data=pending-student");
+        header("Location: index.php?page=records&data=pending-student");
 
     }
     }
@@ -1380,7 +1396,7 @@ elseif(isset($_POST['editadmin']))
             if ($img_size > 5000000) {
                 $_SESSION['status']= "Sorry, your file is too large.";    
                 $_SESSION['status_code']= "error"; 
-                header("Location: /SPES/index.php?page=settings");
+                header("Location: index.php?page=settings");
             }else {
                 $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
                 $img_ex_lc = strtolower($img_ex);
@@ -1410,18 +1426,18 @@ elseif(isset($_POST['editadmin']))
             if(mysqli_commit($connection)){
                 $_SESSION['status']= "Admin Updated Successfully.";    
                 $_SESSION['status_code']= "success";
-                header("Location: /SPES/index.php?page=settings");        
+                header("Location: index.php?page=settings");        
             }
                 }else {
                     $_SESSION['status']= "You can't upload this type of file.";    
                     $_SESSION['status_code']= "error"; 
-                    header("Location: /SPES/index.php?page=settings");
+                    header("Location: index.php?page=settings");
                 }
             }
         }else {
                  $_SESSION['status']= "Unknown error occured. Try changing your photo.";    
                 $_SESSION['status_code']= "error"; 
-                header("Location: /SPES/index.php?page=settings");
+                header("Location: index.php?page=settings");
         }
     }
     catch (mysqli_sql_exception $exception) 
@@ -1455,7 +1471,7 @@ elseif(isset($_POST['addadmin']) && isset($_FILES['addimage']))
                 if ($img_size > 5000000) {
                     $_SESSION['status']= "Sorry, your file is too large.";    
                     $_SESSION['status_code']= "error"; 
-                    header("Location: /SPES/index.php?page=settings");
+                    header("Location: index.php?page=settings");
                 }else {
                     $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
                     $img_ex_lc = strtolower($img_ex);
@@ -1483,18 +1499,18 @@ elseif(isset($_POST['addadmin']) && isset($_FILES['addimage']))
                 if(mysqli_commit($connection)){
                     $_SESSION['status']= "Admin Successfully Added.";    
                     $_SESSION['status_code']= "success";
-                    header("Location: /SPES/index.php?page=settings");        
+                    header("Location: index.php?page=settings");        
                 }
                 }else {
                         $_SESSION['status']= "You can't upload this type of file.";    
                         $_SESSION['status_code']= "error"; 
-                        header("Location: /SPES/index.php?page=settings");
+                        header("Location: index.php?page=settings");
                     }
                 }
                 }else {
                      $_SESSION['status']= "Unknown error occured. Try changing your photo.";    
                     $_SESSION['status_code']= "error"; 
-                    header("Location: /SPES/index.php?page=settings");
+                    header("Location: index.php?page=settings");
                 }
         }
 

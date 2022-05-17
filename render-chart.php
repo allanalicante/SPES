@@ -438,7 +438,7 @@ $glevel = $_REQUEST['id'];
             <div class="col-12 col-lg-4 col-md-12">
                     <div class="card" style="height:350px; weight: 100%">
                         <div class="card-header">
-                            <h6>Gender Statistic</h6>
+                            <h6>Gender Statistic<span style="float:right">Total: <?php echo $total ?></span></h6>
                         </div>
                         <div class="card-body" style="padding:0">
                             <div id="chart-profile">                  
@@ -467,13 +467,14 @@ $glevel = $_REQUEST['id'];
                                     var genderchart = new ApexCharts(document.querySelector('#chart-profile'), optionsGenderProfile);
                                     genderchart.render();
                                 </script>
+                                
                         </div>
                     </div>
             </div>   
             <div class="col-12 col-lg-4 col-md-12">
                     <div class="card" style="height:350px; weight: 100%">
                         <div class="card-header">
-                            <h6>Modality Statistic</h6>
+                            <h6>Modality Statistic<span style="float:right">Total: <?php echo $total ?></span></h6>
                         </div>
                         <div class="card-body" style="padding:0">
                             <div id="chart-section">                  
@@ -508,7 +509,7 @@ $glevel = $_REQUEST['id'];
             <div class="col-12 col-lg-4 col-md-12">
                     <div class="card" style="height:350px; weight: 100%">
                                 <div class="card-header">
-                                    <h6>4Ps Member</h6>
+                                    <h6>4Ps Member<span style="float:right">Total: <?php echo $total ?></span></h6>
                                 </div>
                                 <div class="card-body" style="padding:0">
                                     <div id="ps-member">                  
@@ -528,9 +529,9 @@ $glevel = $_REQUEST['id'];
                                             },
                                             plotOptions: {
                                             pie: {
-                                                pie: {
+                                                donut: {
                                                 size: '30%'
-                                                }
+                                                    }
                                             }
                                             }
                                         };
@@ -696,7 +697,7 @@ $glevel = $_REQUEST['id'];
                                 <tbody>
                                     <?php                              
                                         
-                                        $query = "SELECT DISTINCT (s.id) AS `studentID`, s.lrn, s.age, s.photo, concat(s.firstname,' ',s.lastname) as 'Name', 
+                                        $query = "SELECT DISTINCT (s.id) AS `studentID`, s.lrn, s.age, s.photo, concat(s.firstname,' ',s.middlename,' ',s.lastname,' ',s.extension) as 'Name', 
                                         g.grade, s.barangay, ss.sectionname, s.4Ps, s.modality   
                                         FROM student_tbl s
                                         INNER JOIN enrollment_tbl e
@@ -726,7 +727,8 @@ $glevel = $_REQUEST['id'];
                                             <td style="font-size:13px; font-weight: 600"><?php echo $row['4Ps'];?></td>
                                             <td style="font-size:13px; font-weight: 600"><?php echo $row['modality'];?></td>    
                                             <td style="">                                 
-                                            <button type="button" name="viewstudent" id="<?php echo $row['studentID'];?>" data-bs-target="#viewStudentProfile" data-bs-toggle="modal"  class="badge btn btn-primary viewStudentProfile">Profile</button>                                                              
+                                            <button type="button" name="viewstudent" id="<?php echo $row['studentID'];?>" data-bs-target="#viewStudentProfile" data-bs-toggle="modal"  
+                                            class="badge btn btn-primary btn-sm viewStudentProfile" title="View Profile"><i class="bi bi-eye"></i></button>                                                              
                                             </td>                                         
                                     </tr>
                                     <?php 

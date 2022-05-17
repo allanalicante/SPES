@@ -31,7 +31,7 @@ $sessionrole = $_SESSION['role'];
                 <div class="card-header">
                   <input type="hidden" id="role" name="role" value="<?php echo $sessionrole;?>">
                       <div class="row" id="filter1">
-                                <div class="col-lg-5 col-md-3">
+                                <div class="col-lg-6 col-md-3">
                                     <div class="input-group mr-2">
                                         <label class="input-group-text">Filter By</label>                         
 
@@ -90,11 +90,11 @@ $sessionrole = $_SESSION['role'];
                             <tr>
                                 <th style="display: none">ID</th>
                                 <th style="">#</th>
-                                <th hidden >Photo</th>                                      
+                                <th hidden >Photo</th>     
+                                <th style="text-align:center;">LRN</th>                                 
                                 <th style="text-align: center;">First name</th>
                                 <th style="display:none;text-align: center;">Middle name</th>
-                                <th style="text-align: center;">Last name</th>
-                                <th style="text-align:center;">LRN</th>
+                                <th style="text-align: center;">Last name</th>                              
                                 <th style="text-align:center;">Gender</th>
                                 <th style="text-align: center;">Grade</th>
                                 <th style="text-align: center;">Section</th>
@@ -148,21 +148,27 @@ $sessionrole = $_SESSION['role'];
                                 <td style="font-size:13px; font-weight: 600;display: none"><?php echo $row['studentID'];?></td>
                                 <td style="font-size:13px; font-weight: 600"><?php echo $i?></td>
                                 <td style="display: none"><img style="width: 40px;height:40px;object-fit: cover; border-radius: 50%" src="uploads/<?=$row['photo']?>"></td>
+                                <td style="font-size:13px; font-weight: 600"><?php echo $row['lrn'];?></td>
                                 <td style="font-size:13px; font-weight: 600"><?php echo $row['firstname'];?></td>
                                 <td style="font-size:13px; font-weight: 600;display:none"><?php echo $row['middlename'];?></td>
-                                <td style="font-size:13px; font-weight: 600"><?php echo $row['lastname'];?></td>
-                                <td style="font-size:13px; font-weight: 600"><?php echo $row['lrn'];?></td>
+                                <td style="font-size:13px; font-weight: 600"><?php echo $row['lastname'];?></td>                              
                                 <td style="font-size:13px; font-weight: 600"><?php echo $row['sex'];?></td>
                                 <td style="font-size:13px; font-weight: 600"><?php echo $row['grade'];?></td>
                                 <td style="font-size:13px; font-weight: 600"><?php echo $row['sectionname'];?></td>
                                 <td style="display:none"><?php echo $row['Advisor'];?></td>
                                 <td style="font-size:13px; font-weight: 600"><?php echo $row['modality'];?></td>    
                                 <td style="">                               
-                                  <button type="button" class="badge btn btn-success editStudentSection forLRN" data-bs-toggle="modal" 
-                                  data-bs-target="#editStudentSection" id="<?php echo $row['grade'];?>" data-bs-whatever="@getbootstrap" <?php echo($_SESSION['role']=='Teacher')?'': 'hidden'?>>Edit</button>     
-                                  <button type="button" name="viewstudent" id="<?php echo $row['studentID'];?>" data-bs-target="#viewStudentProfile" data-bs-toggle="modal"  class="badge btn btn-primary viewStudentProfile">Profile</button>  
-                                  <button type="button" class="badge btn btn-danger admineditStudentSection" data-bs-toggle="modal" 
-                                  data-bs-target="#admineditStudentSection" data-bs-whatever="@getbootstrap" <?php echo($_SESSION['role']=='Admin')?'': 'hidden'?>>Archive</button>                                                                 
+                                  <button type="button" class="badge btn btn-success btn-sm editStudentSection forLRN" data-bs-toggle="modal" 
+                                  data-bs-target="#editStudentSection" id="<?php echo $row['grade'];?>" title="Edit" data-bs-whatever="@getbootstrap" <?php echo($_SESSION['role']=='Teacher')?'': 'hidden'?>>
+                                  <i class="bi bi-pencil-square"></i></button><!-- Edit student -->    
+                                  
+                                  <button type="button" name="viewstudent" id="<?php echo $row['studentID'];?>" data-bs-target="#viewStudentProfile" 
+                                  data-bs-toggle="modal" class="badge btn btn-primary btn-sm viewStudentProfile" title="Review">
+                                  <i class="bi bi-eye"></i></button><!-- Review Button -->
+                                  
+                                  <button type="button" class="badge btn btn-danger btn-sm admineditStudentSection" data-bs-toggle="modal" 
+                                  data-bs-target="#admineditStudentSection" title="Status" data-bs-whatever="@getbootstrap" <?php echo($_SESSION['role']=='Admin')?'': 'hidden'?>>
+                                  <i class="bi bi-pencil-square"></i></button><!-- Edit Status -->                                                             
                                 </td>                                         
                             </tr>
                             <?php $i++;} ?>                        
@@ -236,7 +242,7 @@ $sessionrole = $_SESSION['role'];
              
            
         </div>
-          <input type="text" class="form-control col-md-6" name="editstud_id" id="editstud_id"></textarea>
+          <input type="hidden" class="form-control col-md-6" name="editstud_id" id="editstud_id"></textarea>
              
 
               <div style="height: 48px; margin: 1px; padding:1px;" class="modal-footer">
@@ -248,7 +254,7 @@ $sessionrole = $_SESSION['role'];
     </div>
 </div>
 
-
+<script src="asset/js/pdfexport/jquery-3.5.1.js"></script>
 <!-- Script for checking lrn if already existing -->
 <script>
     $(document).ready(function(){
@@ -272,15 +278,9 @@ $sessionrole = $_SESSION['role'];
                 }
             })
         })
-    })
-</script>
 
-<script src="asset/js/pdfexport/jquery-3.5.1.js"></script>
-  <script>
-      $(document).ready(function(){
                   $(document).on('click','.forLRN', function(){                   
                       var studentgrade = $(this).attr("id");
-                      console.log(studentgrade);
                       console.log(studentgrade);
                       if (studentgrade !== 'KINDER'){
                       document.getElementById("editlrn").readOnly = true;

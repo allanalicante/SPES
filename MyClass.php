@@ -241,19 +241,24 @@ include('connect.php');
                                 <table class="display dataTable table table-bordered table-striped text-center" id="table1" style="width: 100%">  
                                     <thead style="background-color: #435ebe; color: white; ">
                                         <tr>       
-                                            <th style="text-align: center;">#</th>                                                                                                        
+                                            <th style="text-align: center;">#</th>  
+                                            <th style="text-align:center;">LRN</th>                                                                                                      
                                             <th style="text-align: center;">First name</th>
-                                            <th style="text-align: center;">Last name</th>
-                                            <th style="text-align:center;">LRN</th>
+                                            <th style="text-align: center;">Middle name</th>
+                                            <th style="text-align: center;">Last name</th>                                           
                                             <th style="text-align:center;">Age</th>
+                                            <th style="text-align: center;">Grade</th>
+                                            <th style="text-align: center;">Section</th>
+                                            <th hidden style="text-align: center;">Adviser</th>
                                             <th style="text-align: center;">Modality</th>                                                                                                                                                 
                                             <th style="text-align: center;">Action</th>                                                                                                                                                 
+                                            <th hidden style="text-align: center;">ID</th>                                                                                                                                                 
                                         </tr>
                                     </thead>
                                     <tbody>
                                 <?php
             
-                                $query = "SELECT DISTINCT (s.id) AS `studentID`, s.lrn, s.photo, s.lastname, s.firstname, s.age,
+                                $query = "SELECT DISTINCT (s.id) AS `studentID`, s.lrn, s.photo, concat(s.lastname,' ',s.extension) as `lastname`, s.middlename ,s.firstname, s.age,
                                 g.grade, ss.sectionname, t.name AS `Advisor`, s.modality, s.studenttype 
                                 FROM student_tbl s
                                 INNER JOIN enrollment_tbl e
@@ -275,14 +280,23 @@ include('connect.php');
                                 ?>                    
                                     <tr>                      
                                         <td style="font-size:13px; font-weight: 600"><?php echo $i?></td>
-                                        <td style="font-size:13px; font-weight: 600"><?php echo $row['firstname'];?></td>
-                                        <td style="font-size:13px; font-weight: 600"><?php echo $row['lastname'];?></td>
                                         <td style="font-size:13px; font-weight: 600"><?php echo $row['lrn'];?></td>
+                                        <td style="font-size:13px; font-weight: 600"><?php echo $row['firstname'];?></td>
+                                        <td style="font-size:13px; font-weight: 600"><?php echo $row['middlename'];?></td>
+                                        <td style="font-size:13px; font-weight: 600"><?php echo $row['lastname'];?></td>                                   
                                         <td style="font-size:13px; font-weight: 600"><?php echo $row['age'];?></td>
+                                        <td style="font-size:13px; font-weight: 600"><?php echo $row['grade'];?></td>
+                                        <td style="font-size:13px; font-weight: 600"><?php echo $row['sectionname'];?></td>
+                                        <td style="display:none"><?php echo $row['Advisor'];?></td>
                                         <td style="font-size:13px; font-weight: 600"><?php echo $row['modality'];?></td>
                                         <td>
-                                        <button type="button" name="viewstudent" id="<?php echo $row['studentID'];?>" data-bs-target="#viewStudentProfile" data-bs-toggle="modal"  class="badge btn btn-primary viewStudentProfile">Profile</button>  
-                                        </td>                                                                         
+                                        <button type="button" name="viewstudent" id="<?php echo $row['studentID'];?>" title="View Profile" data-bs-target="#viewStudentProfile" data-bs-toggle="modal"  class="badge btn btn-primary viewStudentProfile">
+                                        <i class="bi bi-eye"></i></button>
+                                        <button type="button" class="badge btn btn-success btn-sm editStudentSection forLRN" data-bs-toggle="modal" 
+                                            data-bs-target="#editStudentSection" id="<?php echo $row['grade'];?>" title="Edit" data-bs-whatever="@getbootstrap">
+                                            <i class="bi bi-pencil-square"></i></button><!-- Edit student -->   
+                                        </td> 
+                                        <td hidden style="font-size:13px; font-weight: 600"><?php echo $row['studentID'];?></td>                                                                        
                                     </tr>
                                     <?php 
                                     $i++;
@@ -326,4 +340,93 @@ include('connect.php');
 </div>
 
 
+                <!----------------------------------------------- FOR EDIT MODAL --------------------------------------------------------------------->
+                <div class="modal fade" id="editStudentSection" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div style="height: 40px" class="modal-header bg-success">
+        <h5 style="color:white" class="modal-title" id="exampleModalLabel">EDIT STUDENT INFO</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
 
+        <form action="MyCrud.php" method="POST">   
+          <div class="row">
+              <div class="col-md-6 col-sm-3">
+                <label class="col-form-label">LRN</label>
+                <input type="text" name="editlrn" class="form-control check_email" id="editlrn">
+                <p class="feedback" style="font-size: .875em; color: #dc3545; margin-top: .25rem"></p>
+              </div>
+                                
+              <div class="col-md-6 col-sm-3">
+                <label class="col-form-label">First name</label>
+                <input type="text"  name="editfirstname"  class="form-control" id="editfirstname"></textarea>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-6 col-sm-3">
+                <label class="col-form-label">Middle name</label>
+                <input type="text"  name="editmiddlename"  class="form-control" id="editmiddlename"></textarea>
+              </div>
+              <div class="col-md-6 col-sm-3">
+                <label class="col-form-label">Last name</label>
+                <input type="text"  name="editlastname"  class="form-control" id="editlastname"></textarea>
+              </div>
+          </div>
+              
+          <div class="row">
+            <div class="col-md-6 col-sm-3">
+              <label class="col-form-label">Grade</label>
+              <input type="text" readonly name="editlevelsectionid1" class="form-control" id="editlevelsectionid1"></textarea>
+            </div>
+
+            <div class="col-md-6 col-sm-3">
+                <label  class="col-form-label">Section</label>
+                <select class="form-control" name="editGradeSection" id="editGradeSection" required>
+                <option value="" disabled selected>Select</option>          
+                </select>
+            </div>  
+          </div>  
+      
+            <div class="col-md-6 col-sm-3">
+                        <label  class="col-form-label">Modality</label>
+                        <select class="form-control" name="editmodality" id="editmodality" required>
+                        <option value="" disabled selected>Select</option> 
+                        <option value="Modular">Modular</option> 
+                        <option value="Online Class">Online Class</option> 
+                        <option value="Flexible">Flexible</option> 
+                        <option value="F2F">Face to Face</option> 
+                        </select>
+            </div>  
+             
+           
+        </div>
+          <input type="hidden" class="form-control col-md-6" name="editstud_id" id="editstud_id"></textarea>
+             
+
+              <div style="height: 48px; margin: 1px; padding:1px;" class="modal-footer">
+          
+                <button type="submit" name="updatestudent" class="btn btn-success">Save</button>
+             </div>
+        </form>
+      </div>  
+    </div>
+</div>
+
+<script>
+      $(document).ready(function(){
+                  $(document).on('click','.forLRN', function(){                   
+                      var studentgrade = $(this).attr("id");
+                      console.log(studentgrade);
+                      console.log(studentgrade);
+                      if (studentgrade !== 'KINDER'){
+                      document.getElementById("editlrn").readOnly = true;
+                      }
+                      else if(studentgrade == "KINDER"){
+                        document.getElementById("editlrn").readOnly = false;
+                      }
+                      $('#editStudentSection').modal('show');
+                  });
+              });
+  </script>

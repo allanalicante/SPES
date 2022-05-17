@@ -1,3 +1,4 @@
+<script src="asset/js/pdfexport/jquery-3.5.1.js"></script>
 <?php
 if (!isset($_SESSION["role"])){
   header('location: login.php');
@@ -25,10 +26,17 @@ if (!isset($_SESSION["role"])){
                 <section class="section brand">
                     <div class="card">   
                       <div class="card-header">
-                        <div class="col-12 d-flex justify-content-end reset-btn">                      
-                                <a href="?page=records&data=admission-new"><button type="submit"
-                                    class="btn btn-primary me-1 mb-1" id="myBtn" <?php echo($_SESSION['role']=='Teacher')?'': 'hidden'?>>Add Student Manually</button></a>                                            
-                            </div>                      
+                        <div class="col-12 d-flex justify-content-end">                      
+                        <a href="?page=records&data=admission-new"><button type="submit"
+                              class="btn btn-primary me-1 mb-1" id="myBtn" <?php echo($_SESSION['role']=='Teacher')?'': 'hidden'?>>Add Student Manually</button></a>                                                                                                      
+                        </div>
+                        <div hidden>
+                            <button type="button"
+                            class="btn btn-success me-1 mb-1 assignSelectedGradeLevel" id="updateSelected" name="updateSelected"  <?php echo($_SESSION['role']=='Teacher')?'': 'hidden'?> data-bs-toggle="modal" 
+                              data-bs-target="#assignSelectedGradeLevel" data-bs-whatever="@getbootstrap">Assign selected record</button>
+                            <span style="float:right">
+                             </div>                   
+                                          
                                 <hr>
                        </div> 
                         <div class="card-body">                          
@@ -36,8 +44,9 @@ if (!isset($_SESSION["role"])){
                             <table class="text-center table table-bordered table-striped" id="table1" style="width:100%">   
                                 <thead style="background-color: #435ebe; color: white;">
                                     <tr>
+
                                         <th style="text-align: center; display:none">ID</th>
-                                        <th style="text-align: center;">#</th>
+                                        <th style="text-align: center; width: 15px">#</th>
                                         <th style="text-align: center; display:none">Photo</th>
                                         <th style="display:none; text-align: center;">LRN</th>
                                         <th style="text-align: center;">Name</th>
@@ -46,7 +55,7 @@ if (!isset($_SESSION["role"])){
                                         <th style="text-align: center;">Grade</th>
                                         <th style="text-align: center;">Type</th>
                                         <th style="display:none">Guardian Contact Number</th>
-                                        <th style="text-align: center;">Action</th>                               
+                                        <th class="action" style="text-align: center;">Action</th>                               
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,7 +67,7 @@ if (!isset($_SESSION["role"])){
                                /*  echo 'console.log('.$grade.')';   */                               
                                 if($_SESSION['role']=='Teacher')
                                 {
-                                $query = "SELECT s.id, s.photo, s.lrn, CONCAT(s.firstname,' ',s.middlename,' ',s.lastname) AS `Name`, 
+                                $query = "SELECT s.id, s.photo, s.lrn, CONCAT(s.firstname,' ',s.middlename,' ',s.lastname,' ',s.extension) AS `Name`, 
                                 s.age, s.sex, g.grade, s.studenttype, s.gcontactno
                                 FROM student_tbl s
                                 INNER JOIN enrollment_tbl e
@@ -69,7 +78,7 @@ if (!isset($_SESSION["role"])){
                                 }
                                 else
                                 {
-                                $query = "SELECT s.id, s.photo, s.lrn, CONCAT(s.firstname,' ',s.middlename,' ',s.lastname) AS `Name`, 
+                                $query = "SELECT s.id, s.photo, s.lrn, CONCAT(s.firstname,' ',s.middlename,' ',s.lastname,' ',s.extension) AS `Name`, 
                                 s.age, s.sex, g.grade, s.studenttype, s.gcontactno
                                 FROM student_tbl s
                                 INNER JOIN enrollment_tbl e
@@ -95,13 +104,17 @@ if (!isset($_SESSION["role"])){
                                         <td style="text-align: center; font-size:13px; font-weight: 600"><?php echo $row['grade'];?></td>
                                         <td style="text-align: center; font-size:13px; font-weight: 600"><?php echo $row['studenttype'];?></td>
                                         <td style="display:none"><?php echo $row['gcontactno'];?></td>
-                                        <td style="text-align: center;">                               
-                                        <button type="button" id="<?php echo $row['id'];?>" class="badge btn btn-primary verifyModal" data-bs-toggle="modal" 
-                                        data-bs-target="#verifyModal" data-bs-whatever="@getbootstrap">Review</button>                                 
-                                        <button type="button" class="badge btn btn-success assignGradeLevel" data-bs-toggle="modal" 
-                                        data-bs-target="#assignGradeLevel" data-bs-whatever="@getbootstrap" <?php echo($_SESSION['role']=='Teacher')?'': 'hidden'?>>Assign Class</button>                                 
-                                        <button type="button" class="badge btn btn-danger removeStudent" data-bs-toggle="modal" 
-                                        data-bs-target="#removeStudent" data-bs-whatever="@getbootstrap"<?php echo($_SESSION['role']=='Admin')?'': 'hidden'?>>Remove</button>                                 
+                                        <td style="text-align: center;" class="action" >                               
+                                        <button type="button" id="<?php echo $row['id'];?>" title="review" class="badge btn btn-primary btn-sm verifyModal" data-bs-toggle="modal" 
+                                         data-bs-target="#verifyModal" data-bs-whatever="@getbootstrap"><i class="bi bi-eye"></i></button><!-- Review button -->
+
+                                        <button type="button" class="badge btn btn-success btn-sm assignGradeLevel" title="Assign Class" data-bs-toggle="modal" 
+                                        data-bs-target="#assignGradeLevel" data-bs-whatever="@getbootstrap" <?php echo($_SESSION['role']=='Teacher')?'': 'hidden'?>>
+                                        <i class="bi bi-person-check-fill"></i></button><!-- Assign class button -->
+
+                                        <button type="button" class="badge btn btn-danger btn-sm removeStudent" title="Remove" data-bs-toggle="modal" 
+                                        data-bs-target="#removeStudent" data-bs-whatever="@getbootstrap"<?php echo($_SESSION['role']=='Admin')?'': 'hidden'?>>
+                                        <i class="bi bi-trash-fill"></i></button><!-- Remove button -->                              
                                         </td>  
                                         
                                     </tr>
@@ -166,6 +179,10 @@ if (!isset($_SESSION["role"])){
 </div>
 
 
+
+
+
+
 <!----------------------------------------------- FOR DELETE MODAL --------------------------------------------------------------------->
 <div class="modal fade" id="removeStudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-md">
@@ -213,7 +230,43 @@ if (!isset($_SESSION["role"])){
   </div>
 </div>  
 
-<script>
+<!-- <script>
+  $('#updateSelected').hide();
+  // Check/Uncheck ALl
+  $('#checkAll').change(function(){
+                    if($(this).is(':checked')){
+                        $('input[name="update[]"]').prop('checked',true);
+                        $('.action').hide();
+                        $('#updateSelected').show();
+                    }else{
+                        $('input[name="update[]"]').each(function(){
+                            $(this).prop('checked',false);
+                            $('.action').show();
+                            $('#updateSelected').hide();
+                        }); 
+                    }
+                });
+                // Checkbox click
+                $('input[name="update[]"]').click(function(){
+                    var total_checkboxes = $('input[name="update[]"]').length;
+                    var total_checkboxes_checked = $('input[name="update[]"]:checked').length;
+                    if(total_checkboxes_checked > 0){
+                      $('#updateSelected').show();
+                      $('.action').hide();
+                    }
+                    else if(total_checkboxes_checked == total_checkboxes){
+                        $('#checkAll').prop('checked',true);
+                        $('#updateSelected').show();
+                        $('.action').hide();
+                    }else{
+                        $('#checkAll').prop('checked',false);
+                        $('#updateSelected').hide();
+                        $('.action').show();
+                    }
+                });
+
+
+
     function printpage() {
         //Get the print button and put it into a variable
         var app = document.getElementById("app");
@@ -233,7 +286,7 @@ if (!isset($_SESSION["role"])){
             pageheading.style.visibility = 'visible';
             app.style.visibility = 'visible';
     }
-</script>
+</script> -->
 
 <style>
   @media print {

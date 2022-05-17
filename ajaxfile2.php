@@ -55,11 +55,11 @@ $query .= $lastquery;
                     <tr>                                   
                     <th style="display: none">ID</th>
                     <th style="">#</th>
-                    <th hidden >Photo</th>                                      
+                    <th hidden >Photo</th>     
+                    <th style="text-align:center;">LRN</th>                                 
                     <th style="text-align: center;">First name</th>
                     <th style="display:none;text-align: center;">Middle name</th>
-                    <th style="text-align: center;">Last name</th>
-                    <th style="text-align:center;">LRN</th>
+                    <th style="text-align: center;">Last name</th>                  
                     <th style="text-align:center;">Gender</th>
                     <th style="text-align: center;">Grade</th>
                     <th style="text-align: center;">Section</th>
@@ -82,10 +82,10 @@ $query .= $lastquery;
             <td style="font-size:13px; font-weight: 600;display: none"><?php echo $row['studentID'];?></td>
             <td style="font-size:13px; font-weight: 600"><?php echo $i?></td>
             <td style="display: none"><img style="width: 40px;height:40px;object-fit: cover; border-radius: 50%" src="uploads/<?=$row['photo']?>"></td>
+            <td style="font-size:13px; font-weight: 600"><?php echo $row['lrn'];?></td>
             <td style="font-size:13px; font-weight: 600"><?php echo $row['firstname'];?></td>
             <td style="font-size:13px; font-weight: 600;display:none"><?php echo $row['middlename'];?></td>
             <td style="font-size:13px; font-weight: 600"><?php echo $row['lastname'];?></td>
-            <td style="font-size:13px; font-weight: 600"><?php echo $row['lrn'];?></td>
             <td style="font-size:13px; font-weight: 600"><?php echo $row['sex'];?></td>
             <td style="font-size:13px; font-weight: 600"><?php echo $row['grade'];?></td>
             <td style="font-size:13px; font-weight: 600"><?php echo $row['sectionname'];?></td>
@@ -111,6 +111,7 @@ $query .= $lastquery;
     $(document).ready(function (){
         var table = $('#table1').DataTable( {
             lengthChange: true,
+            order: [[1, 'asc']],
             buttons: [
                     {
                         extend: 'copy',

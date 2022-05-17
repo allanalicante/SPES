@@ -52,8 +52,8 @@
                                                     <td style="font-size:13px; font-weight: 600; display:none"><?php echo $row['Active'];?></td>                                            
                                                     <td style="font-size:13px; font-weight: 600"><?php echo $row['EnrollmentStatus'];?></td>
                                                     <td>                               
-                                                    <button type="button" class="badge btn btn-success EditSchoolYear" data-bs-toggle="modal" 
-                                                    data-bs-target="#editmodalschoolyear" data-bs-whatever="@getbootstrap">Edit</button> 
+                                                    <button type="button" class="badge btn btn-sm btn-success EditSchoolYear"  title="Edit" data-bs-toggle="modal" 
+                                                    data-bs-target="#editmodalschoolyear" data-bs-whatever="@getbootstrap"><i class="bi bi-pencil-square"></i></button> 
                                                    <!--  <button type="button" class="badge btn btn-danger DeleteSchoolYear" data-bs-toggle="modal" 
                                                     data-bs-target="#deletemodalschoolyear" data-bs-whatever="@getbootstrap">Remove</button>     -->                             
                                                     </td>                    
@@ -67,107 +67,6 @@
                             
                      </div>               
                </div>
-               <!--  <div class="col-lg-6 col-md-12">
-                    <div class="card logbrand">
-                        <div class="card-header">    
-                        <h3 class="txt-dark text-center">Administrators</h3>                            
-                                  <HR></HR> 
-                                  <h6 style="color: red;"class="nonecase-font txt-grey text-center">Note: Only one must be assigned as Active.</h6>
-                        </div>
-                             <div class="card-body">                                        
-                                            <table class="table table-bordered table-striped text-center" id="table2">
-                                                <thead  style="background-color: #435ebe; color: white;">
-                                                    <tr>
-                                                        <th style="text-align: center;">#</th>
-                                                        <th style="Display:none;">ID</th>
-                                                        <th style="text-align: center;">Name</th>
-                                                        <td style="Display:none">Address</td>
-                                                        <th style="text-align: center;">Contact No.</th>
-                                                        <th style="text-align: center;">Username</th>
-                                                        <th style="text-align: center;">Password</th>
-                                                        <th style="text-align: center;">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                <?php
-   
-
-                                        $query = "SELECT u.ID, t.name,t.contactno,t.address,u.username,u.password
-                                        FROM users u
-                                        INNER JOIN teacher t
-                                        ON u.id = t.`id`
-                                        where u.role = 'Admin'";
-                                        $query_run = mysqli_query($connection, $query);
-                                        $i = 1;
-                                        while($row=$query_run->fetch_assoc()){
-                                        ?>
-                                                <tr>
-                                                    <td style="font-size:13px; font-weight: 600"><?php echo $i?></td>
-                                                    <td style="Display:none"><?php echo $row['ID'];?></td>
-                                                    <td style="font-size:13px; font-weight: 600"><?php echo $row['name'];?></td>
-                                                    <td style="font-size:13px; font-weight: 600"><?php echo $row['contactno'];?></td>
-                                                    <td style="Display:none"><?php echo $row['address'];?></td>
-                                                    <td style="font-size:13px; font-weight: 600"><?php echo $row['username'];?></td>
-                                                    <td style="font-size:13px; font-weight: 600"><?php echo $row['password'];?></td>
-                                                    <td>                               
-                                                    <button type="button" class="badge btn btn-success EditAdmin" data-bs-toggle="modal" 
-                                                    data-bs-target="#EditAdmin" data-bs-whatever="@getbootstrap">Edit</button> 
-                                                   <button type="button" class="badge btn btn-danger DeleteSchoolYear" data-bs-toggle="modal" 
-                                                    data-bs-target="#deletemodalschoolyear" data-bs-whatever="@getbootstrap">Remove</button>                         
-                                                    </td>                    
-                                                </tr>
-                                                <?php $i++;
-                                              } ?>
-                                                </tbody>
-                                    </table>
-                                    <div class="col-12 d-flex justify-content-end reset-btn">                      
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addadmin" data-bs-whatever="@getbootstrap">Add New Admin</button>                                                                                                      
-                            </div>
-                             </div>
-                            
-                     </div>               
-               </div> -->
-                  <!--     <div class="col-lg-6 col-md-12">
-                        <div class="card logbrand">
-                            <div class="card-header">
-                            <h3 class="txt-dark text-center">Backup your Database</h3>
-                            <hr>
-                              <h6 class="nonecase-font txt-grey text-center">Enter your database details below</h6>
-                              <h6 style="color: red;"class="nonecase-font txt-grey text-center">Note: If no password, leave it blank.</h6>
-                              <br>
-                            </div>
-                          <div class="card-body">
-                            <div class="row">
-                              <form action="database_backup.php" method="post" id="">
-                              <div class="row">
-                                  <div class="col-md-6">
-                 
-                                    <input type="hidden" class="form-control" placeholder="EX: Localhost" name="server" id="server"  autocomplete="on">
-                                  </div>
-                                <div class="col-md-6">
-                                  
-                                    <input type="hidden" class="form-control" placeholder="EX: root" name="username" id="username"  autocomplete="on">
-                                </div>
-                              </div>
-                              
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <label class="col-form-label" >Database Password</label>
-                                  <input type="password" class="form-control"  name="password" id="password" >
-                                </div>
-                                <div class="col-md-6">
-                                  <label class="col-form-label">Database Name</label>
-                                  <input type="text" class="form-control"  name="dbname" id="dbname" required="" autocomplete="on">
-                                </div>
-                              </div>
-                                <br>
-                                <div class="col-md-6">
-                                  <button type="submit" name="backupnow" class="btn btn-primary btn-rounded">Initiate Backup</button>
-                                </div>
-                              </form>
-                          </div>  
-                        </div> -->
             </div>
         </div>
      </section>  

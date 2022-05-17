@@ -5,6 +5,7 @@ if (!isset($_SESSION["role"])){
     header('location: login.php');
     exit();
 }
+$userid=$_SESSION['userid'];
     //get pages
     
     $page="";

@@ -110,13 +110,18 @@ if (!isset($_SESSION["role"])){
                                                         <td style="text-align: center;"><?php echo $row['girls'];?></td>
                                                         <td style="text-align: center;"><?php echo $row['total'];?></td>
                                                         <td>                               
-                                                          <button type="button" class="badge btn btn-success editLevel" data-bs-toggle="modal" 
-                                                          data-bs-target="#editmodallevel" data-bs-whatever="@getbootstrap" <?php echo($_SESSION['role']=='Admin')?'': 'hidden'?>>Edit</button>  
-                                                         <!--  <button type="button" class="badge btn btn-danger removeLevel" data-bs-toggle="modal" 
-                                                          data-bs-target="#removemodallevel" data-bs-whatever="@getbootstrap" <?php echo($_SESSION['role']=='Admin')?'': 'hidden'?>>Remove</button>   -->                                                        
+                                                          <button type="button" class="badge btn btn-success btn-sm editLevel" title="Edit" data-bs-toggle="modal" 
+                                                          data-bs-target="#editmodallevel" data-bs-whatever="@getbootstrap" <?php echo($_SESSION['role']=='Admin')?'': 'hidden'?>>
+                                                          <i class="bi bi-pencil-square"></i></button><!-- Edit Button -->
+
+                                                         <button type="button" class="badge btn btn-danger removeLevel" data-bs-toggle="modal" 
+                                                          data-bs-target="#removemodallevel" data-bs-whatever="@getbootstrap" <?php echo($_SESSION['role']=='Admin')?'': 'hidden'?>>
+                                                          <i class="bi bi-trash-fill"></i></button>                                                       
                                                          <!--  <button type="button"  id="<?php echo $row['ClassID'];?>" class="badge btn btn-info tableModal"
-                                                          data-bs-toggle="modal" data-bs-target="#tableModal" >View Class</button>   -->                                                                                                                                                                                                                                                    
-                                                          <a href="/spes/index.php?page=section&classid=<?php echo $row['ClassID'];?>"><button type="button"  id="<?php echo $row['ClassID'];?>" class="badge btn btn-info seeClass">View Class</button>  </a>                                                                                                                                                                                                                                              
+                                                          data-bs-toggle="modal" data-bs-target="#tableModal" >View Class</button>   -->     
+
+                                                          <a href="index.php?page=section&classid=<?php echo $row['ClassID'];?>"><button type="button"  id="<?php echo $row['ClassID'];?>" title="View" class="badge btn btn-sm btn-primary seeClass">
+                                                          <i class="bi bi-eye"></i></button></a><!-- View Class Button -->                                                                                                                                                                                                                                           
                                                         </td>                        
                                                       </tr>
                                                       <?php 
@@ -292,6 +297,7 @@ if (!isset($_SESSION["role"])){
 
            <p>Are you sure you want to remove this record?</p>         
             <input type="hidden" readonly class="form-control" name="removeId" id="removeId"></textarea>
+            <input type="hidden" readonly class="form-control" name="totalstudents" id="totalstudents"></textarea>
 
           <div style="height: 35px; margin: 1px; padding:1px;" class="modal-footer">
         <button type="submit" name="deleteSection" class="btn btn-danger">Yes</button>

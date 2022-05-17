@@ -41,7 +41,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
             $('#admit').prop('disabled', true);
             $('.B151').hide();
             $('.B16').prop('selectedIndex',0);
-            $('#bb17').hide();    
+            $('#Bb17').hide();    
                
           });
 </script>
@@ -478,7 +478,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>A3. Returning (Balik-aral) <span style="color: red; font-weight: 900;">  *</span></label>
-                                            <select class="form-select mb-3" aria-label=".form-select-lg example" style="background-image: none;" name="A3" id="A3" required="">
+                                            <select class="form-select mb-3" aria-label=".form-select-lg example"  name="A3" id="A3" required="">
                                             <option value="">Open this select menu</option>
                                             <option value="Yes">Yes</option>
                                             <option value="No">No</option>
@@ -517,8 +517,8 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group autocomplete">
-                                            <label>A6. Last school year completed</label>
-                                            <input type="text" class="form-control" name="A6" id="A6" required="">
+                                            <label>A6. Last school year completed <span style="color: red; font-weight: 900;">  *</span></label>
+                                            <input type="text" class="form-control"  name="A6" id="A6" required="">
                                             <div class="invalid-feedback">
                                                 This field cannot be left blank.
                                             </div>  
@@ -529,7 +529,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                             <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group autocomplete">
-                                            <label>A7. Last school attended</label>
+                                            <label>A7. Last school attended <span style="color: red; font-weight: 900;">  *</span></label>
                                             <input type="text" class="form-control" name="A7" id="A7" required="">
                                             <div class="invalid-feedback">
                                                 This field cannot be left blank.
@@ -538,8 +538,8 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group ">
-                                            <label>A8. School ID</label>
-                                            <input type="number" class="form-control" name="A8" id="A8" required="">
+                                            <label>A8. School ID </label>
+                                            <input type="number" class="form-control" style="background-image: none;" name="A8" id="A8">
                                             <div class="invalid-feedback">
                                                 This field cannot be left blank.
                                             </div>  
@@ -547,7 +547,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group ">
-                                            <label>A9. School Address</label>
+                                            <label>A9. School Address <span style="color: red; font-weight: 900;">  *</span></label>
                                             <input type="text" class="form-control" name="A9" id="A9" required="">
                                             <div class="invalid-feedback">
                                                 This field cannot be left blank.
@@ -557,7 +557,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     <div class="col-md-3">
                                     <div class="form-group">
                                             <label>A10. School Type <span style="color: red; font-weight: 900;">  *</span></label>
-                                            <select class="form-select mb-3" aria-label=".form-select-lg example" style="background-image: none;" name="A10" id="A10" required="">
+                                            <select class="form-select mb-3" aria-label=".form-select-lg example"  name="A10" id="A10" required="">
                                             <option value="">Open this select menu</option>
                                             <option value="PUBLIC">PUBLIC</option>
                                             <option value="PRIVATE">PRIVATE</option>
@@ -618,7 +618,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     <div class="form-group">
                                         <label>B2. LRN</label>
                                         <small class="text-muted">(<i>Learners Reference No.</i>)</small><span style="color: red; font-weight: 900;">  *</span>
-                                        <input type="tel" class="form-control check_email" style="background-image: none;" id="B2" name="B2" maxlength="12" required="">
+                                        <input type="tel" class="form-control check_email"  id="B2" name="B2" maxlength="12" required="">
                                         <p class="feedback" style="font-size: .875em; color: #dc3545; margin-top: .25rem"></p>
                                         <div class="invalid-feedback">
                                                 This field cannot be left blank.
@@ -651,7 +651,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     </div>                                        
                                 </div>
                                 <div class="col-md-3">    
-                                    <input type="text" class="form-control" id="B5" name="B5" placeholder="B5. Middle Name" required="">  
+                                    <input type="text" class="form-control" style="background-image: none;" id="B5" name="B5" placeholder="B5. Middle Name">  
                                     <div class="invalid-feedback">
                                         This field cannot be left blank.
                                     </div>                                      
@@ -701,7 +701,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     <div class="form-group ">
                                     <label>B10. Indigenous Group <span style="color: red; font-weight: 900;">  *</span></label>
                                         <small class="text-muted">(<i>Ethnic Group</i>)</small>
-                                        <input list="B10list" type="text" class="form-control" name="B10" id="B10" placeholder="Select">
+                                        <input list="B10list" type="text" class="form-control" name="B10" id="B10" placeholder="Select" required="">
                                         <datalist id="B10list" required="">   
                                             <option value="">Select</option>                                         
                                             <option value="Ifugao">Ifugao</option>
@@ -728,7 +728,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>B12. Mother Tongue <span style="color: red; font-weight: 900;">  *</span></label>
-                                        <input list="B12list" type="text" class="form-control" name="B12" id="B12" placeholder="Select">
+                                        <input list="B12list" type="text" class="form-control" name="B12" id="B12" placeholder="Select" required="">
                                         <datalist id="B12list" required="">                                            
                                             <option value="Tagalog">Tagalog</option>
                                             <option value="Kapampangan">Kapampangan</option>                                           
@@ -755,9 +755,10 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 <div class="col-md-3">
                                     <div class="form-group ">
                                         <label>Religion <span style="color: red; font-weight: 900;">  *</span></label>
-                                        <input list="religionlist" type="text" class="form-control" name="religion" id="religion" placeholder="Select">
+                                        <input list="religionlist" type="text" class="form-control" name="religion" id="religion" placeholder="Select" required="">
                                         <datalist id="religionlist" required="">                                           
                                             <option value="Roman Catholic">Roman Catholic</option>
+                                            <option value="Christianity">Christianity</option>
                                             <option value="Islam">Islam</option>                                           
                                             <option value="Evangelical (PCEC)">Evangelical (PCEC)</option>
                                             <option value="Iglesia Ni Cristo">Iglesia Ni Cristo</option>                                           
@@ -824,7 +825,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                                         <div class="form-group">
                                                         <label>B14. Does the learner have special education needs? <span style="color: red; font-weight: 900;">  *</span></label>
                                                             <div class="col-6">
-                                                            <select class="form-select mb-3" aria-label=".form-select-lg example" style="background-image: none;" id="B14" name="B14" onchange="special()" required="">
+                                                            <select class="form-select mb-3" aria-label=".form-select-lg example"  id="B14" name="B14" onchange="special()" required="">
                                                             <option value="No">No</option>
                                                             <option value="Yes">Yes</option>
                                                             </select>
@@ -993,13 +994,13 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                             <div class="row">
                                     <div style="border-right: solid 1px gray" class="col-md-4">
                                         <div class="form-group ">
-                                            <label>Father's Full Name <span style="color: red; font-weight: 900;">  *</span></label>
+                                            <label>Father's Full Name</label>
                                             <input type="text" class="form-control" style="background-image: none;" id="father" name="father">
                                         </div>
                                     </div>
                                     <div style="border-right: solid 1px gray" class="col-md-4">
                                         <div class="form-group ">
-                                            <label>Mother's Full Name <span style="color: red; font-weight: 900;">  *</span></label>
+                                            <label>Mother's Full Name</label>
                                             <input type="text" class="form-control" style="background-image: none;" id="mother" name="mother">
                                         </div>
                                     </div>
@@ -1045,8 +1046,8 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                  </div>
                                 <div class="col-md-4">
                                         <div class="form-group">
-                                                <label>Highest Educational Attainment <span style="color: red; font-weight: 900;">  *</span></label>
-                                                <select class="form-select  mb-3" aria-label=".form-select-lg example" id="guardianeducattainment" name="guardianeducattainment" required="">
+                                                <label>Highest Educational Attainment </label>
+                                                <select class="form-select  mb-3" aria-label=".form-select-lg example" style="background-image: none;" id="guardianeducattainment" name="guardianeducattainment">
                                                 <option value="" selected>Open this select menu</option>
                                                 <option value="Elementary Graduate">Elementary Graduate</option>
                                                 <option value="High School Graduate">High School Graduate</option>
@@ -1091,8 +1092,8 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                  </div>
                                 <div class="col-md-4">
                                         <div class="form-group">
-                                                <label>Employment Status <span style="color: red; font-weight: 900;">  *</span></label>
-                                                <select class="form-select  mb-3" aria-label=".form-select-lg example" id="guardianemployment" name="guardianemployment" required="">
+                                                <label>Employment Status </label>
+                                                <select class="form-select  mb-3" aria-label=".form-select-lg example" style="background-image: none;" id="guardianemployment" name="guardianemployment" >
                                                 <option value="" selected>Open this select menu</option>
                                                 <option value="Full Time">Full Time</option>
                                                 <option value="Part Time">Part Time</option>
@@ -1131,8 +1132,8 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                  </div>
                                 <div class="col-md-4">
                                         <div class="form-group">
-                                                <label>Working from home due to ECQ? <span style="color: red; font-weight: 900;">  *</span></label>
-                                                <select class="form-select  mb-3"  aria-label=".form-select-lg example" id="guardianWFH" name="guardianWFH" required="">
+                                                <label>Working from home due to ECQ? </label>
+                                                <select class="form-select  mb-3"  aria-label=".form-select-lg example" style="background-image: none;" id="guardianWFH" name="guardianWFH">
                                                 <option value="" selected>Open this select menu</option>
                                                 <option value="Yes">Yes</option>
                                                 <option value="No">No</option>
@@ -1160,14 +1161,14 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group autocomplete ">
-                                            <label>Contact Number/s (cellphone/telephone) <span style="color: red; font-weight: 900;">  *</span></label>
-                                            <input type="tel" maxlength="11" class="form-control" id="guardiancontact" name="guardiancontact" required="">
+                                            <label>Contact Number/s (cellphone/telephone) </label>
+                                            <input type="tel" maxlength="11" class="form-control" style="background-image: none;" id="guardiancontact" name="guardiancontact">
                                             <div class="invalid-feedback">
                                                     This field cannot be left blank.
                                                 </div>
                                             <br>
-                                            <label>Relationship to the Guardian <span style="color: red; font-weight: 900;">  *</span></label>
-                                            <input type="text" class="form-control" id="guardianrelate" name="guardianrelate" required="">
+                                            <label>Relationship to the Guardian </label>
+                                            <input type="text" class="form-control" style="background-image: none;" id="guardianrelate" name="guardianrelate">
                                             <div class="invalid-feedback">
                                                     This field cannot be left blank.
                                                 </div>
@@ -1797,7 +1798,6 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 $('#B2').val(response[0]['lrn']);                                   
                                 $('#B4').val(response[0]['firstname']); 
                                 $('#B3').val(response[0]['lastname']); 
-                                $('#B4').val(response[0]['firstname']); 
                                 $('#B5').val(response[0]['middlename']); 
                                 $('#B6').val(response[0]['extension']); 
                                 $('#B7').val(response[0]['birthday']); 
@@ -1876,7 +1876,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                             }
                             
                            
-                            if (x.status==0) {
+                           /*  if (x.status==0) {
                                 alert('You are offline!!\n Please Check Your Network.');
                             } else if(x.status==404) {
                                 alert('Requested URL not found.');
@@ -1888,7 +1888,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 alert('Request Time out.');
                             } else {
                                 alert('Unknow Error.\n'+ x.responseText);
-                            }
+                            } */
 
                            //$('.myDiv').find(':input').val('');
                            //$('.myDiv')[0].reset();

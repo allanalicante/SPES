@@ -82,25 +82,15 @@
     }
 </style>
 <?php
-
+session_start();
 include_once('connect.php');
 
-
-  // Query for selecting total students     
-  $sql="SELECT g.grade, COUNT(s.id) AS `enrolles`
-  FROM gradelevel_tbl g
-  LEFT JOIN section_tbl ss
-  ON g.id = ss.gradelevel_id
-  LEFT JOIN enrollment_tbl e
-  ON ss.id = e.section_id
-  LEFT JOIN student_tbl s
-  ON e.id = s.id
-  GROUP BY g.id";
-  $result = mysqli_query($connection,$sql);
-  while ($row = mysqli_fetch_array($result)) {         
-     $Grade[] = $row['grade'];
-     $enrolles[] = $row['enrolles'];           
+if (!isset($_SESSION["role"])){
+    header('location: login.php');
+    exit();
   }
+  $userid = $_SESSION['userid'];
+  $role = $_SESSION['role'];
 
   // Query for counting total numbers of pupils / boys / girls per section
   $gradeselection = "";
@@ -117,6 +107,14 @@ include_once('connect.php');
   ON e.section_id = s.id
   LEFT JOIN student_tbl ss
   ON e.student_id = ss.id";
+  if ($role == "Admin")
+  {
+      $sql1 .= "";
+  }
+  else 
+  {
+      $sql1 .= " where s.teacher_id = $userid";
+  }
   $result1 = mysqli_query($connection, $sql1);
   while ($row = mysqli_fetch_array($result1)) {           
   $male = $row['boys'];
@@ -129,42 +127,50 @@ include_once('connect.php');
   FROM student_tbl s
   INNER JOIN enrollment_tbl e
   ON s.`id`=e.`student_id`
-  where e.`status` = 'enrolled'
-  GROUP BY s.age";
+  INNER JOIN section_tbl ss
+  ON e.`section_id` = ss.`id`
+  where e.`status` = 'enrolled'";
+    if ($role == "Admin")
+    {
+        $sql2 .= " GROUP BY s.age";
+    }
+    else 
+    {
+        $sql2 .= " AND ss.teacher_id = $userid GROUP BY s.age";
+    }
   $result2 = mysqli_query($connection,$sql2);
   while ($row = mysqli_fetch_array($result2)) {         
   $age[] = $row['age'];
   $students[] = $row['student'];           
   }
 
-   
-  // Query for selecting student group by schoolyear    
-  $sql3="SELECT sy.`SchoolYear`, COUNT(e.`student_id`) AS students
-  FROM schoolyear_tbl sy
-  LEFT JOIN enrollment_tbl e
-  ON e.`schoolyear_id` = sy.`id`
-  AND e.`status` = 'enrolled'
-  GROUP BY sy.`id` DESC";
-  $result3 = mysqli_query($connection,$sql3);
-  while ($row = mysqli_fetch_array($result3)) {         
-  $sy[] = $row['SchoolYear'];
-  $students1[] = $row['students'];           
-  }
 
   // Query for selecting student group by ethnicity     
   $sql4="SELECT s.`ethnicgroup`, COUNT(s.`ethnicgroup`) AS `totalethnicgroup`
   FROM student_tbl s
   INNER JOIN enrollment_tbl e
   ON s.`id`= e.`student_id`
-  WHERE e.`status` = 'enrolled'
-  GROUP BY s.`ethnicgroup` ASC";
+  INNER JOIN section_tbl ss
+  ON e.`section_id` = ss.`id`
+  WHERE e.`status` = 'enrolled'";
+    if ($role == "Admin")
+    {
+        $sql4 .= " ";
+    }
+    else 
+    {
+        $sql4 .= " AND ss.teacher_id = $userid GROUP BY s.`ethnicgroup` ASC";
+    }
   $result4 = mysqli_query($connection,$sql4);
   while ($row = mysqli_fetch_array($result4)) {         
   $eg[] = $row['ethnicgroup'];
   $students2[] = $row['totalethnicgroup'];           
   }
 
-  // Query for selecting student group by modality     
+ 
+  // Query for selecting student group by modality  
+  if ($role == "Admin")
+  {   
   $sql5="SELECT ( SELECT COUNT(s.modality)
   FROM student_tbl s 
   INNER JOIN enrollment_tbl e 
@@ -184,11 +190,52 @@ include_once('connect.php');
   WHERE e.`status` = 'enrolled'
   AND s.modality = 'Flexible') AS `Flexible`,
 ( SELECT COUNT(s.modality)
-              FROM student_tbl s 
-              INNER JOIN enrollment_tbl e 
-              ON s.id = e.student_id
-              WHERE e.`status` = 'enrolled'
-              AND s.modality = 'f2f') AS `FaceToFace`";
+FROM student_tbl s 
+INNER JOIN enrollment_tbl e 
+ON s.id = e.student_id
+WHERE e.`status` = 'enrolled'
+AND s.modality = 'f2f') AS `FaceToFace`";
+  }
+  else 
+  {
+      $sql5 = "SELECT ( SELECT COUNT(s.modality)
+      FROM student_tbl s 
+      INNER JOIN enrollment_tbl e 
+      ON s.id = e.student_id
+      INNER JOIN section_tbl ss
+      ON e.section_id = ss.id
+      WHERE e.`status` = 'enrolled'
+      AND ss.teacher_id = $userid
+      AND s.modality = 'Modular') AS `Modular`,
+    ( SELECT COUNT(s.modality)
+      FROM student_tbl s 
+      INNER JOIN enrollment_tbl e 
+      ON s.id = e.student_id
+      INNER JOIN section_tbl ss
+      ON e.section_id = ss.id
+      WHERE e.`status` = 'enrolled'
+      AND ss.teacher_id = $userid
+      AND s.modality = 'Online Class') AS `OnlineClass`,
+    ( SELECT COUNT(s.modality)
+      FROM student_tbl s 
+      INNER JOIN enrollment_tbl e 
+      ON s.id = e.student_id
+       INNER JOIN section_tbl ss
+      ON e.section_id = ss.id
+      WHERE e.`status` = 'enrolled'
+      AND ss.teacher_id = $userid
+      AND s.modality = 'Flexible') AS `Flexible`,
+    ( SELECT COUNT(s.modality)
+        FROM student_tbl s 
+        INNER JOIN enrollment_tbl e 
+        ON s.id = e.student_id
+         INNER JOIN section_tbl ss
+      ON e.section_id = ss.id
+      WHERE e.`status` = 'enrolled'
+      AND ss.teacher_id = $userid
+        AND s.modality = 'f2f') AS `FaceToFace`";
+  }
+
   $result5 = mysqli_query($connection,$sql5);
   while ($row = mysqli_fetch_array($result5)){         
   $modular = $row['Modular'];          
@@ -198,7 +245,9 @@ include_once('connect.php');
   }
   
 
-  // Query for selecting student group by 4ps membership  
+  // Query for selecting student group by 4ps membership
+  if ($role == "Admin")
+  {
   $sql6="SELECT ( SELECT COUNT(s.4Ps)
   FROM student_tbl s 
   INNER JOIN enrollment_tbl e 
@@ -211,6 +260,28 @@ include_once('connect.php');
   ON s.id = e.student_id
   WHERE e.`status` = 'enrolled'
   AND s.4Ps = 'No') AS `NotMember`";
+  }
+  else
+  {
+      $sql6 = "SELECT ( SELECT COUNT(s.4Ps)
+      FROM student_tbl s 
+      INNER JOIN enrollment_tbl e 
+      ON s.id = e.student_id
+      INNER JOIN section_tbl ss
+      ON e.section_id = ss.id
+      WHERE e.`status` = 'enrolled'
+      AND ss.teacher_id = $userid
+      AND s.4Ps = 'Yes') AS `Member`,
+    ( SELECT COUNT(s.4Ps)
+      FROM student_tbl s 
+      INNER JOIN enrollment_tbl e 
+      ON s.id = e.student_id
+      INNER JOIN section_tbl ss
+      ON e.section_id = ss.id
+      WHERE e.`status` = 'enrolled'
+      AND ss.teacher_id = $userid
+      AND s.4Ps = 'No') AS `NotMember`";
+  }
   $result6 = mysqli_query($connection,$sql6);
   while ($row = mysqli_fetch_array($result6)) {         
   $Member = $row['Member'];          
@@ -222,21 +293,40 @@ include_once('connect.php');
   FROM student_tbl s
   INNER JOIN enrollment_tbl e
   ON e.`student_id` = s.`id`
-  WHERE e.`status` = 'enrolled'
-  GROUP BY s.`barangay`";
+  INNER JOIN section_tbl ss
+  ON e.`section_id` = ss.`id`
+  WHERE e.`status` = 'enrolled'";
+  if ($role == "Admin")
+  {
+    $sql7  .= " GROUP BY s.`barangay`";
+  }
+  else
+  {
+    $sql7 .= " AND ss.teacher_id = $userid GROUP BY s.`barangay`";
+  }
   $result7 = mysqli_query($connection,$sql7);
   while ($row = mysqli_fetch_array($result7)) {         
   $barangay[] = $row['barangay'];
   $students3[] = $row['students'];           
   }
 
-    // Query for selecting student group by religion    
+    
+  // Query for selecting student group by religion    
     $sql8="SELECT s.`religion`, COUNT(s.`id`) AS students
     FROM student_tbl s
     INNER JOIN enrollment_tbl e
     ON e.`student_id` = s.`id`
-    WHERE e.`status` = 'enrolled'
-    GROUP BY s.`religion`";
+    INNER JOIN section_tbl ss
+    ON e.`section_id` = ss.`id`
+    WHERE e.`status` = 'enrolled'";
+    if ($role == "Admin")
+    {
+        $sql8 .= " GROUP BY s.`religion`";
+    }
+    else
+    {
+        $sql8 .= " AND ss.teacher_id = $userid GROUP BY s.`religion`"; 
+    }
     $result8 = mysqli_query($connection,$sql8);
     while ($row = mysqli_fetch_array($result8)) {         
     $religion[] = $row['religion'];
@@ -244,7 +334,6 @@ include_once('connect.php');
     }
 ?>
 
-     
         <div>                
             <div class="col-12 col-lg-3 col-sm-3">                                                                                                                                              
                 <h6 class="text-muted font-semibold">Total Pupils</h6>
@@ -382,7 +471,7 @@ include_once('connect.php');
             <div class="col-12 col-lg-4 col-md-12">
                     <div class="card" style="height:350px; weight: 100%">
                         <div class="card-header">
-                            <h6>Gender Statistic</h6>
+                            <h6>Gender Statistic<span style="float:right">Total: <?php echo $total ?></span></h6>
                         </div>
                         <div class="card-body" style="padding:0">
                             <div id="chart-profile">                  
@@ -417,7 +506,7 @@ include_once('connect.php');
             <div class="col-12 col-lg-4 col-md-12">
                     <div class="card" style="height:350px; weight: 100%">
                         <div class="card-header">
-                            <h6>Modality Statistic</h6>
+                            <h6>Modality Statistic<span style="float:right">Total: <?php echo $total ?></span></h6>
                         </div>
                         <div class="card-body" style="padding:0">
                             <div id="chart-section">                  
@@ -452,7 +541,7 @@ include_once('connect.php');
             <div class="col-12 col-lg-4 col-md-12">
                     <div class="card" style="height:350px; weight: 100%">
                                 <div class="card-header">
-                                    <h6>4Ps Member</h6>
+                                    <h6>4Ps Member<span style="float:right">Total: <?php echo $total ?></span></h6>
                                 </div>
                                 <div class="card-body" style="padding:0">
                                     <div id="ps-member">                  
@@ -472,9 +561,9 @@ include_once('connect.php');
                                             },
                                             plotOptions: {
                                             pie: {
-                                                pie: {
+                                                donut: {
                                                 size: '30%'
-                                                }
+                                                    }
                                             }
                                             }
                                         };
@@ -639,7 +728,7 @@ include_once('connect.php');
                                 <tbody>
                                     <?php                              
                                         
-                                        $query = "SELECT DISTINCT (s.id) AS `studentID`, s.lrn, s.age, s.photo, concat(s.firstname,' ',s.lastname) as 'Name', 
+                                        $query = "SELECT DISTINCT (s.id) AS `studentID`, s.lrn, s.age, s.photo, concat(s.firstname,' ',s.middlename,' ',s.lastname,' ',s.extension) as 'Name', 
                                         g.grade, s.barangay, ss.sectionname, s.4Ps, s.modality   
                                         FROM student_tbl s
                                         INNER JOIN enrollment_tbl e
@@ -650,9 +739,17 @@ include_once('connect.php');
                                         ON g.id = ss.gradelevel_id
                                         INNER JOIN teacher t
                                         ON t.id = ss.teacher_id
-                                        WHERE e.status = 'enrolled'
-                                        GROUP BY studentID
-                                        ORDER BY s.lastname ASC";
+                                        WHERE e.status = 'enrolled'";
+                                        if ($role == "Admin")
+                                        {
+                                            $query .= " GROUP BY studentID
+                                            ORDER BY s.lastname ASC";
+                                        }
+                                        else
+                                        {
+                                            $query .= "  AND ss.`teacher_id` = $userid GROUP BY studentID
+                                            ORDER BY s.lastname ASC";
+                                        }
                                         
                                         $query_run = mysqli_query($connection, $query);
                                         $i=1;
@@ -668,7 +765,8 @@ include_once('connect.php');
                                             <td style="font-size:13px; font-weight: 600"><?php echo $row['4Ps'];?></td>
                                             <td style="font-size:13px; font-weight: 600"><?php echo $row['modality'];?></td>    
                                             <td style="">                                 
-                                            <button type="button" name="viewstudent" id="<?php echo $row['studentID'];?>" data-bs-target="#viewStudentProfile" data-bs-toggle="modal"  class="badge btn btn-primary viewStudentProfile">Profile</button>                                                              
+                                            <button type="button" name="viewstudent" id="<?php echo $row['studentID'];?>" data-bs-target="#viewStudentProfile" 
+                                            data-bs-toggle="modal"  class="badge btn btn-sm btn-primary viewStudentProfile" title="View Profile"><i class="bi bi-eye"></i></button>                                                              
                                             </td>                                         
                                     </tr>
                                     <?php 

@@ -97,7 +97,6 @@ if (!isset($_SESSION["role"])){
 
 
 
-
 ?>
 
 <div class="page-heading" id="mainbody">
@@ -105,7 +104,7 @@ if (!isset($_SESSION["role"])){
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
                             <h3>RECORDS ANALYSIS<!-- <a href="#">
-                            <i style="vertical-align:middle;" class="bi bi-info-circle"></i></a> --></h3>
+                            <i style="vertical-align:middle;" class="bi bi-info-circle"></i></a> --></h3>                          
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -176,8 +175,7 @@ if (!isset($_SESSION["role"])){
 <script>
     $(document).ready(function(){
         /* display All data */
-        $('#result').load("All.php");
-
+                $('#result').load("All.php");
     });
 
     /* display data depending on the value of selected option */

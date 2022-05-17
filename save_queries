@@ -717,3 +717,22 @@ else if ($_SESSION['role'] == 'Teacher'){
   })   
   });      
 </script>
+
+
+
+query for student report 
+/*   // Query for selecting total students     
+  $sql="SELECT g.grade, COUNT(s.id) AS `enrolles`
+  FROM gradelevel_tbl g
+  LEFT JOIN section_tbl ss
+  ON g.id = ss.gradelevel_id
+  LEFT JOIN enrollment_tbl e
+  ON ss.id = e.section_id
+  LEFT JOIN student_tbl s
+  ON e.id = s.id
+  GROUP BY g.id";
+  $result = mysqli_query($connection,$sql);
+  while ($row = mysqli_fetch_array($result)) {         
+     $Grade[] = $row['grade'];
+     $enrolles[] = $row['enrolles'];           
+  } */

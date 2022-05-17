@@ -1,5 +1,11 @@
 <script src="asset/js/pdfexport/jquery-3.5.1.js"></script>
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 if (!isset($_SESSION["role"])){
   header('location: login.php');
   exit();
@@ -75,10 +81,13 @@ if (!isset($_SESSION["role"])){
                                                         <td style="display:none; text-align: center;"><?php echo $row['username'];?></td>    
                                                         <td style="display:none; text-align: center;"><?php echo $row['password'];?></td>                                                
                                                         <td style="text-align: center;" <?php echo($_SESSION['role']=='Admin')?'': 'hidden'?>>                          
-                                                            <button type="button" class="badge btn btn-success ManageTeacher" 
-                                                            data-bs-toggle="modal" data-bs-target="#editTeacherModal" data-bs-whatever="@getbootstrap" id="<?php echo $row['id'];?>">Edit</button>    
-                                                            <button type="button" hidden class="badge btn btn-danger removeteacher" 
-                                                            data-bs-toggle="modal" data-bs-target="#deletemodalteacher" data-bs-whatever="@getbootstrap" <?php echo($_SESSION['role']=='Admin')?'': 'hidden'?>>Remove</button>                               
+                                                            <button type="button" class="badge btn btn-sm btn-success ManageTeacher" 
+                                                            data-bs-toggle="modal" data-bs-target="#editTeacherModal" title="Edit" data-bs-whatever="@getbootstrap" id="<?php echo $row['id'];?>">
+                                                            <i class="bi bi-pencil-square"></i></button>    
+
+                                                            <button type="button" hidden class="badge btn btn-sm btn-danger removeteacher" 
+                                                            data-bs-toggle="modal" data-bs-target="#deletemodalteacher" title="Remove" data-bs-whatever="@getbootstrap" <?php echo($_SESSION['role']=='Admin')?'': 'hidden'?>>
+                                                            <i class="bi bi-trash-fill"></i></button>                               
                                                         </td>
                                                         </tr>  
                                                         <?php $i++;
@@ -102,11 +111,10 @@ if (!isset($_SESSION["role"])){
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-
             <form action="MyCrud.php" method="POST" enctype="multipart/form-data">
              <div class="row">
-                    
-                    <div class="row">
+                   
+                  <div class="row">
                     <div class="col-md-6">
                       <label for="name-text" class="col-form-label">Role Type</label>
                         <select class="form-control" name="roletype" id="roletype" onchange="verifyrole()" required>
@@ -121,14 +129,14 @@ if (!isset($_SESSION["role"])){
                         <option value="Inactive">Inactive</option> 
                         </select>
                     </div> 
-                    </div>
+                  </div>
                                         
                     <div class="col-md-12">
                       <label for="lrn-name" class="col-form-label">Name</label>
                       <input type="text" class="form-control" name="name" id="name" required>
                     </div>
                   
-                  <div class="row">
+                <div class="row">
                   <div class="col-md-6">
                       <label for="name-text" class="col-form-label">Grade to Handle</label>
                         <select class="form-control" name="gradetohandle" id="gradetohandle" required>
@@ -144,12 +152,12 @@ if (!isset($_SESSION["role"])){
                       }
                       ?>  
                         </select>
-                    </div> 
+                  </div> 
                     <div class="col-md-6">
                       <label for="name-text" class="col-form-label">Contact No.</label>
                       <input type="text" class="form-control" name="contactno" id="contactno" required></textarea>
                     </div>   
-                  </div>
+                </div>
                   
                     <div class="col-md-12">
                       <label for="name-text" class="col-form-label">Address</label>
@@ -167,13 +175,9 @@ if (!isset($_SESSION["role"])){
                       <label for="name-text" class="col-form-label">Password</label>
                       <input type="password" class="form-control" name="password" id="password" required></textarea>
                     </div>      
-               
-                                  
-               </div> 
+                                          
+              </div> 
                                       
-                    <label for="id" style="visibility: hidden" class="col-form-label">Id</label>
-                    <input type="hidden" readonly class="form-control" name="id" id="id"></textarea>
- 
                   <div style="height: 35px; margin: 1px; padding:1px;" class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                       <button type="submit" name="insertteacher" class="btn btn-primary">Save</button>
@@ -300,11 +304,6 @@ if (!isset($_SESSION["role"])){
                       <span style="padding-top:4px"><i class="bi bi-eye-slash" id="togglePassword"></i></span>
                     </div>     
 
-                  <!--<div class="col-md-12">
-                      <label for="name-text" class="col-form-label">Select Image File</label>
-                      <input type="file" class="form-control" name="updateimage" id="updateimage" required></textarea>
-                    </div>-->
-
                 </div> 
 
                     <label style="visibility:hidden" for="id" class="col-form-label">Id</label>
@@ -317,7 +316,6 @@ if (!isset($_SESSION["role"])){
                 </div>
              </form>
       </div>
-     
     </div>
   </div>
 </div>
@@ -361,11 +359,6 @@ if (!isset($_SESSION["role"])){
             this.classList.toggle("bi-eye");
         });
 
-        // prevent form submit
-        const form = document.querySelector("form");
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-        });
 </script>
 
 
@@ -395,20 +388,3 @@ if (!isset($_SESSION["role"])){
       </div>
 
 
-<!------------------------------------------------FOR REG DETAILS ------------------------------------------------------------------>
-<div class="modal fade" id="showInfo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div style="height:100px" class="modal-dialog modal-md">
-        <div class="modal-content">
-          <div style="height:10px" class="modal-header bg-primary">
-            <h5 style="color:white" class="modal-title" id="exampleModalLabel">TEACHER RECORDS</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-              <div class="modal-body">                                                         
-                        <p>- Admins can view, edit all records of teachers</p>
-                        <p>- Teachers can only view records.</p>
-                        <hr>
-               <button type="button" class="btn btn-primary float-end btn-sm" data-bs-dismiss="modal">OK</button>
-               </div>  
-         </div>
-      </div>
-</div>

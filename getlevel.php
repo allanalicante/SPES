@@ -169,7 +169,7 @@
     elseif(isset($_REQUEST['studentDetails']))
     {
         $output = '';
-        $query = "SELECT CONCAT(firstname,' ',middlename,' ',lastname) AS `Name`, age, sex, DATE_FORMAT(birthday, '%M %d,%Y') AS `birthday`,
+        $query = "SELECT CONCAT(firstname,' ',middlename,' ',lastname,' ',extension) AS `Name`, age, sex, DATE_FORMAT(birthday, '%M %d,%Y') AS `birthday`,
         CONCAT(street,',',barangay,',',municipality) AS `Address`, photo, mothertongue, religion, lrn, gname, gcontactno, DATE_FORMAT(dateofenroll, '%M %d,%Y') AS `dateenroll`,
         studentType, 4Ps, specifyneeds,specifyneeds2, assistivetech, specifyassistivetech
         FROM student_tbl
@@ -178,7 +178,7 @@
         WHERE student_tbl.`id` = '".$_POST['studentDetails']."'";
         $result = mysqli_query($connection, $query);
 
-        $query2 = "SELECT CONCAT(firstname,' ',middlename,' ',lastname) AS `Name`, age, lrn, sex, DATE_FORMAT(birthday, '%M %d,%Y') AS `birthday`,
+        $query2 = "SELECT CONCAT(firstname,' ',middlename,' ',lastname,' ',extension) AS `Name`, age, lrn, sex, DATE_FORMAT(birthday, '%M %d,%Y') AS `birthday`,
         CONCAT(street,',',barangay,',',municipality) AS `Address`, photo, studenttype
         FROM student_tbl 
         WHERE id = '".$_POST['studentDetails']."'";
@@ -487,7 +487,10 @@
         ON e.student_id = s.id
         INNER JOIN schoolyear_tbl sy
         ON sy.id = e.schoolyear_id
-        WHERE s.lrn = '" . $_REQUEST['search'] . "' AND e.status = 'enrolled'";
+        WHERE (s.lrn = '" . $_REQUEST['search'] . "' AND e.status = 'enrolled') OR 
+        (s.lrn = '" . $_REQUEST['search'] . "' AND e.status ='Dropped Out') OR 
+        (s.lrn = '" . $_REQUEST['search'] . "' AND e.status ='Transferred Out') OR
+        (s.lrn = '" . $_REQUEST['search'] . "' AND e.status ='pending')";
         $result = mysqli_query($connection,$query) ;
     
         if(mysqli_num_rows($result)>0)
@@ -795,8 +798,8 @@
                     <td style="font-size:13px; font-weight: 600"><?php echo $row['Section'];?></td>
                     <td style="font-size:13px; font-weight: 600"><?php echo $row['Advisor'];?></td>
                     <td>                                                                                                                                                                                                                                                                                
-                        <a href="/spes/index.php?page=section&classid=<?php echo $row['ClassID'];?>">
-                        <button type="button"  id="<?php echo $row['ClassID'];?>" class="badge btn btn-info seeClass">View Class</button></a>                                                                                                                                                                                                                                              
+                        <a href="index.php?page=section&classid=<?php echo $row['ClassID'];?>">
+                        <button type="button" title="View Class" id="<?php echo $row['ClassID'];?>" class="badge btn btn-sm btn-info seeClass"><i class="bi bi-eye"></i></button></a>                                                                                                                                                                                                                                              
                     </td>                        
                 </tr>
                 <?php 
@@ -809,6 +812,7 @@
             $(document).ready(function() {
                 var table = $('#table1').DataTable( {
                     lengthChange: true,
+                    order: [[1, 'asc']],
                     buttons: [
                         {
                         extend: 'copy',

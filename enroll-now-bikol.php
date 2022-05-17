@@ -478,10 +478,10 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>A3. Returning (Balik-aral) <span style="color: red; font-weight: 900;">  *</span></label>
-                                            <select class="form-select mb-3" aria-label=".form-select-lg example" style="background-image: none;" name="A3" id="A3" required="">
+                                            <select class="form-select mb-3" aria-label=".form-select-lg example"  name="A3" id="A3" required="">
                                             <option value="">Bukasan ining select menu</option>
-                                            <option value="Yes">>Iyo<</option>
-                                            <option value="No">>Dai<</option>
+                                            <option value="Yes">Iyo</option>
+                                            <option value="No">Dai</option>
                                             </select>
                                             <div class="invalid-feedback">
                                                 Magpili anay ki simbag.
@@ -517,10 +517,10 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group autocomplete">
-                                            <label>A6. Huri na anyos kan eskuela na tinapusan</label>
+                                            <label>A6. Huri na anyos kan eskuela na tinapusan <span style="color: red; font-weight: 900">  *</span></label>
                                             <input type="text" class="form-control" name="A6" id="A6" required="">
                                             <div class="invalid-feedback">
-                                                >Dai< pwedeng wara simbag.
+                                                Dai pwedeng wara simbag.
                                             </div>  
                                         </div>
                                     </div>
@@ -529,35 +529,35 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                             <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group autocomplete">
-                                            <label>A7. Huri na eskuelang na entraan</label>
+                                            <label>A7. Huri na eskuelang na entraan <span style="color: red; font-weight: 900">  *</span></label>
                                             <input type="text" class="form-control" name="A7" id="A7" required="">
                                             <div class="invalid-feedback">
-                                                >Dai< pwedeng wara simbag.
+                                                Dai pwedeng wara simbag.
                                             </div>  
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group ">
                                             <label>A8. ID kan Eskuela</label>
-                                            <input type="number" class="form-control" name="A8" id="A8" required="">
+                                            <input type="number" class="form-control" style="background-image: none;" name="A8" id="A8">
                                             <div class="invalid-feedback">
-                                                >Dai< pwedeng wara simbag.
+                                                Dai pwedeng wara simbag.
                                             </div>  
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group ">
-                                            <label>A9. Adres kan Eskuela</label>
+                                            <label>A9. Adres kan Eskuela <span style="color: red; font-weight: 900">  *</span></label>
                                             <input type="text" class="form-control" name="A9" id="A9" required="">
                                             <div class="invalid-feedback">
-                                                >Dai< pwedeng wara simbag.
+                                                Dai pwedeng wara simbag.
                                             </div>  
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                     <div class="form-group">
                                             <label>A10. Uri kang Eskuela <span style="color: red; font-weight: 900;">  *</span></label>
-                                            <select class="form-select mb-3" aria-label=".form-select-lg example" style="background-image: none;" name="A10" id="A10" required="">
+                                            <select class="form-select mb-3" aria-label=".form-select-lg example"  name="A10" id="A10" required="">
                                             <option value="">Bukasan ining select menu</option>
                                             <option value="PUBLIC">PUBLIKO</option>
                                             <option value="PRIVATE">PRIBADO</option>
@@ -618,10 +618,10 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     <div class="form-group">
                                         <label>B2. LRN</label>
                                         <small class="text-muted">(<i>Learners Reference No.</i>)</small><span style="color: red; font-weight: 900;">  *</span>
-                                        <input type="tel" class="form-control check_email" style="background-image: none;" id="B2" name="B2" maxlength="12" required="">
+                                        <input type="tel" class="form-control check_email"  id="B2" name="B2" maxlength="12" required="">
                                         <p class="feedback" style="font-size: .875em; color: #dc3545; margin-top: .25rem"></p>
                                         <div class="invalid-feedback">
-                                                >Dai< pwedeng wara simbag.
+                                                Dai pwedeng wara simbag.
                                         </div>
                                     </div>
                                 </div>
@@ -630,7 +630,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                         <label>Litrato kan Estudiante <span style="color: red; font-weight: 900;">  *</span><!-- <i style="color: red; font-size: 12px"> (Note: Recommended file size: 1-5 mb.)</i> --></label>
                                         <input name="photo" type="file" class="form-control" id="photo" required="">
                                         <div class="invalid-feedback">
-                                                >Dai< pwedeng wara simbag.
+                                                Dai pwedeng wara simbag.
                                             </div>  
                                     </div>
                                 </div>
@@ -641,19 +641,19 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 <div class="col-md-3">                                    
                                     <input type="text" class="form-control" id="B3" name="B3" placeholder="B3. Apelyido" required=""> 
                                     <div class="invalid-feedback">
-                                        >Dai< pwedeng wara simbag.
+                                        Dai pwedeng wara simbag.
                                     </div> 
                                 </div>
                                 <div class="col-md-3">    
                                     <input type="text" class="form-control"id="B4" name="B4" placeholder="B4. Ngaran" required="">
                                     <div class="invalid-feedback">
-                                        >Dai< pwedeng wara simbag.
+                                        Dai pwedeng wara simbag.
                                     </div>                                        
                                 </div>
                                 <div class="col-md-3">    
-                                    <input type="text" class="form-control" id="B5" name="B5" placeholder="B5. Tahaw na Ngaran" required="">  
+                                    <input type="text" class="form-control" style="background-image: none;" id="B5" name="B5" placeholder="B5. Tahaw na Ngaran">  
                                     <div class="invalid-feedback">
-                                        >Dai< pwedeng wara simbag.
+                                        Dai pwedeng wara simbag.
                                     </div>                                      
                                 </div>
                                 <div class="col-md-2">    
@@ -668,7 +668,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                         <label>B7. KUMPLE-ANYO <span style="color: red; font-weight: 900;">  *</span></label>
                                         <input type="date" class="form-control" id="B7" name="B7" onchange="ageCalculator()" required="">
                                         <div class="invalid-feedback">
-                                                >Dai< pwedeng wara simbag.
+                                                Dai pwedeng wara simbag.
                                         </div>  
                                     </div>
                                 </div>
@@ -678,7 +678,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                         <label>B8. Edad <span style="color: red; font-weight: 900;">  *</span></label>
                                         <input type="tel" maxlength="2" class="form-control" id="B8" name="B8" required="">
                                         <div class="invalid-feedback">
-                                                >Dai< pwedeng wara simbag.
+                                                Dai pwedeng wara simbag.
                                         </div>  
                                     </div>
                                 </div>
@@ -701,7 +701,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     <div class="form-group ">
                                     <label>B10. Grupong Katutubo (Indigenous Group) <span style="color: red; font-weight: 900;">  *</span></label>
                                         <small class="text-muted">(<i>Ethnic Group</i>)</small>
-                                        <input list="B10list" type="text" class="form-control" name="B10" id="B10" placeholder="Select">
+                                        <input list="B10list" type="text" class="form-control" name="B10" id="B10" placeholder="Select" required="">
                                         <datalist id="B10list" required="">   
                                             <option value="">Seleksion</option>                                         
                                             <option value="Ifugao">Ifugao</option>
@@ -728,7 +728,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>B12. Mother Tongue <span style="color: red; font-weight: 900;">  *</span></label>
-                                        <input list="B12list" type="text" class="form-control" name="B12" id="B12" placeholder="Select">
+                                        <input list="B12list" type="text" class="form-control" name="B12" id="B12" placeholder="Select" required="">
                                         <datalist id="B12list" required="">                                            
                                             <option value="Tagalog">Tagalog</option>
                                             <option value="Kapampangan">Kapampangan</option>                                           
@@ -754,10 +754,11 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group ">
-                                        <label>Relih>Iyo<n <span style="color: red; font-weight: 900;">  *</span></label>
-                                        <input list="religionlist" type="text" class="form-control" name="religion" id="religion" placeholder="Select">
+                                        <label>Relihiyon <span style="color: red; font-weight: 900;">  *</span></label>
+                                        <input list="religionlist" type="text" class="form-control" name="religion" id="religion" placeholder="Select" required="">
                                         <datalist id="religionlist" required="">                                           
                                             <option value="Roman Catholic">Roman Catholic</option>
+                                            <option value="Christianity">Christianity</option>
                                             <option value="Islam">Islam</option>                                           
                                             <option value="Evangelical (PCEC)">Evangelical (PCEC)</option>
                                             <option value="Iglesia Ni Cristo">Iglesia Ni Cristo</option>                                           
@@ -777,7 +778,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group ">
-                                        <label>Moda kan pag Adal <span style="color: red; font-weight: 900;">  *</span></label>
+                                        <label>Modal kan pag Adal <span style="color: red; font-weight: 900;">  *</span></label>
                                         <select class="form-control" name="modality" id="modality" required="">   
                                             <option value="">Seleksion</option>                                         
                                             <option value="Modular">Modular</option>
@@ -824,7 +825,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                                         <div class="form-group">
                                                         <label>B14. May espesial ba na pangangaipuan ang Mag-aadal? <span style="color: red; font-weight: 900;">  *</span></label>
                                                             <div class="col-6">
-                                                            <select class="form-select mb-3" aria-label=".form-select-lg example" style="background-image: none;" id="B14" name="B14" onchange="special()" required="">
+                                                            <select class="form-select mb-3" aria-label=".form-select-lg example"  id="B14" name="B14" onchange="special()" required="">
                                                             <option value="No">Dai</option>
                                                             <option value="Yes">Iyo</option>
                                                             </select>
@@ -993,13 +994,13 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                             <div class="row">
                                     <div style="border-right: solid 1px gray" class="col-md-4">
                                         <div class="form-group ">
-                                            <label>Bilog na Ngaran kan Ama <span style="color: red; font-weight: 900;">  *</span></label>
+                                            <label>Bilog na Ngaran kan Ama </label>
                                             <input type="text" class="form-control" style="background-image: none;" id="father" name="father">
                                         </div>
                                     </div>
                                     <div style="border-right: solid 1px gray" class="col-md-4">
                                         <div class="form-group ">
-                                            <label>Bilog na Ngaran kan Ina <span style="color: red; font-weight: 900;">  *</span></label>
+                                            <label>Bilog na Ngaran kan Ina </label>
                                             <input type="text" class="form-control" style="background-image: none;" id="mother" name="mother">
                                         </div>
                                     </div>
@@ -1032,7 +1033,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 <div style="border-right: solid 1px gray" class="col-md-4">
                                         <div class="form-group">
                                                 <label>Highest Educational Attainment</label>
-                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="fathereducattainment" name="fathereducattainment">
+                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="mothereducattainment" name="mothereducattainment">
                                                 <option value="" selected>Bukasan ining select menu</option>
                                                 <option value="Elementary Graduate">Elementary Graduate</option>
                                                 <option value="High School Graduate">High School Graduate</option>
@@ -1046,7 +1047,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 <div class="col-md-4">
                                         <div class="form-group">
                                                 <label>Highest Educational Attainment</label>
-                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="fathereducattainment" name="fathereducattainment">
+                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="guardianeducattainment" name="guardianeducattainment">
                                                 <option value="" selected>Bukasan ining select menu</option>
                                                 <option value="Elementary Graduate">Elementary Graduate</option>
                                                 <option value="High School Graduate">High School Graduate</option>
@@ -1079,7 +1080,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 <div style="border-right: solid 1px gray" class="col-md-4">
                                         <div class="form-group">
                                                 <label>Tungod kan Trabaho</label>
-                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="fatheremployment" name="fatheremployment" >
+                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="motheremployment" name="motheremployment" >
                                                 <option value="" selected>Bukasan ining select menu</option>
                                                 <option value="Full Time">Full Time</option>
                                                 <option value="Part Time">Part Time</option>
@@ -1092,7 +1093,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 <div class="col-md-4">
                                         <div class="form-group">
                                                 <label>Tungod kan Trabaho</label>
-                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="fatheremployment" name="fatheremployment" >
+                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="guardianemployment" name="guardianemployment" >
                                                 <option value="" selected>Bukasan ining select menu</option>
                                                 <option value="Full Time">Full Time</option>
                                                 <option value="Part Time">Part Time</option>
@@ -1122,7 +1123,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 <div style="border-right: solid 1px gray" class="col-md-4">
                                         <div class="form-group">
                                                 <label>Nagtatrabaho sa harong mala sa ECQ?</label>
-                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="fatherWFH" name="fatherWFH">
+                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="motherWFH" name="motherWFH">
                                                 <option value="" selected>Bukasan ining select menu</option>
                                                 <option value="Yes">Iyo</option>
                                                 <option value="No">Dai</option>
@@ -1132,7 +1133,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 <div class="col-md-4">
                                         <div class="form-group">
                                                 <label>Nagtatrabaho sa harong mala sa ECQ?</label>
-                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="fatherWFH" name="fatherWFH">
+                                                <select class="form-select  mb-3" style="background-image: none;" aria-label=".form-select-lg example" id="guardianWFH" name="guardianWFH">
                                                 <option value="" selected>Bukasan ining select menu</option>
                                                 <option value="Yes">Iyo</option>
                                                 <option value="No">Dai</option>
@@ -1160,13 +1161,13 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group autocomplete ">
-                                            <label>Contact Number/s (cellphone/telephone) <span style="color: red; font-weight: 900;">  *</span></label>
+                                            <label>Contact Number/s (cellphone/telephone) </label>
                                             <input type="tel" maxlength="11" class="form-control" id="guardiancontact" name="guardiancontact" required="">
                                             <div class="invalid-feedback">
                                                     Dai pwedeng wara simbag.
                                                 </div>
                                             <br>
-                                            <label>Relationship to the Guardian <span style="color: red; font-weight: 900;">  *</span></label>
+                                            <label>Relationship to the Guardian </label>
                                             <input type="text" class="form-control" id="guardianrelate" name="guardianrelate" required="">
                                             <div class="invalid-feedback">
                                                     Dai pwedeng wara simbag.
@@ -1793,7 +1794,6 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 $('#B2').val(response[0]['lrn']);                                   
                                 $('#B4').val(response[0]['firstname']); 
                                 $('#B3').val(response[0]['lastname']); 
-                                $('#B4').val(response[0]['firstname']); 
                                 $('#B5').val(response[0]['middlename']); 
                                 $('#B6').val(response[0]['extension']); 
                                 $('#B7').val(response[0]['birthday']); 
@@ -1872,7 +1872,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                             }
                             
                            
-                            if (x.status==0) {
+                           /*  if (x.status==0) {
                                 alert('You are offline!!\n Please Check Your Network.');
                             } else if(x.status==404) {
                                 alert('Requested URL not found.');
@@ -1884,7 +1884,7 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                 alert('Request Time out.');
                             } else {
                                 alert('Unknow Error.\n'+ x.responseText);
-                            }
+                            } */
 
                            //$('.myDiv').find(':input').val('');
                            //$('.myDiv')[0].reset();

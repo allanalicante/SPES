@@ -36,6 +36,7 @@ elseif (isset($data) && ($data=='student-list')){
             $(document).ready(function (){
                 var dataTable = $('#table1').DataTable( {
                     lengthChange: true,
+                    order: [[1, 'asc']],
                     buttons: [
                             {
                                 extend: 'copy',
@@ -123,10 +124,10 @@ elseif (isset($data) && ($data=='student-list')){
                 console.log(data);
                 $('#editstud_id').val(data[0]);
                  /* $('#updateimage').val(data[1]); */ 
-                $('#editlrn').val(data[6]);
-                $('#editfirstname').val(data[3]);
-                $('#editmiddlename').val(data[4]);
-                $('#editlastname').val(data[5]);
+                $('#editlrn').val(data[3]);
+                $('#editfirstname').val(data[4]);
+                $('#editmiddlename').val(data[5]);
+                $('#editlastname').val(data[6]);
 
                 $('#editlevelsectionid1').val(data[8]);
                 var grade = data[8];   
@@ -156,7 +157,7 @@ elseif (isset($data) && ($data=='student-list')){
                 console.log(data);
                 $('#admineditstud_id').val(data[0]);
                  /* $('#updateimage').val(data[1]); */ 
-                $('#admineditfirstname').val(data[3] + ' ' + data[5]);
+                $('#admineditfirstname').val(data[4] + ' ' + data[6]);
                 });  
              });
 
@@ -256,8 +257,9 @@ elseif(isset($data) && ($data=='pending-student')){
                         console.log(data);
                     }
                     }) 
-                    });  
-                    });
+                }); 
+
+            });
    
             // Script to open a modal for removing student    
             $(document).ready(function() {
@@ -316,6 +318,7 @@ elseif(isset($data) && ($data =='section-list')){
             $(document).ready(function() {
                 var table = $('#table1').DataTable( {
                     lengthChange: true,
+                    order: [[1, 'asc']],
                   /*   buttons: [
                         {
                             extend: 'copy', 
@@ -334,6 +337,7 @@ elseif(isset($data) && ($data =='section-list')){
         <script>
             swal({
                 title: "<?php echo $_SESSION['status']; ?>",
+                text: "<?php echo $_SESSION['text']; ?>",
                 icon: "<?php echo $_SESSION['status_code']; ?>",
                 button: "Continue",
             });
@@ -387,6 +391,7 @@ elseif(isset($data) && ($data =='section-list')){
                     }).get();
                     console.log(data);
                     $('#removeId').val(data[0]);
+                    $('#totalstudents').val(data[5]);
                 });  
                 });
 
@@ -450,16 +455,8 @@ elseif(isset($data) && ($data =='teacher-list')){
             $(document).ready(function() {
                 var table = $('#table1').DataTable( {
                     lengthChange: true,
-                  /*   buttons: [
-                        {
-                            extend: 'copy', 
-                            split: [ 'csv', 'excel', 'pdf', 'print'],
-                        },
-                        'colvis'
-                    ] */
                 } );          
-               /*  table.buttons().container()
-                    .appendTo( '#table1_wrapper .col-md-6:eq(0)' ); */
+
             } );
         </script>
   <?php
@@ -477,7 +474,6 @@ elseif(isset($data) && ($data =='teacher-list')){
    }
    ?>
     <script>
- 
 
         // Script for displaying modal for adding teacher/user
         $(document).ready(function() {
@@ -585,6 +581,7 @@ elseif(isset($data) && ($data =='class-report-list')){
             $(document).ready(function() {
                 var table = $('#table1').DataTable( {
                     lengthChange: true,
+                    order: [[1, 'asc']],
                     buttons: [
                         {
                         extend: 'copy',
@@ -680,8 +677,28 @@ elseif(isset($data) && ($data =='SPED-report-list')){
                 } );          
                 table.buttons().container()
                     .appendTo( '#table1_wrapper .col-md-6:eq(0)' );
+
+
+                       //Script for displaying student information
+            $(document).ready(function(){
+            $(document).on('click','.viewStudentProfile',function(){
+                var studentDetails = $(this).attr("id");
+                $.ajax({
+                url:"getlevel.php",
+                method:"post",
+                data: {studentDetails:studentDetails},
+                success:function(data){
+                    $('#studentDetails').html(data);
+                    $('#printId').val(studentDetails);
+                    $('#viewStudentProfile').modal('show');
+                      }
+                    });         
+                });
+             });  
             } );
         </script>
+
+        
     <?php
 }
 elseif(isset($data) && ($data =='graduate-list')){
@@ -976,6 +993,36 @@ elseif(isset($page) && $page=='section'){
                     }
                 });         
             });
+
+            $(document).on('click','.editStudentSection',function(){  
+                      
+                      $('#editStudentSection').modal('show');
+                      $tr = $(this).closest('tr');
+                      var data = $tr.children("td").map(function() {
+                          return $(this).text();
+                      }).get();
+                      console.log(data);
+                      $('#editstud_id').val(data[11]);
+                       /* $('#updateimage').val(data[1]); */ 
+                      $('#editlrn').val(data[1]);
+                      $('#editfirstname').val(data[2]);
+                      $('#editmiddlename').val(data[3]);
+                      $('#editlastname').val(data[4]);
+      
+                      $('#editlevelsectionid1').val(data[6]);
+                      var grade = data[6];   
+                      console.log(grade);
+                       $.ajax({
+                          data:{grade:grade},
+                          method: "POST",
+                          url: "getlevel.php",
+                          success: function(data)
+                          {
+                              $('#editGradeSection').html(data)
+                              console.log(data);
+                          }
+                        }) 
+                      }); 
         });
     </script>
     <?php  

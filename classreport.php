@@ -213,8 +213,9 @@
                                                 <td style="font-size:13px; font-weight: 600"><?php echo $row['Section'];?></td>
                                                 <td style="font-size:13px; font-weight: 600"><?php echo $row['Advisor'];?></td>
                                                 <td>                                                                                                                                                                                                                                                                                
-                                                    <a href="/spes/index.php?page=section&classid=<?php echo $row['ClassID'];?>">
-                                                    <button type="button"  id="<?php echo $row['ClassID'];?>" class="badge btn btn-info seeClass">View Class</button></a>                                                                                                                                                                                                                                              
+                                                    <a href="index.php?page=section&classid=<?php echo $row['ClassID'];?>">
+                                                    <button type="button" title="View Class" id="<?php echo $row['ClassID'];?>" class="badge btn-sm btn btn-info seeClass">
+                                                    <i class="bi bi-eye"></i></button></a>                                                                                                                                                                                                                                              
                                                 </td>                        
                                                 </tr>
                                                 <?php 

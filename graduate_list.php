@@ -42,7 +42,7 @@ if (!isset($_SESSION["role"])){
                                 <?php
                                      
                                 $query = "SELECT 
-                                s.lrn, CONCAT(s.`firstname`, ' ',s.`middlename`, ' ', s.`lastname`) AS `name`, g.grade ,e.`status`, e.`dateofexit`, s.`Remarks`
+                                s.lrn, CONCAT(s.`firstname`, ' ',s.`middlename`, ' ', s.`lastname`, ' ',s.`extension`) AS `name`, g.grade ,e.`status`, e.`dateofexit`, s.`Remarks`
                                     FROM student_tbl s
                                     INNER JOIN enrollment_tbl e
                                     ON s.id = e.`student_id`
