@@ -44,7 +44,7 @@
               exit();
       }
           else{
-              $message="Invalid username or passwordd!";
+              $message="Invalid username or password!";
               $_SESSION['error']=$message;
               header("Location: login.php?Invalid username/password!");
               exit();

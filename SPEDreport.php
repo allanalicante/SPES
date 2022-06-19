@@ -55,7 +55,8 @@ if (!isset($_SESSION["role"])){
                                     INNER JOIN section_tbl st
                                     ON st.`gradelevel_id` = g.`id`
                                     WHERE e.status = 'enrolled'
-                                    AND s.`spedneeds` = 'Yes'";
+                                    AND s.`spedneeds` = 'Yes'
+                                    GROUP BY s.id";
                                 $query_run = mysqli_query($connection, $query);
                                 $i=1;
                                 while($row=$query_run->fetch_assoc()){

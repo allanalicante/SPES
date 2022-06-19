@@ -12,16 +12,18 @@ session_start();
                             <div style="width: auto;"class="card">
                                 <div style="background-color: lightgray" class="card-header">
                                     <h4 class="card-title">STUDENT STATUS</h4>
-                                    <p class="card-title">In this page, you can check your admission status.
+                                    <p class="card-title">In this page, you can check your admission status using your assigned LRN (Learner Reference Number). <br>
+                                    or by using your personal information formatted as first name, last name, birthday (yyyy-mm-dd).<br>
+                                    Ex. Juan Dela Cruz 2010-01-31
                                     </p>
                                 </div>
                                 <br>
                                 <div style="padding-top: .2rem;" class="card-body">
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-md-2 col-lg-4">
                                             <div class="form-group">
                                                 <div class="searchdiv">
-                                                    <label for="search lrn">Search LRN</label> 
+                                                    <label for="search lrn">Search Data</label> 
                                                         <div class="input-group mb-3">                                               
                                                             <input type="text" class="form-control" name="search_lrn" id="search_lrn" 
                                                             required oninvalid="this.setCustomValidity('Please enter your first and last name separated by a space (e.g. Jane Miller)');" onchange="try{setCustomValidity('')}catch(e){};" x-moz-errormessage="Please enter your first and last name separated by a space (e.g. Jane Miller)">
@@ -35,8 +37,10 @@ session_start();
                                     </div>
 
                                     <div class="card-body brand">
-                                        <div id="result">
+                                        <div class="table-responsive container"> 
+                                            <div id="result">
 
+                                            </div>
                                         </div>
                                     </div>
                                          <br>

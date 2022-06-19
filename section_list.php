@@ -1,8 +1,99 @@
 <script src="asset/js/pdfexport/jquery-3.5.1.js"></script>
+<script>
+     $(document).ready(function () 
+          {
+            $('#studlist').hide();             
+        });
+
+    function display(){    
+        var togglethis = document.getElementById("firsttoggle");
+        if (togglethis.checked)
+        {
+            $('#studlist').show();
+        }
+        else
+        {
+            $('#studlist').hide();
+        }
+    }
+</script>
+<style>
+        /* The switch - the box around the slider */
+    .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    }
+
+    /* The slider */
+    .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    }
+
+    .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    }
+
+    input:checked + .slider {
+    background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+    border-radius: 34px;
+    }
+
+    .slider.round:before {
+    border-radius: 50%;
+    }
+</style>
 <?php
 if (!isset($_SESSION["role"])){
   header('location: login.php');
   exit();
+}
+
+if($_SESSION['role']=='Teacher')
+{
+  $viewable = true;
+}
+else
+{
+  $viewable = false;
 }
 ?>
 
@@ -61,8 +152,8 @@ if (!isset($_SESSION["role"])){
                                                     {
                                                     $query = "SELECT s.id AS `ClassID`, g.grade AS `Grade`, s.sectionname AS `Section`, t.name AS `Advisor`, 
                                                     COUNT(IF(e.status = 'enrolled', e.section_id, NULL)) AS students, g.id,
-                                                    COUNT(IF(ss.sex = 'Male',ss.id, NULL)) AS `boys`, 
-						                                        COUNT(IF(ss.sex = 'female',ss.id, NULL)) AS `girls`, COUNT(ss.id) AS `total`
+                                                    COUNT(IF(ss.sex = 'Male' AND e.`status` = 'enrolled',ss.id, NULL)) AS `boys`, 
+                                                    COUNT(IF(ss.sex = 'female' AND e.`status` = 'enrolled',ss.id, NULL)) AS `girls`, COUNT(IF(e.`status` = 'enrolled',ss.id, NULL)) AS `total`
                                                     FROM section_tbl s
                                                     INNER JOIN gradelevel_tbl g
                                                     ON g.id = s.gradelevel_id
@@ -79,9 +170,9 @@ if (!isset($_SESSION["role"])){
                                                     else
                                                     {
                                                     $query = "SELECT s.id AS `ClassID`, g.grade AS `Grade`, s.sectionname AS `Section`, t.name AS `Advisor`, 
-                                                    COUNT(IF(e.status = 'enrolled', e.section_id, NULL)) AS students, g.id,
-                                                    COUNT(IF(ss.sex = 'Male',ss.id, NULL)) AS `boys`, 
-                                                    COUNT(IF(ss.sex = 'female',ss.id, NULL)) AS `girls`, COUNT(ss.id) AS `total`
+                                                     COUNT(IF(e.status = 'enrolled', e.section_id, NULL)) AS students, g.id,
+                                                    COUNT(IF(ss.sex = 'Male' AND e.`status` = 'enrolled',ss.id, NULL)) AS `boys`, 
+                                                    COUNT(IF(ss.sex = 'female' AND e.`status` = 'enrolled',ss.id, NULL)) AS `girls`, COUNT(IF(e.`status` = 'enrolled',ss.id, NULL)) AS `total`
                                                     FROM section_tbl s
                                                     INNER JOIN gradelevel_tbl g
                                                     ON g.id = s.gradelevel_id
@@ -114,11 +205,11 @@ if (!isset($_SESSION["role"])){
                                                           data-bs-target="#editmodallevel" data-bs-whatever="@getbootstrap" <?php echo($_SESSION['role']=='Admin')?'': 'hidden'?>>
                                                           <i class="bi bi-pencil-square"></i></button><!-- Edit Button -->
 
-                                                         <button type="button" class="badge btn btn-danger removeLevel" data-bs-toggle="modal" 
+                                                        <!--  <button type="button" class="badge btn btn-danger removeLevel" data-bs-toggle="modal" 
                                                           data-bs-target="#removemodallevel" data-bs-whatever="@getbootstrap" <?php echo($_SESSION['role']=='Admin')?'': 'hidden'?>>
-                                                          <i class="bi bi-trash-fill"></i></button>                                                       
+                                                          <i class="bi bi-trash-fill"></i></button>        -->                                                
                                                          <!--  <button type="button"  id="<?php echo $row['ClassID'];?>" class="badge btn btn-info tableModal"
-                                                          data-bs-toggle="modal" data-bs-target="#tableModal" >View Class</button>   -->     
+                                                          data-bs-toggle="modal" data-bs-target="#tableModal" >Remove Class</button>   -->     
 
                                                           <a href="index.php?page=section&classid=<?php echo $row['ClassID'];?>"><button type="button"  id="<?php echo $row['ClassID'];?>" title="View" class="badge btn btn-sm btn-primary seeClass">
                                                           <i class="bi bi-eye"></i></button></a><!-- View Class Button -->                                                                                                                                                                                                                                           
@@ -133,6 +224,102 @@ if (!isset($_SESSION["role"])){
                                         </div>
                      </div>
                 </section>        
+
+
+                <hr class="mt-0">
+
+      <!-- Default switch -->
+    <div <?php if ($viewable===false){?>style="display:none"<?php } ?>>
+
+        <div class="form-group">
+            <label class="switch">
+                <input type="checkbox" id="firsttoggle" onclick="display()">
+                <span class="slider round"></span>
+            </label>
+            <p>Display Previous Class</p>
+        </div>
+
+        <div class="row" id="studlist" >
+          <div class="col-12 col-lg-12 col-md-12"> <!-- 5 row -->
+                <div class="section brand">
+                    <div class="card">                   
+                        <div class="card-header"></div>                                                   
+                            <div class="card-body">    
+                                <div class="table-responsive">                
+                                <table class="text-center table table-bordered table-striped" id="table2" style="width: 100%">   
+                                    <thead style="background-color: #435ebe; color: white; ">
+                                        <tr>
+                                          <th style="Display:none">ID</th>
+                                            <th style="">SY</th>
+                                            <th style="text-align: center;">Level</th>
+                                            <th style="text-align: center;">Section</th>
+                                            <th style="text-align: center;">Advisor</th>
+                                            <th style="display:none;">Students</th>
+                                            <th style="display:none;">id</th>
+                                            <th style="text-align: center;">Boys</th>
+                                            <th style="text-align: center;">Girls</th>
+                                            <th style="text-align: center;">Total</th>
+                                            <th style="text-align: center;">Action</th>                                   
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php                              
+                                            $userid = $_SESSION['userid'];
+                                            $query = "SELECT s.id AS `ClassID`, g.grade AS `Grade`, s.sectionname AS `Section`, t.name AS `Advisor`, sy.`SchoolYear`,
+                                            COUNT(IF(e.status = 'renew', e.section_id, NULL)) AS students, g.id,
+                                            COUNT(IF(ss.sex = 'Male' AND e.`status` = 'renew',ss.id, NULL)) AS `boys`, 
+                                            COUNT(IF(ss.sex = 'female' AND e.`status` = 'renew',ss.id, NULL)) AS `girls`, COUNT(IF(e.`status` = 'renew',ss.id, NULL)) AS `total`
+                                            FROM section_tbl s
+                                            INNER JOIN gradelevel_tbl g
+                                            ON g.id = s.gradelevel_id
+                                            INNER JOIN teacher t
+                                            ON t.id = s.teacher_id
+                                            LEFT JOIN enrollment_tbl e
+                                            ON e.section_id = s.id
+                                            LEFT JOIN student_tbl ss
+                                            ON e.student_id = ss.id
+                                            LEFT JOIN schoolyear_tbl sy
+	                                          ON e.`schoolyear_id` = sy.`id`
+                                            WHERE (t.id = '" . $userid ."' AND e.`status` = 'renew')
+                                            GROUP BY s.id
+                                            ORDER BY g.id";
+                                      
+                                            
+                                            $query_run = mysqli_query($connection, $query);
+                                            $i=1;
+                                            while($row=$query_run->fetch_assoc()){
+                                        ?>                    
+                                        <tr>
+                                        <td style="Display:none"><?php echo $row['ClassID'];?></td>
+                                                  <td style="font-size:13px; font-weight: 600"><?php echo $row['SchoolYear'];?></td>
+                                                  <td style="font-size:13px; font-weight: 600"><?php echo $row['Grade'];?></td>
+                                                  <td style="font-size:13px; font-weight: 600"><?php echo $row['Section'];?></td>
+                                                  <td style="font-size:13px; font-weight: 600"><?php echo $row['Advisor'];?></td>
+                                                  <td style="display:none;"><?php echo $row['students'];?></td>
+                                                  <td style="display:none;"><?php echo $row['id'];?></td>
+                                                  <td style="text-align: center;"><?php echo $row['boys'];?></td>
+                                                  <td style="text-align: center;"><?php echo $row['girls'];?></td>
+                                                  <td style="text-align: center;"><?php echo $row['total'];?></td>   
+                                                <td style="">                                 
+                                                <a href="index.php?page=section&showhistory=<?php echo $row['ClassID'];?>"><button type="button"  id="<?php echo $row['ClassID'];?>" title="View" class="badge btn btn-sm btn-primary seeClass">
+                                                          <i class="bi bi-eye"></i></button></a><!-- View Class Button -->                                                                
+                                                </td>                                         
+                                        </tr>
+                                        <?php 
+                                        $i++;} ?>                        
+                                    </tbody>
+                                </table>
+                                </div>  
+                            </div>
+                    </div>
+                </div>
+          </div>
+        </div>
+    </div>
+
+
+
+
 </div>
 
 <!----------------------------------------------- FOR ADDING LEVEL AND SECTION MODAL --------------------------------------------------------------------->
@@ -146,22 +333,43 @@ if (!isset($_SESSION["role"])){
       </div>
       <div class="modal-body">
                                                  
-        <form action="MyCrud.php" method="POST" >
-            <div class="mb-3">
-                <label for="level">Level</label>
-                <select class="form-control" name="level" id="level" onchange="selectTeacher()" required>
-                <option value="" disabled selected>Select</option> 
-                <?php      
-                  $query = "SELECT * FROM `gradelevel_tbl`";
-                  $query_run = mysqli_query($connection, $query);
-                  while($row=$query_run->fetch_assoc()){  
-                  ?>     
-                  <option value="<?php echo $row['id']?>"><?php echo $row['grade'];?></option>
-                  <?php  
-                  }
-                  ?>  
-                </select>
+        <form action="MyCrud.php" method="POST">
+
+            <div class="row">
+              <div class="col-6">
+                <div class="mb-3">
+                      <label for="level">Level</label>
+                      <select class="form-control" name="level" id="level" onchange="selectTeacher()" required>
+                      <option value="" disabled selected>Select</option> 
+                      <?php      
+                        $query = "SELECT * FROM `gradelevel_tbl`";
+                        $query_run = mysqli_query($connection, $query);
+                        while($row=$query_run->fetch_assoc()){  
+                        ?>     
+                        <option value="<?php echo $row['id']?>"><?php echo $row['grade'];?></option>
+                      <?php  
+                        }
+                        ?>  
+                      </select>
+                  </div>
+              </div>
+              <div class="col-6">
+                <div class="mb-3">
+                  <label for="sy">School-Year</label>
+                  <?php      
+                        $query = "SELECT SchoolYear FROM `schoolyear_tbl` WHERE `Active` = 'Yes'";
+                        $query_run = mysqli_query($connection, $query);
+                        while($row=$query_run->fetch_assoc()){  
+                        ?>     
+                        <input type="text" name="sy" class="form-control" id="sy" readonly required value="<?php echo $row['SchoolYear']?>"></textarea>
+                      <?php  
+                        }
+                        ?> 
+                  
+                </div>
+              </div>
             </div>
+                
 
             <div class="mb-3">
                 <label for="section" class="col-form-label">Section</label>
@@ -223,12 +431,30 @@ if (!isset($_SESSION["role"])){
 
       <form action="MyCrud.php" method="POST" >
 
-        
-          <div class="mb-3">
-              <label for="level">Level</label>
-              <input type="text" readonly class="form-control" name="editlevel" id="editlevel"  required></textarea>   
-              </select>
+        <div class="row">
+          <div class="col-6">
+            <div class="mb-3">
+                <label for="level">Level</label>
+                <input type="text" readonly class="form-control" name="editlevel" id="editlevel"  required></textarea>   
+                </select>
+            </div>
           </div>
+          <div class="col-6">
+              <div class="mb-3">
+                  <label for="sy">School-Year</label>
+                  <?php      
+                        $query = "SELECT SchoolYear FROM `schoolyear_tbl` WHERE `Active` = 'Yes'";
+                        $query_run = mysqli_query($connection, $query);
+                        while($row=$query_run->fetch_assoc()){  
+                        ?>     
+                        <input type="text" name="updatesy" class="form-control" id="updatesy" readonly required value="<?php echo $row['SchoolYear']?>"></textarea>
+                      <?php  
+                        }
+                        ?>             
+              </div>
+          </div>
+        </div>
+          
 
           <div class="mb-3">
             <label for="section" class="col-form-label">Section</label>

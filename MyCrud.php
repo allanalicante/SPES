@@ -15,8 +15,9 @@ if(isset($_POST['insertsection']))
         $level = str_replace("'","\'",strtoupper($_POST['level']));
         $section = str_replace("'","\'",strtoupper($_POST['section']));
         $advisor = str_replace("'","\'",strtoupper($_POST['advisor']));
+        $sy = $_POST['sy'];
 
-    $query = "INSERT INTO section_tbl (`gradelevel_id`,`sectionname`,`teacher_id`) VALUES ('$level','$section','$advisor')";
+    $query = "INSERT INTO section_tbl (`gradelevel_id`,`sectionname`,`teacher_id`,`sy`) VALUES ('$level','$section','$advisor','$sy')";
     $query_run = mysqli_query($connection,$query);
 
     if($query_run)
@@ -50,8 +51,9 @@ elseif(isset($_POST['updatesection']))
      $level = $_POST['editgradeid'];
      $section = str_replace("'","\'",strtoupper($_POST['editsection']));
      $advisor = $_POST['editadvisor'];
+     $updatesy = $_POST['updatesy'];
  
-     $query = "UPDATE section_tbl SET gradelevel_id='$level',sectionname='$section',teacher_id = '$advisor' WHERE id='$id'";
+     $query = "UPDATE section_tbl SET gradelevel_id='$level',sectionname='$section',teacher_id = '$advisor', sy='$updatesy' WHERE id='$id'";
      $query_run = mysqli_query($connection,$query);
  
      if($query_run)
@@ -411,7 +413,7 @@ elseif(isset($_POST['updatepending']))
                 $classteacher = $row['Teacher'];
             }
             // Query for getting the current/active schoolyear as well as its ID
-            $querysection = "SELECT schoolyear, id FROM schoolyear_tbl";
+            $querysection = "SELECT schoolyear, id FROM schoolyear_tbl WHERE Active = 'Yes'";
             $query_run = mysqli_query($connection,$querysection);
             $row=$query_run->fetch_assoc();
             if($query_run){
@@ -424,7 +426,7 @@ elseif(isset($_POST['updatepending']))
                 section_id='$sectionid',
                 status='enrolled',
                 dateofenroll = now()
-                WHERE student_id ='$pendingId'";
+                WHERE student_id ='$pendingId' and status != 'renew'";
                 $query_run = mysqli_query($connection,$query);
  
      if($query_run)
@@ -482,7 +484,7 @@ elseif(isset($_POST['updatepending']))
         }
         else if ($result == 6){            
             $_SESSION['status']= "Student is successfully enrolled.";   
-            $_SESSION['text']= "Sending of message failed: System OFFLINE.System OFFLINE."; 
+            $_SESSION['text']= "Sending of message failed: System OFFLINE."; 
             $_SESSION['status_code']= "warning"; 
             header("Location: index.php?page=records&data=pending-student");  
         }
@@ -517,14 +519,16 @@ elseif(isset($_POST['updatepending']))
             header("Location: index.php?page=records&data=pending-student");  
         }
         else{	
-            $_SESSION['status']= "Error encountered." . $result;    
+            $_SESSION['status']= "Error encountered." . $result;   
+            $_SESSION['text']= "There could be a fault in system code."; 
             $_SESSION['status_code']= "error"; 
             header("Location: index.php?page=records&data=pending-student"); 
         }
      }
      else
      {
-        $_SESSION['status']= "Failed to enroll student.";    
+        $_SESSION['status']= "Failed to enroll student.";
+        $_SESSION['text']= "There could be a fault in system code."; 
         $_SESSION['status_code']= "error"; 
         header("Location: index.php?page=records&data=pending-student");  
      }
@@ -671,9 +675,9 @@ elseif(isset($_POST['admitstudent']) && isset($_FILES['photo']))
                     '$D1','$D2','$D3','$D4','$D5','$D6','$D7','$D8')";
                     
                     //inserting data into enrollment_tbl
-                    $sql1 = "INSERT INTO enrollment_tbl(`id`,`student_id`,`status`) 
+                    $sql1 = "INSERT INTO enrollment_tbl(`student_id`,`status`) 
                     VALUES
-                    (LAST_INSERT_ID(),LAST_INSERT_ID(),'pending')";
+                    (LAST_INSERT_ID(),'pending')";
             
                     
                     $query1 = mysqli_query($connection,$sql);
@@ -874,9 +878,9 @@ elseif(isset($_POST['manueladmit']) && isset($_FILES['photo']))
                     '$chk1','$chk2','$chk3','$chk4','$chk5','$chk6','$chk7','$chk8')";
                     
                     //inserting data into enrollment_tbl
-                    $sql1 = "INSERT INTO enrollment_tbl(`id`,`student_id`,`status`) 
+                    $sql1 = "INSERT INTO enrollment_tbl(`student_id`,`status`) 
                     VALUES
-                    (LAST_INSERT_ID(),LAST_INSERT_ID(),'pending')";
+                    (LAST_INSERT_ID(),'pending')";
             
                     
                     $query1 = mysqli_query($connection,$sql);
@@ -1043,11 +1047,16 @@ elseif(isset($_POST['readmitstudent']) && isset($_FILES['photo']))
                 WHERE id = '$stud_id'";
 
                 //updating data into school table
-                $sql1 = "UPDATE enrollment_tbl set schoolyear_id = NULL, section_id = NULL, dateofenroll = NULL, status = 'pending'
+                $sql1 = "UPDATE enrollment_tbl set status = 'renew'
                 WHERE student_id = '$stud_id'";
+
+                $sql2 = "INSERT INTO enrollment_tbl(`student_id`,`status`) 
+                    VALUES
+                    ('$stud_id','pending')";
   
                 $query1 = mysqli_query($connection,$sql);
                 $query2 = mysqli_query($connection,$sql1);
+                $query3 = mysqli_query($connection,$sql2);
 
                 if(mysqli_commit($connection)){
                     $_SESSION['status']= "Submitted Successfully, kindly wait for your text confirmation.";    
@@ -1075,7 +1084,6 @@ elseif(isset($_POST['readmitstudent']) && isset($_FILES['photo']))
 }    
 
 /* ----------------------------------- Code to login usename and password --------------------------------------------- */
-
 elseif(isset($_POST['login']))
 {
     function validate($data){
@@ -1522,7 +1530,44 @@ elseif(isset($_POST['addadmin']) && isset($_FILES['addimage']))
         }
 }
 
-
+/* ------------------------------------ Code to decline admission ------------------------------------ */
+elseif(isset($_POST['declinepending']))
+{
+    try{
+    
+        $id = $_POST['pendingId'];
+        $remarks = $_POST['remarks'];
+        
+        mysqli_begin_transaction($connection);
+    
+        $sql = "UPDATE student_tbl set Remarks = '$remarks' WHERE id ='$id'";
+        $sql1 = "UPDATE enrollment_tbl set status = 'Admission Declined' WHERE student_id ='$id'";
+    
+        $query1 = mysqli_query($connection,$sql);
+        $query2 = mysqli_query($connection,$sql1);
+    
+         if(mysqli_commit($connection))
+        {   
+            $_SESSION['status']= "Admission has been declined."; 
+            $_SESSION['text']= "Admission status can still be viewed.";    
+            $_SESSION['status_code']= "success"; 
+            header("Location: index.php?page=records&data=pending-student");
+        }
+        else
+        {
+            $_SESSION['status']= "Failed to procees data."; 
+            $_SESSION['text']= "Admission status can still be viewed.";    
+            $_SESSION['status_code']= "error"; 
+            header("Location: index.php?page=records&data=pending-student"); 
+        }
+    }
+    catch (mysqli_sql_exception $exception) 
+        {
+        mysqli_rollback($connection);
+        throw $exception;
+        echo "ErrorW";  
+        }
+}
 else
 {
     header("Location: login.php");

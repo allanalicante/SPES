@@ -1,6 +1,8 @@
-
-
 <?php include('connect.php');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 
     $filterquery = "SELECT s.id AS `ClassID`, g.grade AS `Grade`, s.sectionname AS `Section`, t.name AS `Advisor`, 
     COUNT(IF(e.status = 'enrolled', e.section_id, NULL)) AS students, g.id,
@@ -437,25 +439,33 @@
         ON e.student_id = s.id
         INNER JOIN gradelevel_tbl g
         ON s.`gradetoenroll` = g.`id`
-        WHERE s.lrn = '" . $_REQUEST['search2'] . "'";
+        left JOIN section_tbl ss
+        ON e.`section_id` = ss.`id`
+        left JOIN teacher t
+        ON ss.`teacher_id` = t.`id`
+        WHERE (e.`status` != 'renew')
+        AND (s.lrn = '" . $_REQUEST['search2'] . "')
+        OR CONCAT(s.`firstname`,' ',s.lastname,' ',s.birthday) LIKE '" . $_REQUEST['search2'] . "'";
         $result = mysqli_query($connection, $sql);
         if(mysqli_num_rows($result) > 0)
         {
             $output .= '<h4 align="center">Search Result</h4>';
             $output .= '<table class="text-center table table-bordered table-striped" id="table1">
                             <thead style="background-color: #435ebe; color: white; ">
-                            <tr>
-                            <th style="">ID</th>
-                            <th style="">Photo</th>
-                            <th style="text-align:center;">LRN</th>
-                            <th style="text-align: center;">First name</th>
-                            <th style="text-align: center;">Middle name</th>
-                            <th style="text-align: center;">Last name</th>
-                            <th style="text-align: center;">Grade</th>
-                            <th style="text-align: center;">Modality</th>
-                            <th style="text-align: center;">Status</th>                                  
-                        </tr>
-                    </thead>';
+                                <tr>
+                                    <th style="">ID</th>
+                                    <th style="">Photo</th>
+                                    <th style="text-align:center;">LRN</th>
+                                    <th style="text-align: center;">First name</th>
+                                    <th style="text-align: center;">Middle name</th>
+                                    <th style="text-align: center;">Last name</th>
+                                    <th style="text-align: center;">Grade</th>
+                                    <th style="text-align: center;">Section</th>
+                                    <th style="text-align: center;">Adviser</th>
+                                    <th style="text-align: center;">Modality</th>
+                                    <th style="text-align: center;">Status</th>                                  
+                                </tr>
+                            </thead>';
                     while($row = mysqli_fetch_array($result))
                     {
                         $photo  = $row['photo'];
@@ -468,6 +478,8 @@
                                 <td style="font-size:14px; font-weight: 600">'.$row["middlename"].'</td>
                                 <td style="font-size:14px; font-weight: 600">'.$row["lastname"].'</td>
                                 <td style="font-size:14px; font-weight: 600">'.$row["grade"].'</td>
+                                <td style="font-size:14px; font-weight: 600">'.$row["sectionname"].'</td>
+                                <td style="font-size:14px; font-weight: 600">'.$row["name"].'</td>
                                 <td style="font-size:14px; font-weight: 600">'.$row["modality"].'</td>
                                 <td style="font-size:14px; font-weight: 600">'.$row["status"].'</td>                              
                             </tr>
@@ -485,8 +497,7 @@
         $query = "SELECT * FROM student_tbl s
         INNER JOIN enrollment_tbl e
         ON e.student_id = s.id
-        INNER JOIN schoolyear_tbl sy
-        ON sy.id = e.schoolyear_id
+ 
         WHERE (s.lrn = '" . $_REQUEST['search'] . "' AND e.status = 'enrolled') OR 
         (s.lrn = '" . $_REQUEST['search'] . "' AND e.status ='Dropped Out') OR 
         (s.lrn = '" . $_REQUEST['search'] . "' AND e.status ='Transferred Out') OR

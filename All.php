@@ -715,8 +715,8 @@ AND s.modality = 'f2f') AS `FaceToFace`";
                                 <thead style="background-color: #435ebe; color: white; ">
                                     <tr>
                                         <th style="">#</th>                                    
-                                        <th style="text-align: center;">Name</th>
                                         <th style="text-align: center;">LRN</th>
+                                        <th style="text-align: center;">Name</th>
                                         <th style="text-align:center;">Age</th>
                                         <th style="text-align: center;">Grade</th>
                                         <th style="text-align: center;">Barangay</th>
@@ -757,8 +757,8 @@ AND s.modality = 'f2f') AS `FaceToFace`";
                                     ?>                    
                                     <tr>
                                             <td style="font-size:13px; font-weight: 600"><?php echo $i?></td>
-                                            <td style="font-size:13px; font-weight: 600"><?php echo $row['Name'];?></td>
                                             <td style="font-size:13px; font-weight: 600"><?php echo $row['lrn'];?></td>
+                                            <td style="font-size:13px; font-weight: 600"><?php echo $row['Name'];?></td>
                                             <td style="font-size:13px; font-weight: 600"><?php echo $row['age'];?></td>
                                             <td style="font-size:13px; font-weight: 600"><?php echo $row['grade'];?></td>
                                             <td style="font-size:13px; font-weight: 600"><?php echo $row['barangay'];?></td>

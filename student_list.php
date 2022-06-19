@@ -91,14 +91,15 @@ $sessionrole = $_SESSION['role'];
                                 <th style="display: none">ID</th>
                                 <th style="">#</th>
                                 <th hidden >Photo</th>     
-                                <th style="text-align:center;">LRN</th>                                 
-                                <th style="text-align: center;">First name</th>
-                                <th style="display:none;text-align: center;">Middle name</th>
-                                <th style="text-align: center;">Last name</th>                              
+                                <th style="text-align:center;">LRN</th>
+                                <th >Name</th>                                 
+                                <th hidden>First name</th>
+                                <th hidden>Middle name</th>
+                                <th hidden>Last name</th>                              
                                 <th style="text-align:center;">Gender</th>
                                 <th style="text-align: center;">Grade</th>
                                 <th style="text-align: center;">Section</th>
-                                <th style="display:none; text-align: center;">Adviser</th>
+                                <th style="text-align: center;">Adviser</th>
                                 <th style="text-align: center;">Modality</th>
                                 <th style="text-align: center;">Action</th>                                  
                             </tr>
@@ -109,8 +110,8 @@ $sessionrole = $_SESSION['role'];
                         $name = $_SESSION['name'];
                         if($_SESSION['role']=='Teacher')
                         {
-                        $query = "SELECT DISTINCT (s.id) AS `studentID`, s.lrn, s.sex, s.lastname, s.firstname, s.middlename,
-                        g.grade, ss.sectionname, t.name AS `Advisor`, s.modality   
+                        $query = "SELECT DISTINCT (s.id) AS `studentID`, s.lrn, s.sex, concat(s.firstname,' ',s.middlename,' ',s.lastname,' ',s.extension) as `Name`,
+                        s.firstname,s.middlename,s.lastname,g.grade, ss.sectionname, t.name AS `Advisor`, s.modality   
                         FROM student_tbl s
                         INNER JOIN enrollment_tbl e
                         ON e.student_id = s.id
@@ -125,8 +126,8 @@ $sessionrole = $_SESSION['role'];
                         ORDER BY s.lastname ASC";
                         }
                         else {
-                        $query = "SELECT DISTINCT (s.id) AS `studentID`, s.lrn, s.sex, s.lastname, s.firstname, s.middlename,
-                        g.grade, ss.sectionname, t.name AS `Advisor`, s.modality   
+                        $query = "SELECT DISTINCT (s.id) AS `studentID`, s.lrn, s.sex, concat(s.firstname,' ',s.middlename,' ',s.lastname,' ',s.extension) as `Name`,
+                        s.firstname,s.middlename,s.lastname,g.grade, ss.sectionname, t.name AS `Advisor`, s.modality   
                         FROM student_tbl s
                         INNER JOIN enrollment_tbl e
                         ON e.student_id = s.id
@@ -149,13 +150,14 @@ $sessionrole = $_SESSION['role'];
                                 <td style="font-size:13px; font-weight: 600"><?php echo $i?></td>
                                 <td style="display: none"><img style="width: 40px;height:40px;object-fit: cover; border-radius: 50%" src="uploads/<?=$row['photo']?>"></td>
                                 <td style="font-size:13px; font-weight: 600"><?php echo $row['lrn'];?></td>
-                                <td style="font-size:13px; font-weight: 600"><?php echo $row['firstname'];?></td>
-                                <td style="font-size:13px; font-weight: 600;display:none"><?php echo $row['middlename'];?></td>
-                                <td style="font-size:13px; font-weight: 600"><?php echo $row['lastname'];?></td>                              
+                                <td style="font-size:13px; font-weight: 600; text-align:left"><?php echo $row['Name'];?></td>
+                                <td hidden><?php echo $row['firstname'];?></td>
+                                <td hidden><?php echo $row['middlename'];?></td>
+                                <td hidden><?php echo $row['lastname'];?></td>                              
                                 <td style="font-size:13px; font-weight: 600"><?php echo $row['sex'];?></td>
                                 <td style="font-size:13px; font-weight: 600"><?php echo $row['grade'];?></td>
                                 <td style="font-size:13px; font-weight: 600"><?php echo $row['sectionname'];?></td>
-                                <td style="display:none"><?php echo $row['Advisor'];?></td>
+                                <td style="font-size:13px; font-weight: 600"><?php echo $row['Advisor'];?></td>
                                 <td style="font-size:13px; font-weight: 600"><?php echo $row['modality'];?></td>    
                                 <td style="">                               
                                   <button type="button" class="badge btn btn-success btn-sm editStudentSection forLRN" data-bs-toggle="modal" 
@@ -311,7 +313,7 @@ $sessionrole = $_SESSION['role'];
               </div>
 
               <div class="col-md-6 col-sm-3">     
-                      <label for="name-text" class="col-form-label">Archive as</label>
+                      <label for="name-text" class="col-form-label">Set status as</label>
                       <select class="form-control" name="adminarchiveas" id="adminarchiveas" required>
                       <option value="" disabled selected>Select</option> 
                       <option value="Graduated">Graduated</option> 
@@ -326,7 +328,7 @@ $sessionrole = $_SESSION['role'];
             <label for="grade" class="col-form-label">Remarks</label>
             <textarea type="text" name="adminremarks" class="form-control" id="adminremarks"></textarea>
              </div>
-      </div>  
+          </div>  
     </div>
           <input type="text" hidden name="admineditstud_id"  class="form-control col-md-6" id="admineditstud_id"></textarea>
              

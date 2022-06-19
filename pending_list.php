@@ -1,4 +1,32 @@
 <script src="asset/js/pdfexport/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+    function myfunction() {
+    var choice = $('input:radio[name=stat]:checked').val();
+    if(choice === 'Accept')
+    {
+      $('.Decline').hide();
+      $('.Accept').show();
+      $('#updatepending').show();
+      $('#declinepending').hide();
+      $("#GradeSection").prop('required',true);
+      $("#remarks").prop('required',false);
+    }
+    else if (choice === 'Decline')
+    {
+      $('.Decline').show();
+      $('.Accept').hide();
+      $('#declinepending').show();
+      $('#updatepending').hide();
+      $("#GradeSection").prop('required',false);
+      $("#remarks").prop('required',true);
+    }
+    return true;  
+    }
+    function thisclose(){
+      $('.Accepted').prop('checked',false);
+      $('.Declined').prop('checked',false);
+    }
+</script>
 <?php
 if (!isset($_SESSION["role"])){
   header('location: login.php');
@@ -112,9 +140,9 @@ if (!isset($_SESSION["role"])){
                                         data-bs-target="#assignGradeLevel" data-bs-whatever="@getbootstrap" <?php echo($_SESSION['role']=='Teacher')?'': 'hidden'?>>
                                         <i class="bi bi-person-check-fill"></i></button><!-- Assign class button -->
 
-                                        <button type="button" class="badge btn btn-danger btn-sm removeStudent" title="Remove" data-bs-toggle="modal" 
+                                        <!-- <button type="button" class="badge btn btn-danger btn-sm removeStudent" title="Remove" data-bs-toggle="modal" 
                                         data-bs-target="#removeStudent" data-bs-whatever="@getbootstrap"<?php echo($_SESSION['role']=='Admin')?'': 'hidden'?>>
-                                        <i class="bi bi-trash-fill"></i></button><!-- Remove button -->                              
+                                        <i class="bi bi-trash-fill"></i></button> --><!-- Remove button -->                              
                                         </td>  
                                         
                                     </tr>
@@ -136,50 +164,75 @@ if (!isset($_SESSION["role"])){
  <div class="modal fade" id="assignGradeLevel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog ">
     <div class="modal-content">
-      <div style="height: 40px" class="modal-header bg-success">
-        <h5 style="color:white" class="modal-title" id="exampleModalLabel">ASSIGN STUDENT TO CLASS</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div style="height: 40px" class="modal-header bg-primary">
+        <h5 style="color:white" class="modal-title" id="exampleModalLabel">MANAGE ADMISSION STATUS</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="thisclose()"></button>
       </div>
       <div class="modal-body">
       
       <form action="MyCrud.php" method="POST" enctype="multipart/form-data">
           
-            <label hidden for="pendinglrn" class="col-form-label">Pending ID</label>
-            <input type="hidden" readonly name="pendingId" class="form-control" id="pendingId">
+        <div class="col-md-6 col-lg-12">
+            <div class="form-group">                                
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input Accepted" type="radio" id="stat" name="stat" value="Accept" onchange="myfunction()" required="">
+                    <label class="form-check-label">Accept</label><br>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input  class="form-check-input Declined" type="radio" id="stat" name="stat" value="Decline" onchange="myfunction()" required="">
+                    <label class="form-check-label">Decline</label><br>
+                </div>   
+            </div>  
+        </div>
 
-          <div class="mb-3">
-            <label for="pendingname" class="col-form-label">Name</label>
-            <input type="text" readonly name="pendingname"  class="form-control" id="pendingname"></textarea>
-          </div>
+        <label hidden for="pendinglrn" class="col-form-label">Pending ID</label>
+        <input type="hidden" readonly name="pendingId" class="form-control" id="pendingId">
+ 
+        <div class="mb-3">
+              <label for="pendingname" class="col-form-label">Name</label>
+              <input type="text" readonly name="pendingname"  class="form-control" id="pendingname"></textarea>
+        </div>
 
+        <div class="Accept">          
           <div class="mb-3">
             <label for="grade" class="col-form-label">Grade</label>
             <input type="text" readonly name="level" class="form-control" id="level"></textarea>
           </div>
 
-           <div class="mb-3">
+          <div class="mb-3">
               <label for="levelsectionid">Level</label>
               <select class="form-control" name="GradeSection" id="GradeSection" required>
-                <option value="" disabled selected>Select</option> 
-                    
+                <option value="" disabled selected>Select</option>                
               </select>
-            </div>
-           <div class="mb-3">
-              <input type="hidden" readonly name="contact" class="form-control" id="contact"></textarea>
-            </div>
+          </div>
 
-            <div style="height: 35px; margin: 1px; padding:1px;" class="modal-footer">          
-          <button type="submit" name="updatepending" class="btn btn-success">Enroll Now</button>
+          <div class="mb-3">
+              <input type="hidden" readonly name="contact" class="form-control" id="contact"></textarea>
+          </div>
         </div>
-        </form>
+
+
+        <div class="Decline">
+          <div class="row">
+            <div class="col-md-12 col-sm-12">
+            <label for="grade" class="col-form-label">Reason for declining</label>
+            <textarea type="text" name="remarks" class="form-control" id="remarks" required=""></textarea>
+             </div>
+          </div>   
+        </div>
+        <br>
+
+
+        <div style="height: 35px; margin: 1px; padding:1px;" class="modal-footer">   
+          <button type="submit" name="declinepending" id="declinepending" class="btn btn-danger">Decline</button>       
+          <button type="submit" name="updatepending" id="updatepending" class="btn btn-success">Enroll Now</button>
+        </div>
+      </form>
       </div>
       
     </div>
   </div>
 </div>
-
-
-
 
 
 

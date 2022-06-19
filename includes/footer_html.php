@@ -125,12 +125,12 @@ elseif (isset($data) && ($data=='student-list')){
                 $('#editstud_id').val(data[0]);
                  /* $('#updateimage').val(data[1]); */ 
                 $('#editlrn').val(data[3]);
-                $('#editfirstname').val(data[4]);
-                $('#editmiddlename').val(data[5]);
-                $('#editlastname').val(data[6]);
+                $('#editfirstname').val(data[5]);
+                $('#editmiddlename').val(data[6]);
+                $('#editlastname').val(data[7]);
 
-                $('#editlevelsectionid1').val(data[8]);
-                var grade = data[8];   
+                $('#editlevelsectionid1').val(data[9]);
+                var grade = data[9];   
                 console.log(grade);
                  $.ajax({
                     data:{grade:grade},
@@ -157,7 +157,7 @@ elseif (isset($data) && ($data=='student-list')){
                 console.log(data);
                 $('#admineditstud_id').val(data[0]);
                  /* $('#updateimage').val(data[1]); */ 
-                $('#admineditfirstname').val(data[4] + ' ' + data[6]);
+                $('#admineditfirstname').val(data[4]);
                 });  
              });
 
@@ -236,6 +236,15 @@ elseif(isset($data) && ($data=='pending-student')){
             $(document).ready(function() {
             $(document).on('click','.assignGradeLevel',function(){         
                 $('#assignGradeLevel').modal('show');
+
+                $('.Decline').hide();
+
+                //$('.Accepted').prop('checked',true);
+                $('#declinepending').hide();   
+                $('.Accept').hide();
+                $('#updatepending').show(); 
+                    
+        
                 $tr = $(this).closest('tr');
                 var data = $tr.children("td").map(function() {
                     return $(this).text();
@@ -271,8 +280,7 @@ elseif(isset($data) && ($data=='pending-student')){
                 }).get();
                 console.log(data);
                 $('#removeStudentID').val(data[0]);
-                $('#removename').text(data[4]);
-                
+                $('#removename').text(data[4]);             
                 });  
                 });
 
@@ -331,6 +339,24 @@ elseif(isset($data) && ($data =='section-list')){
                     .appendTo( '#table1_wrapper .col-md-6:eq(0)' ); */
             } );
         </script>
+
+    <script>
+            $(document).ready(function() {
+                var table = $('#table2').DataTable( {
+                    lengthChange: true,
+                    order: [[1, 'asc']],
+                  /*   buttons: [
+                        {
+                            extend: 'copy', 
+                            split: [ 'csv', 'excel', 'pdf', 'print'],
+                        },
+                        'colvis'
+                    ] */
+                } );          
+               /*  table.buttons().container()
+                    .appendTo( '#table1_wrapper .col-md-6:eq(0)' ); */
+            } );
+    </script>
   <?php
      if(isset($_SESSION['status']) && $_SESSION['status'] !=''){
         ?>      
@@ -342,9 +368,7 @@ elseif(isset($data) && ($data =='section-list')){
                 button: "Continue",
             });
         </script>
-        <script>
-        
-    </script>
+   
    <?php
    unset($_SESSION['status']);
    }
@@ -1005,12 +1029,12 @@ elseif(isset($page) && $page=='section'){
                       $('#editstud_id').val(data[11]);
                        /* $('#updateimage').val(data[1]); */ 
                       $('#editlrn').val(data[1]);
-                      $('#editfirstname').val(data[2]);
-                      $('#editmiddlename').val(data[3]);
-                      $('#editlastname').val(data[4]);
+                      $('#editfirstname').val(data[3]);
+                      $('#editmiddlename').val(data[4]);
+                      $('#editlastname').val(data[5]);
       
-                      $('#editlevelsectionid1').val(data[6]);
-                      var grade = data[6];   
+                      $('#editlevelsectionid1').val(data[7]);
+                      var grade = data[7];   
                       console.log(grade);
                        $.ajax({
                           data:{grade:grade},

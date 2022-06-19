@@ -25,7 +25,6 @@ $thisquery = "SELECT * FROM schoolyear_tbl
 <script src="asset/js/autocomplete.js"></script>
 <script src="asset/js/bootstrap.min.js"></script>
 
-
 <!-- Script to hide combobox and divs -->
 <script>
           $(document).ready(function () 
@@ -45,7 +44,6 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                
           });
 </script>
-
 
 <!-- Disable input fields script in sped area-->
 <script>
@@ -758,7 +756,6 @@ $thisquery = "SELECT * FROM schoolyear_tbl
                                         <input list="religionlist" type="text" class="form-control" name="religion" id="religion" placeholder="Select" required="">
                                         <datalist id="religionlist" required="">                                           
                                             <option value="Roman Catholic">Roman Catholic</option>
-                                            <option value="Christianity">Christianity</option>
                                             <option value="Islam">Islam</option>                                           
                                             <option value="Evangelical (PCEC)">Evangelical (PCEC)</option>
                                             <option value="Iglesia Ni Cristo">Iglesia Ni Cristo</option>                                           

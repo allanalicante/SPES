@@ -6,8 +6,8 @@ $gender = $_POST['gender'];
 $barangay = $_POST['barangay'];
 $modality = $_POST['modality'];
 
-$query = "SELECT DISTINCT (s.id) AS `studentID`, s.lrn, s.photo, concat(s.lastname,' ',s.extension) as `lastname`,s.middlename , s.firstname, s.age,
-g.grade, ss.sectionname, t.name AS `Advisor`, s.modality, s.studenttype
+$query = "SELECT DISTINCT (s.id) AS `studentID`, s.lrn, s.photo,  concat(s.firstname,' ',s.middlename,' ',s.lastname,' ',s.extension) as `Name`,
+s.firstname,s.middlename,s.lastname, s.age, g.grade, ss.sectionname, t.name AS `Advisor`, s.modality, s.studenttype
 FROM student_tbl s
 INNER JOIN enrollment_tbl e
 ON e.student_id = s.id
@@ -50,9 +50,10 @@ $query .= $lastquery;
                     <tr>                                   
                     <th style="text-align: center;">#</th>  
                     <th style="text-align:center;">LRN</th>                                                                                                      
-                    <th style="text-align: center;">First name</th>
-                    <th style="text-align: center;">Middle name</th>
-                    <th style="text-align: center;">Last name</th>                                           
+                    <th >Name</th>                                 
+                    <th hidden>First name</th>
+                    <th hidden>Middle name</th>
+                    <th hidden>Last name</th>                                              
                     <th style="text-align:center;">Age</th>
                     <th style="text-align: center;">Grade</th>
                     <th style="text-align: center;">Section</th>
@@ -75,9 +76,10 @@ $query .= $lastquery;
             <tr>                      
             <td style="font-size:13px; font-weight: 600"><?php echo $i?></td>
             <td style="font-size:13px; font-weight: 600"><?php echo $row['lrn'];?></td>
-            <td style="font-size:13px; font-weight: 600"><?php echo $row['firstname'];?></td>
-            <td style="font-size:13px; font-weight: 600"><?php echo $row['middlename'];?></td>
-            <td style="font-size:13px; font-weight: 600"><?php echo $row['lastname'];?></td>                                   
+            <td style="font-size:13px; font-weight: 600; text-align:left"><?php echo $row['Name'];?></td>
+            <td hidden><?php echo $row['firstname'];?></td>
+            <td hidden><?php echo $row['middlename'];?></td>
+            <td hidden><?php echo $row['lastname'];?></td>                                    
             <td style="font-size:13px; font-weight: 600"><?php echo $row['age'];?></td>
             <td style="font-size:13px; font-weight: 600"><?php echo $row['grade'];?></td>
             <td style="font-size:13px; font-weight: 600"><?php echo $row['sectionname'];?></td>
