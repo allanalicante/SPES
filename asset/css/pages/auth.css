@@ -24,7 +24,7 @@ html,body{
 #auth #auth-left .form-control{
     font-size: 1rem;
 }
-#auth #auth-left button{
+#auth #auth-left .btn-login{
     background-color: #FE0002;
     border-color: #FE0002;
    
@@ -60,14 +60,19 @@ html,body{
     padding-top: 0%;
 }
 
-.error {
-    background: #f2dede;
-    color: #a9422a;
-    padding: 10px;
-    width: 100%;
-    border-radius: 5px;
+
+
+@media only screen and (max-width: 767px){
+#auth #auth-left {
+    padding: 2rem 2rem 0 2rem;
+}
 }
 
-@media screen and (max-width:767px){
-    #auth #auth-left{padding:5rem}}
+@media only screen and (min-width: 379px) {
+    #auth #auth-left {
+      padding:  1.4rem 5rem;
+    }
+  }
+
+
     /*  */

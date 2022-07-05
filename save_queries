@@ -1,0 +1,738 @@
+SELECT s.lrn, CONCAT(s.lastname,",",s.firstname,",",s.middlename) AS `Name`, s.sex, s.birthday, s.age, s.mothertongue,s.ethnicgroup, s.religion, 
+	ad.street, ad.barangay, ad.municipality, ad.province, ad.region,
+	g.fname, g.mname, g.gname, g.gcontactno, g.grelationship
+FROM student_tbl s
+
+INNER JOIN address_tbl ad
+ON ad.stud_id = s.stud_id
+
+INNER JOIN guardian_tbl g
+ON g.stud_id = s.stud_id
+
+
+
+
+elseif(isset($_POST['insertteacher']))
+{
+    try{
+    $id = $_POST['teacher_id'];
+    $name = $_POST['name'];
+    $contactno = $_POST['contactno'];
+    $address = $_POST['address'];
+    $position = $_POST['position'];
+
+    if(!empty($_FILES["image"]["name"])) { 
+        // Get file info 
+        $fileName = basename($_FILES["image"]["name"]); 
+        $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
+         
+        // Allow certain file formats 
+        $allowTypes = array('jpg','png','jpeg','gif'); 
+        if(in_array($fileType, $allowTypes)){ 
+            $image = $_FILES['image']['tmp_name']; 
+            $imgContent = addslashes(file_get_contents($image)); 
+    
+
+    $query = "INSERT INTO teacher (`name`,`contactno`,`address`,`position`,`image`) 
+    VALUES
+    ('$name','$contactno','$address','$position','$imgContent')";
+    $query_run = mysqli_query($connection,$query);
+
+    if($query_run)
+    {   
+        $_SESSION['status']= "Added Successfully.";    
+        $_SESSION['status_code']= "success"; 
+        header("Location: http://localhost/SPES/index.php?page=records&data=teacher-list");
+    }
+    else
+    {
+        $_SESSION['status']= "Failed to Add.";    
+        $_SESSION['status_code']= "error"; 
+        header("Location: http://localhost/SPES/index.php?page=records&data=teacher-list");
+    }
+    }
+    else{
+        $_SESSION['status']= "Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.";    
+        $_SESSION['status_code']= "warning"; 
+        header("Location: http://localhost/SPES/index.php?page=records&data=teacher-list");
+    }
+}
+else{
+    $_SESSION['status']= "Please select an image file to upload.";    
+        $_SESSION['status_code']= "warning"; 
+        header("Location: http://localhost/SPES/index.php?page=records&data=teacher-list");
+}
+    }
+
+    catch (mysqli_sql_exception $exception) 
+                {
+                mysqli_rollback($connection);
+                throw $exception;
+                echo "Error";   
+                }
+            }
+
+
+
+			style="width: 100px;height:100px;object-fit: cover;"
+
+
+
+
+			elseif(isset($_POST['admitstudent']))
+{
+    //A. GRADE LEVEL AND SCHOOL INFORMATION//
+    $schoolyear = $_POST['A1'];
+    $optionlrn = $_POST['A2'];
+    $returning = $_POST['A3'];
+    $gradetoenroll = $_POST['A4'];
+    $lastgradecompleted = $_POST['A5'];
+    $lastschoolyearcompleted = $_POST['A6'];
+    $lastschoolattended = $_POST['A7'];
+    $schoolid = $_POST['A8'];
+    $schooladdress = $_POST['A9'];
+    $schooltype = $_POST['A10'];
+    $schooltoenroll = $_POST['A11'];
+    $schoolid2 = $_POST['A12'];
+    $schooladdress2 = $_POST['A13'];
+    //B. STUDENT INFORMATION//
+    $psa = $_POST['B1'];
+    $lrn = $_POST['B2'];
+    //$photo = $_POST['photo'];
+    $lname = $_POST['B3'];
+    $fname = $_POST['B4'];
+    $mname = $_POST['B5'];
+    $ext = $_POST['B6'];
+    $bday = $_POST['B7'];
+    $age = $_POST['B8'];
+    $sex = $_POST['B9'];
+    $ethnic = $_POST['B10'];
+    $mtounge = $_POST['B12'];
+    $religion = $_POST['religion'];
+    $modality = $_POST['modality'];
+    //For Learners with Special Education Needs
+    $b14 = $_POST['B14'];
+    $b15 = $_POST['B15'];
+    $b16 = $_POST['B16'];
+    $b17 = $_POST['B17'];
+    //ADDRESS INFORMATION
+    $house = $_POST['street'];
+    $barangay = $_POST['barangay'];
+    $city = $_POST['municipality'];
+    $province = $_POST['province'];
+    $region = $_POST['region'];
+    //C. PARENT / GUARDIAN INFORMATION 
+    $father = $_POST['father'];
+    $mother = $_POST['mother'];
+    $guardian = $_POST['guardian'];
+    $fathereducattainment = $_POST['fathereducattainment'];
+    $mothereducattainment = $_POST['mothereducattainment'];
+    $guardianeducattainment = $_POST['guardianeducattainment'];
+    $fatheremployment = $_POST['fatheremployment'];
+    $motheremployment = $_POST['motheremployment'];
+    $guardianemployment = $_POST['guardianemployment'];
+    $fatherWFH = $_POST['fatherWFH'];
+    $motherWFH = $_POST['motherWFH'];
+    $guardianWFH = $_POST['guardianWFH'];
+    $fathercontact = $_POST['fathercontact'];
+    $mothercontact = $_POST['mothercontact'];
+    $guardiancontact = $_POST['guardiancontact'];
+    $guardianrelationship = $_POST['guardianrelate'];
+    //D. HOUSEHOLD CAPACITY AND ACCESS TO DISTANCE LEARNING
+    $checkbox1=$_POST['D1'];  
+    $checkbox2=$_POST['D2'];
+    $checkbox3=$_POST['D3'];
+    $checkbox4=$_POST['D4'];
+    $checkbox5=$_POST['D5'];
+    $checkbox6=$_POST['D6'];
+    $checkbox7=$_POST['D7'];
+    $checkbox8=$_POST['D8'];
+    $chk1=""; $chk2=""; $chk3=""; $chk4=""; $chk5=""; $chk6=""; $chk7=""; $chk8="";
+    foreach($checkbox1 as $chkOne)  
+    {  
+        $chk1 .= $chkOne.",";  
+    }  
+    foreach($checkbox2 as $chkTwo)  
+    {  
+        $chk2 .= $chkTwo.",";  
+    }
+    foreach($checkbox3 as $chkThree)  
+    {  
+        $chk3 .= $chkThree.",";  
+    }  
+    foreach($checkbox4 as $chkFour)  
+    {  
+        $chk4 .= $chkFour.",";  
+    }
+    foreach($checkbox5 as $chkFive)  
+    {  
+        $chk5 .= $chkFive.",";  
+    }  
+    foreach($checkbox6 as $chkSix)  
+    {  
+        $chk6 .= $chkSix.",";  
+    }
+    foreach($checkbox7 as $chkSeven)  
+    {  
+        $chk7 .= $chkSeven.",";  
+    }  
+    foreach($checkbox8 as $chkEight)  
+    {  
+        $chk8 .= $chkEight.",";  
+    }
+
+    
+
+    mysqli_begin_transaction($connection);
+
+    try
+    {        
+        if(!empty($_FILES["photo"]["name"])) { 
+            // Get file info 
+            $fileName = basename($_FILES["photo"]["name"]); 
+            $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
+             
+            // Allow certain file formats 
+            $allowTypes = array('jpg','png','jpeg','gif'); 
+            if(in_array($fileType, $allowTypes)){ 
+                $image = $_FILES['photo']['tmp_name']; 
+                $imgContent = addslashes(file_get_contents($image)); 
+
+                
+        //inserting data into student table
+        $sql = "INSERT INTO student_tbl(`psa`,`lrn`,`photo`,`lastname`,`firstname`,`middlename`,`extension`,`birthday`,`age`,
+        `sex`,`ethnicgroup`,`mothertongue`,`religion`,`status`,`modality`)
+        values
+        ('$psa','$lrn','$imgContent','$lname','$fname','$mname','$ext','$bday','$age','$sex','$ethnic','$mtounge','$religion','pending','$modality')";
+        //inserting data into school table
+        $sql1 = "INSERT INTO school_info(`stud_id`,`schoolyear`,`optionlrn`,`returning`,`gradetoenroll`,`lastgradecompleted`,
+        `lastschoolyearcompleted`,`lastschoolattended`,`schoolid`,`schooladdress`,`schooltype`,`schooltoenroll`,`schoolid2`,`schooladdress2`) 
+        VALUES
+        (LAST_INSERT_ID(),'$schoolyear','$optionlrn','$returning','$gradetoenroll','$lastgradecompleted',
+        '$lastschoolyearcompleted','$lastschoolattended','$schoolid','$schooladdress',
+        '$schooltype','$schooltoenroll','$schoolid2','$schooladdress2')";
+        //inserting data into sped table
+        $sql2 = "INSERT INTO sped_tbl(`stud_id`,`spedneeds`,`specifyneeds`,`assistivetech`,`specifyassistivetech`)
+        values
+        (LAST_INSERT_ID(),'$b14','$b15','$b16','$b17')";
+        //inserting data into address table
+        $sql3 = "INSERT INTO address_tbl(`stud_id`,`street`,`barangay`,`municipality`,`province`,`region`)
+        values
+        (LAST_INSERT_ID(),'$house','$barangay','$city','$province','$region')";
+        //inserting data into guardian table
+        $sql4 = "INSERT INTO guardian_tbl(`stud_id`,`fname`,`feducattain`,`femploystatus`,`fwfh`,`fcontactno`,
+        `mname`,`meducattain`,`memploystatus`,`mwfh`,`mcontactno`,
+        `gname`,`geducattain`,`gemploystatus`,`gwfh`,`gcontactno`,`grelationship`)
+        values
+        (LAST_INSERT_ID(),'$father','$fathereducattainment','$fatheremployment','$fatherWFH','$fathercontact',
+        '$mother','$mothereducattainment','$motheremployment','$motherWFH','$mothercontact',
+        '$guardian','$guardianeducattainment','$guardianemployment','$guardianWFH','$guardiancontact','$guardianrelationship')";
+        //inserting data into learning table
+        $sql5 = "INSERT INTO learninginfo_tbl(`stud_id`,`D1`,`D2`,`D3`,`D4`,`D5`,`D6`,`D7`,`D8`)
+        values
+        (LAST_INSERT_ID(),'$chk1','$chk2','$chk3','$chk4','$chk5','$chk6','$chk7','$chk8')";
+
+        
+        $query1 = mysqli_query($connection,$sql);
+        $query2 = mysqli_query($connection,$sql1);
+        $query3 = mysqli_query($connection,$sql2);
+        $query4 = mysqli_query($connection,$sql3);
+        $query5 = mysqli_query($connection,$sql4);
+        $query6 = mysqli_query($connection,$sql5);
+        
+        if(mysqli_commit($connection)){
+            
+            $_SESSION['status']= "Successfully Admitted, kindly wait for your text confirmation.";    
+            $_SESSION['status_code']= "success";
+            header("Location: enroll-now.php");        
+        }
+        else{
+            $_SESSION['status']= "Processing Failed. Check your data first.";    
+            $_SESSION['status_code']= "error";
+            header("Location: enroll-now.php");       
+        }
+    
+    }
+        else{
+            $_SESSION['status']= "Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.";    
+            $_SESSION['status_code']= "warning"; 
+            header("Location: enroll-now.php"); 
+        }
+    }
+    else{
+        $_SESSION['status']= "Please select an image file to upload.";    
+            $_SESSION['status_code']= "warning"; 
+            header("Location: enroll-now.php"); 
+    }
+}
+        catch (mysqli_sql_exception $exception) 
+            {
+            mysqli_rollback($connection);
+            throw $exception;
+            echo "ErrorW";
+
+    } 
+}
+
+
+
+
+$query1 = "UPDATE teacher SET 
+     name='$name', contactno='$contactno',
+     address='$address', gradetohandle='$gradetohandle',
+     image_name='$imgContent'
+     WHERE teacher_id ='$id'";
+     $query_run = mysqli_query($connection,$query1);
+/* 
+    $query2 = "UPDATE student_tbl SET
+    level_section_id='$levelsectionid'
+    where level_section_id='$currentid'";
+    $query_run = mysqli_query($connection,$query2); */
+
+    $query3 = "UPDATE users SET
+    name='$name', username='$username', password='$password', image='$imgContent'
+    WHERE id ='$id'";
+    $query_run = mysqli_query($connection,$query3);
+
+
+
+
+
+
+    // teacher display in option class assigning
+    <?php 
+              $connection = mysqli_connect("localhost","root","");
+              $db = mysqli_select_db($connection,'spes_db');
+              $query = "SELECT teacher_id, name, gradetohandle FROM teacher";
+              $query_run = mysqli_query($connection, $query);
+              while($row=$query_run->fetch_assoc()){  
+              ?>
+              <option value="<?php echo $row['name']?>"> <?php echo $row['name'].' - '.$row['gradetohandle']; ?></option>
+              <?php  
+              }
+              ?>
+
+
+
+
+
+<label for="name-text" class="col-form-label">Archive as</label>
+                      <select class="form-control" name="editmodality" id="editmodality" required>
+                      <option value="" disabled selected>Select</option> 
+                      <option value="Graduated">Graduated</option> 
+                      <option value="Transfered Out">Transfered Out</option> 
+                      <option value="Dropped">Dropped Out</option> 
+                      </select>
+
+
+
+
+                      In compliance to Republic Act 10173 (Data Privacy Act of  2012), the personal informatin
+                                gathered will be available to all users of Sorsogon Pilot Elementary School Online Registration
+                                and Record Management. Do you agree?
+
+
+
+                                 //school info
+                                $('.withLrn').prop("checked", false);
+                                $('#A3').prop('selectedIndex',0);
+                               // $('#A6').val(response[0]['SchoolYear']); 
+                               $('#A7').val(''); 
+                                $('#A8').val(''); 
+                                $('#A9').val(''); 
+                                $('#A10').val(''); 
+
+                                //student info
+                                $('#B1').val(''); 
+                                $('#B2').val('');                                   
+                                $('#B4').val(''); 
+                                $('#B3').val(''); 
+                                $('#B4').val(''); 
+                                $('#B5').val(''); 
+                                $('#B6').val(''); 
+                                $('#B7').val(''); 
+                                $('#B8').val(''); 
+                                $('#B9').prop('selectedIndex',0);
+                                $('#B10').prop('selectedIndex',0); 
+                                $('#B12').prop('selectedIndex',0);
+                                $('#religion').prop('selectedIndex',0);
+                                $('#modality').prop('selectedIndex',0);
+
+                                //Special Education Learner info
+                                $('#B14').prop('selectedIndex',0);
+                                $('#B15').prop("checked", false);
+                                
+                                $('.B151').show();
+                                $('.spedlink').show();
+                                $('#B151').val('');  
+                                              
+                                $('#B16').prop('selectedIndex',0);
+                                $('#B17').val('');
+
+                                //Address info
+                                $('#street').val(''); 
+                                $('#barangay').val(''); 
+                                $('#municipality').val('')); 
+                                $('#province').val(''); 
+                                $('#region').val('V'); 
+
+                                //Parents and Guardian info
+                                $('#father').val(''); 
+                                $('#mother').val(''); 
+                                $('#guardian').val(''); 
+
+                                $('#fathereducattainment').prop('selectedIndex',0);
+                                $('#mothereducattainment').prop('selectedIndex',0);
+                                $('#guardianeducattainment').prop('selectedIndex',0);
+
+                                $('#fatheremployment').prop('selectedIndex',0);
+                                $('#motheremployment').prop('selectedIndex',0);
+                                $('#guardianemployment').prop('selectedIndex',0);
+
+                                $('#fatherWFH').prop('selectedIndex',0);
+                                $('#motherWFH').prop('selectedIndex',0);
+                                $('#guardianWFH').prop('selectedIndex',0);
+
+                                $('#fathercontact').val(''); 
+                                $('#mothercontact').val(''); 
+                                $('#guardiancontact').val(''); 
+
+                                $('#guardianrelate').val(''); 
+                                $('#stud_id').val(''); 
+
+List of barangay in sorsogon
+
+Abuyog, Sorsogon City
+Almendras-Cogon, Sorsogon City
+Balete, Sorsogon City
+Balogo (Bacon District), Sorsogon City
+Balogo (Sorsogon East District), Sorsogon City
+Barayong, Sorsogon City
+Basud, Sorsogon City
+Bato, Sorsogon City
+Bibincahan, Sorsogon City
+Bitan-o/Dalipay, Sorsogon City
+Bogña, Sorsogon City
+Bon-ot, Sorsogon City
+Bucalbucalan, Sorsogon City
+Buenavista, Sorsogon City
+Buenavista (Bacon District), Sorsogon City
+Buhatan, Sorsogon City
+Bulabog, Sorsogon City
+Burabod, Sorsogon City
+Cabarbuhan, Sorsogon City
+Cabid-an, Sorsogon City
+Cambulaga, Sorsogon City
+Capuy, Sorsogon City
+Caricaran, Sorsogon City
+Del Rosario, Sorsogon City
+Gatbo, Sorsogon City
+Gimaloto, Sorsogon City
+Guinlajon, Sorsogon City
+Jamislagan, Sorsogon City
+Macabog, Sorsogon City
+Maricrum, Sorsogon City
+Marinas, Sorsogon City
+Osiao, Sorsogon City
+Pamurayan, Sorsogon City
+Pangpang, Sorsogon City
+Panlayaan, Sorsogon City
+Peñafrancia, Sorsogon City
+Piot, Sorsogon City
+Poblacion, Sorsogon City
+Polvorista, Sorsogon City
+Rawis, Sorsogon City
+Rizal, Sorsogon City
+Salog, Sorsogon City
+Salvacion, Sorsogon City
+Salvacion (Bacon District), Sorsogon City
+Sampaloc, Sorsogon City
+San Isidro, Sorsogon City
+San Isidro (Bacon District), Sorsogon City
+San Juan (Bacon District), Sorsogon City
+San Juan (Roro), Sorsogon City
+San Pascual, Sorsogon City
+San Ramon, Sorsogon City
+San Roque, Sorsogon City
+San Vicente, Sorsogon City
+Santa Cruz, Sorsogon City
+Santa Lucia, Sorsogon City
+Santo Domingo, Sorsogon City
+Santo Niño, Sorsogon City
+Sawanga, Sorsogon City
+Sirangan, Sorsogon City
+Sugod, Sorsogon City
+Sulucan, Sorsogon City
+Talisay, Sorsogon City
+Ticol, Sorsogon City
+Tugos, Sorsogon City
+
+
+List of municipality in Sorsogon
+B
+Barcelona, Sorsogon
+Bulan, Sorsogon
+Bulusan (municipality)
+C
+Casiguran, Sorsogon
+Castilla, Sorsogon
+D
+Donsol
+G
+Gubat
+I
+Irosin
+J
+Juban, Sorsogon
+M
+Magallanes, Sorsogon
+Matnog
+P
+Pilar, Sorsogon
+Prieto Diaz
+S
+Santa Magdalena
+Sorsogon
+
+List of Regions in the philippines
+Region I – Ilocos Region
+Region II – Cagayan Valley
+Region III – Central Luzon
+Region IV‑A – CALABARZON
+MIMAROPA Region
+Region V – Bicol Region
+Region VI – Western Visayas
+Region VII – Central Visayas
+Region VIII – Eastern Visayas
+Region IX – Zamboanga Peninsula
+Region X – Northern Mindanao
+Region XI – Davao Region
+Region XII – SOCCSKSARGEN
+Region XIII – Caraga
+NCR – National Capital Region
+CAR – Cordillera Administrative Region
+BARMM – Bangsamoro Autonomous Region in Muslim Mindanao
+
+consent
+https://accounts.google.com/signin/v2/identifier?service=wise&passive=1209600&continue=https%3A%2F%2Fdocs.google.com%2Fdocument%2Fd%2F1t4Or9-kDVMyMTRsPgeoWFBGCVWZdUvCeVshs202_MzI%2Fedit%3Fusp%3Dsharing&followup=https%3A%2F%2Fdocs.google.com%2Fdocument%2Fd%2F1t4Or9-kDVMyMTRsPgeoWFBGCVWZdUvCeVshs202_MzI%2Fedit%3Fusp%3Dsharing&ltmpl=docs&flowName=GlifWebSignIn&flowEntry=ServiceLogin
+
+"In accordance with the Department of Education’s mandate to protect and promote the right to and 
+access to quality basic education, DepEd collects various data and information, 
+including personal information, from various subjects using different systems. more info."
+
+
+ $checkbox15=$_POST['B15'];
+    $chk15="";;
+    foreach($checkbox15 as $chkFif)  
+    {  
+        $chk15 .= $chkFif.",";  
+    }
+
+
+
+    $checkbox1=$_POST['D1'];  
+    $checkbox2=$_POST['D2'];
+    $checkbox3=$_POST['D3'];
+    $checkbox4=$_POST['D4'];
+    $checkbox5=$_POST['D5'];
+    $checkbox6=$_POST['D6'];
+    $checkbox7=$_POST['D7'];
+    $checkbox8=$_POST['D8'];
+    $chk1=""; $chk2=""; $chk3=""; $chk4=""; $chk5=""; $chk6=""; $chk7=""; $chk8="";
+    foreach($checkbox1 as $chkOne)  
+    {  
+        $chk1 .= $chkOne.",";  
+    }  
+    foreach($checkbox2 as $chkTwo)  
+    {  
+        $chk2 .= $chkTwo.",";  
+    }
+    foreach($checkbox3 as $chkThree)  
+    {  
+        $chk3 .= $chkThree.",";  
+    }  
+    foreach($checkbox4 as $chkFour)  
+    {  
+        $chk4 .= $chkFour.",";  
+    }
+    foreach($checkbox5 as $chkFive)  
+    {  
+        $chk5 .= $chkFive.",";  
+    }  
+    foreach($checkbox6 as $chkSix)  
+    {  
+        $chk6 .= $chkSix.",";  
+    }
+    foreach($checkbox7 as $chkSeven)  
+    {  
+        $chk7 .= $chkSeven.",";  
+    }  
+    foreach($checkbox8 as $chkEight)  
+    {  
+        $chk8 .= $chkEight.",";  
+    }
+
+
+
+    <section class="myDiv">
+                    <div class="col-12 d-flex justify-content-end reset-btn">         
+                        <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                        <button type="submit" id="readmit" name="readmitstudent" class="btn btn-success me-1 mb-1">Submit</button>
+                        <button type="submit" id="admit" name="admitstudent" class="btn btn-primary me-1 mb-1">Submit</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                         Launch demo modal
+                        </button>
+                    </div>
+</section>
+
+
+required oninvalid="this.setCustomValidity('Please enter your first and last name separated by a space (e.g. Jane Miller)');" onchange="try{setCustomValidity('')}catch(e){};" x-moz-errormessage="Please enter your first and last name separated by a space (e.g. Jane Miller)"
+
+
+oninvalid="this.setCustomValidity('Your custom message.')" onkeyup="setCustomValidity('')"
+
+link rel="Shortcut icon"  type="x-icon" href="location of image"
+
+
+
+
+//Query for counting total class / section
+$sql5 = "SELECT COUNT(id) as total FROM section_tbl";
+$result = mysqli_query($connection,$sql5);
+         while ($row = mysqli_fetch_array($result)) { 
+              $records = $row['total'];
+         }
+//Query for counting total teacher
+$sql6 = "SELECT COUNT(t.id) AS totalteachers FROM teacher t INNER JOIN users u ON u.id = t.id WHERE u.role != 'Admin'";
+$result = mysqli_query($connection,$sql6);
+         while ($row = mysqli_fetch_array($result)) { 
+              $teachers = $row['totalteachers'];
+         }
+//Query for counting total enrolled students
+$sql7 = "SELECT COUNT(student_id) as totalstudents FROM enrollment_tbl WHERE STATUS='enrolled'";
+$result = mysqli_query($connection,$sql7);
+         while ($row = mysqli_fetch_array($result)) { 
+              $totalstudents = $row['totalstudents'];
+         }
+
+
+
+
+         if ($_SESSION['role'] == 'Admin'){
+        $sqly = "SELECT ( SELECT COUNT(*) FROM student_tbl s INNER JOIN enrollment_tbl e ON s.id = e.student_id WHERE e.`status` = 'enrolled' ) AS `TotalPupils`,
+        ( SELECT COUNT(*) FROM teacher t INNER JOIN users u ON t.id = u.id WHERE u.`status` = 'Active' ) AS `TotalTeachers`,
+        ( SELECT COUNT(*) FROM section_tbl ) AS `TotalClass`,
+        ( SELECT COUNT(*) FROM enrollment_tbl WHERE STATUS = 'pending') AS `TotalPending`";
+        $result = mysqli_query($connection,$sqly);
+}
+else if ($_SESSION['role'] == 'Teacher'){
+  $id = $_SESSION['gradeid'];
+  $userid = $_SESSION['id'];
+  $sqlz = "SELECT ( SELECT COUNT(*) AS `TotalPupils`
+                        FROM student_tbl s 
+                        INNER JOIN enrollment_tbl e 
+                        ON s.id = e.student_id
+                        INNER JOIN section_tbl se
+                        ON e.`section_id` = se.`id` 
+                        INNER JOIN teacher t
+                        ON se.`teacher_id` = t.`id`
+                        WHERE e.`status` = 'enrolled'
+                        AND t.id = '$userid') AS `TotalPupils`,
+                  ( SELECT COUNT(*) FROM teacher t INNER JOIN users u ON t.id = u.id WHERE u.`status` = 'Active' ) AS `TotalTeachers`,
+                  ( SELECT COUNT(*) FROM section_tbl  WHERE teacher_id = '$userid') AS `TotalClass`,
+                  ( SELECT COUNT(e.id) AS totalpending
+                        FROM enrollment_tbl e
+                        LEFT JOIN section_tbl s
+                        ON e.section_id = s.id
+                        LEFT JOIN gradelevel_tbl g
+                        ON s.gradelevel_id = g.id
+                        LEFT JOIN teacher t
+                        ON s.gradelevel_id = t.gradetohandle
+                        LEFT JOIN student_tbl st
+                        ON e.student_id = st.id
+                        WHERE e.status ='pending'
+                        AND st.gradetoenroll = '$id'";
+                         $result = mysqli_query($connection,$sqlz);
+}             
+                  while ($row = mysqli_fetch_array($result)) { 
+                        $totalstudents = $row['TotalPupils'];
+                        $totalteachers = $row['TotalTeachers'];
+                        $totalpending = $row['TotalPending'];
+                        $totalclass = $row['TotalClass'];
+                      }
+        
+
+                      <script src="asset/js/pdfexport/jquery-3.5.1.js"></script>
+    <script src="asset/js/bootstrap.bundle.min.js"></script>
+    <script src="asset/js/popper.min.js"></script>
+    <script src="asset/js/pdfexport/jquery.dataTables.min.js"></script>
+    <script src="asset/js/pdfexport/dataTables.buttons.min.js"></script>
+    <script src="asset/js/pdfexport/pdfmake.min.js"></script>
+    <script src="asset/js/pdfexport/buttons.html5.min.js"></script>
+    <script src="asset/js/pdfexport/buttons.print.min.js"></script>
+    <script src="asset/js/pdfexport/vfs_fonts.js"></script>
+    <script src="asset/js/pdfexport/jszip.min.js"></script>
+    <script src="asset/js/pdfexport/buttons.colVis.min.js"></script>
+    <script src="asset/js/extensions/sweetalert.min.js"></script>
+
+
+
+    <!-- Script for filter DOM -->
+<script type="text/javascript">
+  $(document).ready(function ()
+  {
+    $('#searchByGender').hide();    // just add this
+    $('#searchByBarangay').hide();    // just add this
+    $('#searchByModality').hide();    // just add this
+
+
+     /* function firstfilter(chosen) */
+  $('#firstfilter').change(function(){
+      var filter = $("#firstfilter option:selected").val();
+
+      if (filter == "Gender") 
+    {  
+      $('#searchByGender').show(); 
+      $('#searchByBarangay').hide();
+      $('#searchByModality').hide(); 
+    }
+    else if (filter == "Location") 
+    {  
+      $('#searchByGender').hide(); 
+      $('#searchByBarangay').show();
+      $('#searchByModality').hide(); 
+    }
+    else if (filter == "Modality") 
+    {  
+      $('#searchByGender').hide(); 
+      $('#searchByBarangay').hide();
+      $('#searchByModality').show(); 
+    }
+    else 
+    {
+      $('#searchByGender').hide();  
+      $('#searchByBarangay').hide();  
+      $('#searchByModality').hide(); 
+    }
+  })   
+  });      
+</script>
+
+
+
+query for student report 
+/*   // Query for selecting total students     
+  $sql="SELECT g.grade, COUNT(s.id) AS `enrolles`
+  FROM gradelevel_tbl g
+  LEFT JOIN section_tbl ss
+  ON g.id = ss.gradelevel_id
+  LEFT JOIN enrollment_tbl e
+  ON ss.id = e.section_id
+  LEFT JOIN student_tbl s
+  ON e.id = s.id
+  GROUP BY g.id";
+  $result = mysqli_query($connection,$sql);
+  while ($row = mysqli_fetch_array($result)) {         
+     $Grade[] = $row['grade'];
+     $enrolles[] = $row['enrolles'];           
+  } */

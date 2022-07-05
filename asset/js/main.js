@@ -15,6 +15,8 @@ for(var i = 0; i < sidebarItems.length; i++) {
     })
 }
 
+
+
 window.addEventListener('DOMContentLoaded', (event) => {
     var w = window.innerWidth;
     if(w < 1200) {
@@ -49,5 +51,6 @@ if(typeof PerfectScrollbar == 'function') {
 
 // Scroll into active sidebar
 document.querySelector('.sidebar-item.active').scrollIntoView(false)
+
 
 
