@@ -1,5 +1,6 @@
 # SPESORMS
 A Capstone Project - Web Application called "Sorsogon Pilot Elementary School Online Registration and Management System"
+
 Objectives
 - To develop a module that automates student registration and teacher profiling;
 - To integrate features using SMS for pupil enrollment verification;
